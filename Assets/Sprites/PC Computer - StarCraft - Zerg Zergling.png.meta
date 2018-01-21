@@ -1,0 +1,2732 @@
+fileFormatVersion: 2
+guid: b5f54fe93a577054e89dacb2d9b76144
+timeCreated: 1516399401
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Computer - StarCraft - Zerg Zergling_0
+    21300002: PC Computer - StarCraft - Zerg Zergling_1
+    21300004: PC Computer - StarCraft - Zerg Zergling_2
+    21300006: PC Computer - StarCraft - Zerg Zergling_3
+    21300008: PC Computer - StarCraft - Zerg Zergling_4
+    21300010: PC Computer - StarCraft - Zerg Zergling_5
+    21300012: PC Computer - StarCraft - Zerg Zergling_6
+    21300014: PC Computer - StarCraft - Zerg Zergling_7
+    21300016: PC Computer - StarCraft - Zerg Zergling_8
+    21300018: PC Computer - StarCraft - Zerg Zergling_9
+    21300020: PC Computer - StarCraft - Zerg Zergling_10
+    21300022: PC Computer - StarCraft - Zerg Zergling_11
+    21300024: PC Computer - StarCraft - Zerg Zergling_12
+    21300026: PC Computer - StarCraft - Zerg Zergling_13
+    21300028: PC Computer - StarCraft - Zerg Zergling_14
+    21300030: PC Computer - StarCraft - Zerg Zergling_15
+    21300032: PC Computer - StarCraft - Zerg Zergling_16
+    21300034: PC Computer - StarCraft - Zerg Zergling_17
+    21300036: PC Computer - StarCraft - Zerg Zergling_18
+    21300038: PC Computer - StarCraft - Zerg Zergling_19
+    21300040: PC Computer - StarCraft - Zerg Zergling_20
+    21300042: PC Computer - StarCraft - Zerg Zergling_21
+    21300044: PC Computer - StarCraft - Zerg Zergling_22
+    21300046: PC Computer - StarCraft - Zerg Zergling_23
+    21300048: PC Computer - StarCraft - Zerg Zergling_24
+    21300050: PC Computer - StarCraft - Zerg Zergling_25
+    21300052: PC Computer - StarCraft - Zerg Zergling_26
+    21300054: PC Computer - StarCraft - Zerg Zergling_27
+    21300056: PC Computer - StarCraft - Zerg Zergling_28
+    21300058: PC Computer - StarCraft - Zerg Zergling_29
+    21300060: PC Computer - StarCraft - Zerg Zergling_30
+    21300062: PC Computer - StarCraft - Zerg Zergling_31
+    21300064: PC Computer - StarCraft - Zerg Zergling_32
+    21300066: PC Computer - StarCraft - Zerg Zergling_33
+    21300068: PC Computer - StarCraft - Zerg Zergling_34
+    21300070: PC Computer - StarCraft - Zerg Zergling_35
+    21300072: PC Computer - StarCraft - Zerg Zergling_36
+    21300074: PC Computer - StarCraft - Zerg Zergling_37
+    21300076: PC Computer - StarCraft - Zerg Zergling_38
+    21300078: PC Computer - StarCraft - Zerg Zergling_39
+    21300080: PC Computer - StarCraft - Zerg Zergling_40
+    21300082: PC Computer - StarCraft - Zerg Zergling_41
+    21300084: PC Computer - StarCraft - Zerg Zergling_42
+    21300086: PC Computer - StarCraft - Zerg Zergling_43
+    21300088: PC Computer - StarCraft - Zerg Zergling_44
+    21300090: PC Computer - StarCraft - Zerg Zergling_45
+    21300092: PC Computer - StarCraft - Zerg Zergling_46
+    21300094: PC Computer - StarCraft - Zerg Zergling_47
+    21300096: PC Computer - StarCraft - Zerg Zergling_48
+    21300098: PC Computer - StarCraft - Zerg Zergling_49
+    21300100: PC Computer - StarCraft - Zerg Zergling_50
+    21300102: PC Computer - StarCraft - Zerg Zergling_51
+    21300104: PC Computer - StarCraft - Zerg Zergling_52
+    21300106: PC Computer - StarCraft - Zerg Zergling_53
+    21300108: PC Computer - StarCraft - Zerg Zergling_54
+    21300110: PC Computer - StarCraft - Zerg Zergling_55
+    21300112: PC Computer - StarCraft - Zerg Zergling_56
+    21300114: PC Computer - StarCraft - Zerg Zergling_57
+    21300116: PC Computer - StarCraft - Zerg Zergling_58
+    21300118: PC Computer - StarCraft - Zerg Zergling_59
+    21300120: PC Computer - StarCraft - Zerg Zergling_60
+    21300122: PC Computer - StarCraft - Zerg Zergling_61
+    21300124: PC Computer - StarCraft - Zerg Zergling_62
+    21300126: PC Computer - StarCraft - Zerg Zergling_63
+    21300128: PC Computer - StarCraft - Zerg Zergling_64
+    21300130: PC Computer - StarCraft - Zerg Zergling_65
+    21300132: PC Computer - StarCraft - Zerg Zergling_66
+    21300134: PC Computer - StarCraft - Zerg Zergling_67
+    21300136: PC Computer - StarCraft - Zerg Zergling_68
+    21300138: PC Computer - StarCraft - Zerg Zergling_69
+    21300140: PC Computer - StarCraft - Zerg Zergling_70
+    21300142: PC Computer - StarCraft - Zerg Zergling_71
+    21300144: PC Computer - StarCraft - Zerg Zergling_72
+    21300146: PC Computer - StarCraft - Zerg Zergling_73
+    21300148: PC Computer - StarCraft - Zerg Zergling_74
+    21300150: PC Computer - StarCraft - Zerg Zergling_75
+    21300152: PC Computer - StarCraft - Zerg Zergling_76
+    21300154: PC Computer - StarCraft - Zerg Zergling_77
+    21300156: PC Computer - StarCraft - Zerg Zergling_78
+    21300158: PC Computer - StarCraft - Zerg Zergling_79
+    21300160: PC Computer - StarCraft - Zerg Zergling_80
+    21300162: PC Computer - StarCraft - Zerg Zergling_81
+    21300164: PC Computer - StarCraft - Zerg Zergling_82
+    21300166: PC Computer - StarCraft - Zerg Zergling_83
+    21300168: PC Computer - StarCraft - Zerg Zergling_84
+    21300170: PC Computer - StarCraft - Zerg Zergling_85
+    21300172: PC Computer - StarCraft - Zerg Zergling_86
+    21300174: PC Computer - StarCraft - Zerg Zergling_87
+    21300176: PC Computer - StarCraft - Zerg Zergling_88
+    21300178: PC Computer - StarCraft - Zerg Zergling_89
+    21300180: PC Computer - StarCraft - Zerg Zergling_90
+    21300182: PC Computer - StarCraft - Zerg Zergling_91
+    21300184: PC Computer - StarCraft - Zerg Zergling_92
+    21300186: PC Computer - StarCraft - Zerg Zergling_93
+    21300188: PC Computer - StarCraft - Zerg Zergling_94
+    21300190: PC Computer - StarCraft - Zerg Zergling_95
+    21300192: PC Computer - StarCraft - Zerg Zergling_96
+    21300194: PC Computer - StarCraft - Zerg Zergling_97
+    21300196: PC Computer - StarCraft - Zerg Zergling_98
+    21300198: PC Computer - StarCraft - Zerg Zergling_99
+    21300200: PC Computer - StarCraft - Zerg Zergling_100
+    21300202: PC Computer - StarCraft - Zerg Zergling_101
+    21300204: PC Computer - StarCraft - Zerg Zergling_102
+    21300206: PC Computer - StarCraft - Zerg Zergling_103
+    21300208: PC Computer - StarCraft - Zerg Zergling_104
+    21300210: PC Computer - StarCraft - Zerg Zergling_105
+    21300212: PC Computer - StarCraft - Zerg Zergling_106
+    21300214: PC Computer - StarCraft - Zerg Zergling_107
+    21300216: PC Computer - StarCraft - Zerg Zergling_108
+    21300218: PC Computer - StarCraft - Zerg Zergling_109
+    21300220: PC Computer - StarCraft - Zerg Zergling_110
+    21300222: PC Computer - StarCraft - Zerg Zergling_111
+    21300224: PC Computer - StarCraft - Zerg Zergling_112
+    21300226: PC Computer - StarCraft - Zerg Zergling_113
+    21300228: PC Computer - StarCraft - Zerg Zergling_114
+    21300230: PC Computer - StarCraft - Zerg Zergling_115
+    21300232: PC Computer - StarCraft - Zerg Zergling_116
+    21300234: PC Computer - StarCraft - Zerg Zergling_117
+    21300236: PC Computer - StarCraft - Zerg Zergling_118
+    21300238: PC Computer - StarCraft - Zerg Zergling_119
+    21300240: PC Computer - StarCraft - Zerg Zergling_120
+    21300242: PC Computer - StarCraft - Zerg Zergling_121
+    21300244: PC Computer - StarCraft - Zerg Zergling_122
+    21300246: PC Computer - StarCraft - Zerg Zergling_123
+    21300248: PC Computer - StarCraft - Zerg Zergling_124
+    21300250: PC Computer - StarCraft - Zerg Zergling_125
+    21300252: PC Computer - StarCraft - Zerg Zergling_126
+    21300254: PC Computer - StarCraft - Zerg Zergling_127
+    21300256: PC Computer - StarCraft - Zerg Zergling_128
+    21300258: PC Computer - StarCraft - Zerg Zergling_129
+    21300260: PC Computer - StarCraft - Zerg Zergling_130
+    21300262: PC Computer - StarCraft - Zerg Zergling_131
+    21300264: PC Computer - StarCraft - Zerg Zergling_132
+    21300266: PC Computer - StarCraft - Zerg Zergling_133
+    21300268: PC Computer - StarCraft - Zerg Zergling_134
+    21300270: PC Computer - StarCraft - Zerg Zergling_135
+    21300272: PC Computer - StarCraft - Zerg Zergling_136
+    21300274: PC Computer - StarCraft - Zerg Zergling_137
+    21300276: PC Computer - StarCraft - Zerg Zergling_138
+    21300278: PC Computer - StarCraft - Zerg Zergling_139
+    21300280: PC Computer - StarCraft - Zerg Zergling_140
+    21300282: PC Computer - StarCraft - Zerg Zergling_141
+    21300284: PC Computer - StarCraft - Zerg Zergling_142
+    21300286: PC Computer - StarCraft - Zerg Zergling_143
+    21300288: PC Computer - StarCraft - Zerg Zergling_144
+    21300290: PC Computer - StarCraft - Zerg Zergling_145
+    21300292: PC Computer - StarCraft - Zerg Zergling_146
+    21300294: PC Computer - StarCraft - Zerg Zergling_147
+    21300296: PC Computer - StarCraft - Zerg Zergling_148
+    21300298: PC Computer - StarCraft - Zerg Zergling_149
+    21300300: PC Computer - StarCraft - Zerg Zergling_150
+    21300302: PC Computer - StarCraft - Zerg Zergling_151
+    21300304: PC Computer - StarCraft - Zerg Zergling_152
+    21300306: PC Computer - StarCraft - Zerg Zergling_153
+    21300308: PC Computer - StarCraft - Zerg Zergling_154
+    21300310: PC Computer - StarCraft - Zerg Zergling_155
+    21300312: PC Computer - StarCraft - Zerg Zergling_156
+    21300314: PC Computer - StarCraft - Zerg Zergling_157
+    21300316: PC Computer - StarCraft - Zerg Zergling_158
+    21300318: PC Computer - StarCraft - Zerg Zergling_159
+    21300320: PC Computer - StarCraft - Zerg Zergling_160
+    21300322: PC Computer - StarCraft - Zerg Zergling_161
+    21300324: PC Computer - StarCraft - Zerg Zergling_162
+    21300326: PC Computer - StarCraft - Zerg Zergling_163
+    21300328: PC Computer - StarCraft - Zerg Zergling_164
+    21300330: PC Computer - StarCraft - Zerg Zergling_165
+    21300332: PC Computer - StarCraft - Zerg Zergling_166
+    21300334: PC Computer - StarCraft - Zerg Zergling_167
+    21300336: PC Computer - StarCraft - Zerg Zergling_168
+    21300338: PC Computer - StarCraft - Zerg Zergling_169
+    21300340: PC Computer - StarCraft - Zerg Zergling_170
+    21300342: PC Computer - StarCraft - Zerg Zergling_171
+    21300344: PC Computer - StarCraft - Zerg Zergling_172
+    21300346: PC Computer - StarCraft - Zerg Zergling_173
+    21300348: PC Computer - StarCraft - Zerg Zergling_174
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 25
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 658
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 658
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_2
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 658
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_3
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 658
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_4
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 658
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_5
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 658
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_6
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 658
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_7
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 658
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_8
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 658
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_9
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 689
+        width: 21
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_10
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 691
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_11
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 677
+        width: 25
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_12
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 679
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_13
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 616
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_14
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 616
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_15
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 616
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_16
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 616
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_17
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 616
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_18
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 616
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_19
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 616
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_20
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 616
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_21
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 616
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_22
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 650
+        width: 66
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_23
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 640
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_24
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 640
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_25
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 638
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_26
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 640
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_27
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 640
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_28
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 640
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_29
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 640
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_30
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 640
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_31
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 640
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_32
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 640
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_33
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 629
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_34
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 629
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_35
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 629
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_36
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 629
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_37
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 629
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_38
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 629
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_39
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 629
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_40
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 629
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_41
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 629
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_42
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 629
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_43
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 629
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_44
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 629
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_45
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 574
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_46
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 574
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_47
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 574
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_48
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 574
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_49
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 574
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_50
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 574
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_51
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 574
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_52
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 574
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_53
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 574
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_54
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 561
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_55
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 532
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_56
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 532
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_57
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 532
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_58
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 532
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_59
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 532
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_60
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 532
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_61
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 532
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_62
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 532
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_63
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 532
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_64
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 502
+        width: 66
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_65
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 490
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_66
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 490
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_67
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 490
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_68
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 490
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_69
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 490
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_70
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 490
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_71
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 490
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_72
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 490
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_73
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 490
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_74
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 448
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_75
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 448
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_76
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 448
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_77
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 448
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_78
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 448
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_79
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 448
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_80
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 448
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_81
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 448
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_82
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 448
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_83
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 406
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_84
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 406
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_85
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 406
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_86
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 406
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_87
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 406
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_88
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 406
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_89
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 406
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_90
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 406
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_91
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 406
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_92
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 364
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_93
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 364
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_94
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 364
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_95
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 364
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_96
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 364
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_97
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 364
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_98
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 364
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_99
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 364
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_100
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 364
+        width: 70
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_101
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 398
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_102
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 398
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_103
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 398
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_104
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 398
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_105
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 384
+        width: 25
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_106
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 386
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_107
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 322
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_108
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 322
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_109
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 322
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_110
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 322
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_111
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 322
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_112
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 322
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_113
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 322
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_114
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 322
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_115
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 322
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_116
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 280
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_117
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 280
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_118
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 280
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_119
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 280
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_120
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 280
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_121
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 280
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_122
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 280
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_123
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 280
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_124
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 280
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_125
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 238
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_126
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 238
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_127
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 238
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_128
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 238
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_129
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 238
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_130
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 238
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_131
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 238
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_132
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 238
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_133
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 238
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_134
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 196
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_135
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 196
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_136
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 196
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_137
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 196
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_138
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 196
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_139
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 196
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_140
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 196
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_141
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 196
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_142
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 196
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_143
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 224
+        width: 63
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_144
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 226
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_145
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 226
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_146
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 212
+        width: 100
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_147
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 214
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_148
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 214
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_149
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 214
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_150
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 214
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_151
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 214
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_152
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 214
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_153
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 202
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_154
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 200
+        width: 62
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_155
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 202
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_156
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 202
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_157
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 202
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_158
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 202
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_159
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 154
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_160
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 154
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_161
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 154
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_162
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 154
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_163
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 154
+        width: 71
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_164
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 188
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_165
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 188
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_166
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 188
+        width: 10
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_167
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 188
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_168
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 98
+        width: 67
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_169
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 98
+        width: 67
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_170
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 98
+        width: 67
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_171
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 98
+        width: 67
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_172
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 98
+        width: 67
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_173
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 98
+        width: 67
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PC Computer - StarCraft - Zerg Zergling_174
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 98
+        width: 91
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
