@@ -1,0 +1,139 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : TouchInput
+{
+    public float moveSpeed = 1f;
+    public float stopDistance = 0.1f;
+    public bool dragPlay;
+    public LayerMask blockingLayer;
+
+    private Rigidbody2D rb;
+    private Vector2 targetPosition;
+    private Vector2 movementPosition;
+    private CircleCollider2D collide;
+    private bool isMoving;
+
+    // Use this for initialization
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        collide = GetComponent<CircleCollider2D>();
+        targetPosition = transform.position;
+        isMoving = false;
+        dragPlay = false;
+    }
+
+
+
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {   
+        if ((Vector2)transform.position == targetPosition)
+        {
+            isMoving = false;
+        }
+
+        if (isMoving == true)
+        {
+                Move();
+        }
+    }
+
+    protected override void OnTouchBeganAnywhere()
+    {
+        Debug.Log("new touch");
+        isMoving = false;
+        Touch myTouch = Input.touches[0];
+        Vector2 TargetPosition = Camera.main.ScreenToWorldPoint(myTouch.position);
+        targetPosition = TargetPosition;
+
+        float distanceToEnd = Vector2.Distance(transform.position, TargetPosition);
+
+        collide.enabled = (false);
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, collide.radius, targetPosition, distanceToEnd, blockingLayer);
+        collide.enabled = (true);
+
+        if (hit.collider != null)
+        {
+            Debug.Log("Hit Detected!");
+            Vector2 newDirection = HitDetected(targetPosition, hit, collide.radius);
+            targetPosition = newDirection;
+
+        }
+        else
+        {
+            targetPosition = TargetPosition;
+        }
+
+        isMoving = true;
+    }
+
+
+
+     Vector2 GetNextMove(Vector2 end)
+    {
+        Vector2 move;
+        //Store the current position of player
+        Vector2 CurrentPosition = transform.position;
+        float remainingDistance = Vector2.Distance(CurrentPosition, targetPosition);
+
+        if (remainingDistance > stopDistance)
+        {
+            move = (targetPosition - CurrentPosition).normalized * moveSpeed * Time.deltaTime;
+        }
+
+        else
+        {
+            move = (targetPosition - CurrentPosition) * moveSpeed * Time.deltaTime;
+        }
+
+
+        return move;
+    }
+
+
+    Vector2 HitDetected(Vector2 originalEnd, RaycastHit2D hit, float radius)
+    {
+        Collider2D hitCollider = GetComponent<Collider2D>();
+        hitCollider = hit.collider;
+
+        Vector2 newCoord = hit.point;
+        Vector2 min = hitCollider.bounds.min;
+        Vector2 max = hitCollider.bounds.max;
+
+        if (newCoord.y >= min.y && newCoord.y <= max.y)
+        {
+            if (originalEnd.y > hit.point.y)
+                newCoord.y -= radius + stopDistance;
+            if (originalEnd.y < hit.point.y)
+                newCoord.y += radius + stopDistance;
+        }
+
+        if (newCoord.x >= min.x && newCoord.x <= max.x)
+        {
+            if (originalEnd.x > hit.point.x)
+                newCoord.x -= radius + stopDistance;
+            if (originalEnd.x < hit.point.x)
+                newCoord.x += radius + stopDistance;
+        }
+
+        return newCoord;
+
+    }
+
+
+    void Move()
+    {
+        movementPosition = GetNextMove(targetPosition);
+
+        if (isMoving)
+        {
+            rb.MovePosition(rb.position + movementPosition);
+            Debug.DrawLine(transform.position, targetPosition, Color.red);
+        }
+    }
+
+}

@@ -1,0 +1,96 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public float moveSpeed = 1f;
+    public float stopDistance = 0.4f;
+    public bool dragPlay;
+
+    private Rigidbody2D rb;
+    private Vector2 targetPosition;
+    private Vector2 movementPosition;
+    private bool isMoving;
+
+
+
+
+    // Use this for initialization
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        targetPosition = transform.position;
+        isMoving = false;
+        dragPlay = false;
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        //Check if there are touches. If there is, call the SetTargetPosition function to get the position of the first touch
+        if (Input.touchCount > 0)
+        {
+            Touch myTouch = Input.touches[0];
+            targetPosition = myTouch.position;            
+            Debug.DrawLine(transform.position, Camera.main.ScreenToWorldPoint(targetPosition), Color.red);
+
+            if (dragPlay)
+            {
+                Move();
+            }
+
+        }
+
+        if (!dragPlay)
+        {
+            Move();
+        }
+
+    }
+
+    private Vector2 GetNextMove(Vector2 end)
+    {
+        Vector2 move;
+        //Store the current position of player
+        Vector2 CurrentPosition = transform.position;
+
+        //Get the target position given by the touch input and convert to world point from a screen point
+        Vector2 TargetPosition = Camera.main.ScreenToWorldPoint(end);
+
+        float remainingDistance = Vector2.Distance(CurrentPosition, TargetPosition);
+
+        if (remainingDistance > stopDistance)
+        {
+            move = (TargetPosition - CurrentPosition).normalized * moveSpeed * Time.deltaTime;
+        }
+
+        else
+        {
+            move = (TargetPosition - CurrentPosition) * moveSpeed * Time.deltaTime;
+        }
+
+
+        return move;
+    }
+
+    void Move()
+    {
+        if ((Vector2)transform.position == targetPosition)
+        {
+            isMoving = false;
+        }
+        else
+        {
+            isMoving = true;
+        }
+
+        movementPosition = GetNextMove(targetPosition);
+
+        if (isMoving)
+        {
+            rb.MovePosition(rb.position + movementPosition);
+        }
+    }
+
+}
