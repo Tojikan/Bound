@@ -12,6 +12,8 @@ public class WaterTile : Tile
     [SerializeField]
     private Sprite preview;
 
+
+
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
         for (int y = -1; y <= 1; y++)
@@ -30,6 +32,8 @@ public class WaterTile : Tile
 
     public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
     {
+        base.GetTileData(location, tilemap, ref tileData);
+
         string composition = string.Empty;
 
         for (int x = -1; x <= 1; x++)//Runs through all neighbours
