@@ -4,7 +4,6 @@ using UnityEngine;
 
 
 //Class that handles movement for the player object
-//Iwantthis
 
 
 public class PlayerMovement : MonoBehaviour
@@ -65,38 +64,14 @@ public class PlayerMovement : MonoBehaviour
             Vector3 xMove = new Vector2(newPosition.x, 0);
             Vector3 yMove = new Vector2(0, newPosition.y);
 
-            
-            bool checkX = false;
-            bool checkY = false;
-
             //Move on X axis, and then check collision
             transform.position += xMove;
-            checkX = col.CheckColliders();
-            if (checkX == true)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, targetPosition, col.overlapRadius, col.targetLayer);
-                Debug.Log(hit.normal);
-                if (hit.normal.x == 1 || hit.normal.x == -1)
-                {
-                    targetPosition.x = transform.position.x;
-                    targetPosition.y = targetPosition.y - ((Vector2.Distance(transform.position, targetPosition) / slideDistance) * Mathf.Sign(newPosition.y));
-                }
-            }
+            col.CheckColliders();
 
 
             //Then move on Y axis and then check collision
             transform.position += yMove;
-            checkY = col.CheckColliders();
-            if (checkY == true)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, targetPosition, col.overlapRadius, col.targetLayer);
-                Debug.Log(hit.normal);
-                if (hit.normal.y == 1 || hit.normal.y == -1)
-                {
-                    targetPosition.y = transform.position.y;
-                    targetPosition.x = targetPosition.x - ((Vector2.Distance(transform.position, targetPosition) / slideDistance) * Mathf.Sign(newPosition.x));
-                }
-            }
+            col.CheckColliders();
         }
 
         //Set our animation accordingly

@@ -27,7 +27,7 @@ public class TopDownCircleCollider2D : MonoBehaviour
 	}
 
     //Function to check collisions and put an offset on any colliding objects. Returns true if it collides and false if no collisions
-    public bool CheckColliders()
+    public void CheckColliders()
     {
         //Create a Collider2D array
         neighbors = new Collider2D[maxNeighbors];
@@ -47,12 +47,10 @@ public class TopDownCircleCollider2D : MonoBehaviour
                 //if so, calculate the displacement and then change our position
                 Vector3 displace = colDist.normal * colDist.distance;
                 transform.position += displace;
-                return true;
             }
            
         }
 
         //returns false if no collision detected
-        return false;
     }
 }
