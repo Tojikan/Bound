@@ -4,8 +4,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
+//InScope TileMap Tutorial 
+//Class for setting the WaterTile
 public class WaterTile : Tile
 {
+
+    //Adds a field to the watertile asset
     [SerializeField]
     private Sprite[] waterSprites;
 
@@ -13,7 +18,7 @@ public class WaterTile : Tile
     private Sprite preview;
 
 
-
+    //Overrides refresh tile to check if every tile around a tile is a water tile or not. Then refreshes.
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
         for (int y = -1; y <= 1; y++)
@@ -30,8 +35,10 @@ public class WaterTile : Tile
         }
     }
 
+    //Changes the tile accordingly after being refreshed
     public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
     {
+        //Does this so we can have colliders working
         base.GetTileData(location, tilemap, ref tileData);
 
         string composition = string.Empty;
@@ -56,7 +63,9 @@ public class WaterTile : Tile
                 }
             }
         }
+ 
 
+        //Randomize different water designs
         int randomVal = Random.Range(0, 100);
 
         if (randomVal < 15)
@@ -74,7 +83,7 @@ public class WaterTile : Tile
         }
 
 
-
+        //Whole bunch of code to set the tile to different positions
         if (composition[1] == 'E' && composition[3] == 'E' && composition[4] == 'E' && composition[6] == 'E')
         {
             tileData.sprite = waterSprites[0];
@@ -262,6 +271,7 @@ public class WaterTile : Tile
 
     }
 
+    //Checks if water tile
     private bool HasWater(ITilemap tilemap, Vector3Int position)
     {
         return tilemap.GetTile(position) == this;
@@ -269,6 +279,7 @@ public class WaterTile : Tile
 
 
 #if UNITY_EDITOR
+    //Adds a new menu for creating a watertile in assets
     [MenuItem("Assets/Create/Tiles/WaterTile")]
     public static void CreateWaterTile()
     {

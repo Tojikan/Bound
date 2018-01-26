@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
             //Then move on Y axis and then check collision
             transform.position += yMove;
             col.CheckColliders();
+
         }
 
         //Set our animation accordingly
