@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+//Tests how we can set tiles in a block. So far, successful. Alternates between two. 
+
 public class MapLoader : MonoBehaviour
 {
 

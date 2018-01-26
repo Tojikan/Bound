@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
+//Gets us the tile coordinates of whatever we're standing on. For informational purposes, delete. 
+
 public class TileGet : MonoBehaviour
 {
     public Grid gridcheck;

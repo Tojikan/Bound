@@ -6,6 +6,9 @@ using UnityEngine.Tilemaps;
 
 
 //InScope TileMap Tutorial 
+
+//TO DO: CONVERT TO BITMAPPING INSTEAD OF STRINGS
+
 //Class for setting the WaterTile
 public class WaterTile : Tile
 {
