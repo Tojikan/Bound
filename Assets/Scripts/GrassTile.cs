@@ -30,7 +30,7 @@ public class GrassTile : Tile {
                 Vector3Int nPos = new Vector3Int(position.x + x, position.y + y, position.z);
 
                 //Checks if the correct tile type, and then refreshes. 
-                if (CheckGrass(tilemap, nPos))
+                if (CheckTile(tilemap, nPos))
                 {
                     tilemap.RefreshTile(nPos);
                 }
@@ -50,7 +50,7 @@ public class GrassTile : Tile {
         base.GetTileData(position, tilemap, ref tileData);
 
         //Bitmap counter 
-        int composition = 0;
+        int bitmask = 0;
 
         //Positions for the 4 cardinal directions around tile
         Vector3Int eastSide = new Vector3Int(position.x + 1, position.y, position.z);
@@ -59,10 +59,10 @@ public class GrassTile : Tile {
         Vector3Int northSide = new Vector3Int(position.x, position.y + 1, position.z);
 
         //Calculates our bitmap accordingly by adding the 4bit number of a corresponding side if it's the same tile
-        composition = (HasGrass(tilemap, northSide) * 1) + (HasGrass(tilemap, westSide) * 2) + (HasGrass(tilemap, southSide) * 4) + (HasGrass(tilemap, eastSide) * 8);
+        bitmask = (GetBitmask(tilemap, northSide) * 1) + (GetBitmask(tilemap, westSide) * 2) + (GetBitmask(tilemap, southSide) * 4) + (GetBitmask(tilemap, eastSide) * 8);
 
         //Case Switch construct to determine which sprite we use for this tile
-        switch(composition)
+        switch(bitmask)
         {
             case 0:
                 tileData.sprite = grassSprites[0];
@@ -119,7 +119,7 @@ public class GrassTile : Tile {
     }
 
     //For when we calculate our bitmap. If the tile is the same tile, returns 1 and adds to our bitmap. Otherwise returns a 0 so it doesn't add to our bitmap.
-    private int HasGrass(ITilemap tilemap, Vector3Int position)
+    private int GetBitmask(ITilemap tilemap, Vector3Int position)
     {
         if (tilemap.GetTile(position) == this)
         {
@@ -129,8 +129,8 @@ public class GrassTile : Tile {
         return 0;
     }
 
-    //Bool function for when we check if neighboring tiles are the same. I realize its basically the same as HasGrass, but I'm too lazy to write more code to cast a bool into an int. 
-    private bool CheckGrass(ITilemap tilemap, Vector3Int position)
+    //Bool function for when we check if neighboring tiles are the same. I realize its basically the same as GetBitmask, but I'm too lazy to write more code to cast a bool into an int. 
+    private bool CheckTile(ITilemap tilemap, Vector3Int position)
     {
         return tilemap.GetTile(position) == this;
     }

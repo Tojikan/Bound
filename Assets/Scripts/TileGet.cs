@@ -11,8 +11,6 @@ public class TileGet : MonoBehaviour
     public Grid gridcheck;
     public Tilemap tilemap;
 
-  
-
 	void Update ()
     {
         Vector3Int cellPos = gridcheck.WorldToCell(transform.position);
