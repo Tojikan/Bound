@@ -24,15 +24,17 @@ public class MapLoader : MonoBehaviour
             tileArray[index] = index % 2 == 0 ? tileA : tileB;
         }
         TestTilemap.SetTilesBlock(area, tileArray);
-        jasonNamespace.Jason Fred = new Jason(1, 2f, "hi", new int[] { 1, 2 });
+        jasonNamespace.Freddy Fred = new Freddy("Hello Kids", "I HOPE YOU LIKE CLAWS");
         jasonNamespace.Jason newJason = new Jason(5, 5.2f, "Eat a dick", new int[] { 1, 2, 3 }, Fred);
         string JasonString = JsonUtility.ToJson(newJason);
+        string JasonvFreddy = JsonUtility.ToJson(newJason.NestedFreddy);
 
-        WriteString("cookie " + JasonString);
+        WriteString(JasonString);
         //string fromFile = ReadString();
         //jasonNamespace.Jason cookieMonster = JsonUtility.FromJson<jasonNamespace.Jason>(fromFile);
 
-        //Debug.Log(cookieMonster.NestedJason);
+        Debug.Log(JasonString);
+        Debug.Log(JasonvFreddy);
     }
 
     static void WriteString(string writeThis)

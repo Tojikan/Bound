@@ -12,22 +12,30 @@ namespace jasonNamespace
         public float whatever;
         public string whatever2;
         public int[] array;
+        public jasonNamespace.Freddy NestedFreddy;
 
-        public jasonNamespace.Jason NestedJason;
 
-
-        public Jason(int a, float b, string c, int[] d, jasonNamespace.Jason e = null)
+        public Jason(int a, float b, string c, int[] d, jasonNamespace.Freddy e = null)
         {
             leve = a;
             whatever = b;
             whatever2 = c;
             array = d;
-            NestedJason = e;
+            NestedFreddy = e;
         }
     }
 
     public class Freddy
     {
-        public 
+        public string stringA;
+        public string stringB;
+
+        public Freddy(string a, string b)
+        {
+            stringA = a;
+            stringB = b;
+        }
+
+
     }
 }
