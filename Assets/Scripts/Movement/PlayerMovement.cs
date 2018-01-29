@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 xMove = new Vector2(newPosition.x, 0);
             Vector3 yMove = new Vector2(0, newPosition.y);
 
-            //Move on X axis, and then check collision
+            //Move on X axis, and then check collision           
             transform.position += xMove;
             col.CheckColliders();
 

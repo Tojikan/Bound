@@ -17,7 +17,29 @@ public class PlayerController : TouchInput
         movePlayer = GetComponent<PlayerMovement>();
         dragPlay = false;
         movementEnabled = true;
-    }	
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+
+        //Bit of code to let us do mouseclick for testing purposes in the game so we don't have to keep hooking up a phone. 
+        //Don't forget to remove for builds
+        if (movementEnabled)
+        {
+            if (dragPlay == false)
+            {
+                if(Input.GetMouseButtonDown(1))
+                {
+                    Vector2 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    movePlayer.SetMovement(newPosition);
+                }
+            }
+        }
+        
+    }
+
 
     protected override void OnTouchBeganAnywhere()
     {
