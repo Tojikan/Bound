@@ -1,27 +1,20 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.Tilemaps;
-using System.Collections.Generic;
 
 public class SetTile : MonoBehaviour
 {
     public Tilemap TestSet;
-    public Tile Tile;
+    public TileBase Tile;
     public Vector3Int position;
-    public List<Tile> newList;
-
-    private TileBase newTileBase;
 
     // Use this for initialization
+    //Test file to try different ways on how we can set a tile by script using the SetTile command.
     void Start ()
     {
+        string path = "Assets/Tiles/NewWaterTile.asset";
+        Tile = AssetDatabase.LoadAssetAtPath<WaterTile>(path);
         TestSet.SetTile(position, Tile);
-        WaterTile A = new WaterTile();
-        newList.Add(A);
+        TestSet.SetTile(position + new Vector3Int(1,0,0), Tile);
     }
-
-    
-    
-
-
-        
 }

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6be78944aa577449a61de5b69f50fe5, type: 3}
-  m_Name: GrassTile
+  m_Name: NewGrassTile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 88cb27465d15c994a8c966f8cadd75e4, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

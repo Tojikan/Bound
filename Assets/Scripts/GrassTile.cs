@@ -4,15 +4,15 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-//GrassTile class for grass terrain
-//Based on a 4bit Bitmapping scheme
-//TO DO: MAKE IT AN 8BIT. NEED TO DRAW OUT THE TILES. MAKE THE WATERFILES A BITMAP AND THEN JUST COPY IT HERE
-
+//GrassTile ScriptableObject to create new Grass Tiles and set the sprite accordingly
+//Based on a 4bit Bitmapping scheme - minimum 15 tiles needed (2 more for extra decorations)
 //Careful not to mess up the loops. This directlty modifies the Unity Editor, so you can freeze up the Editor if you don't do the loops right
 
 
-
-public class GrassTile : Tile {
+//Create a new asset via AssetMenu. Former code to create a new asset is unnecessary and Unity handles new asset creation under the hood
+[CreateAssetMenu(fileName = "NewGrassTile", menuName = "Tiles/TileSet0/GrassTile", order = 1)]
+public class GrassTile : Tile
+{
 
     //Adds an array field for us to store all our sprites
     [SerializeField]
@@ -52,105 +52,38 @@ public class GrassTile : Tile {
         //Bitmap counter 
         int bitmask = 0;
 
+        tileData.colliderType = ColliderType.None;
+
         //Positions for the 4 cardinal directions around tile
         Vector3Int eastSide = new Vector3Int(position.x + 1, position.y, position.z);
         Vector3Int southSide = new Vector3Int(position.x, position.y - 1, position.z);
         Vector3Int westSide = new Vector3Int(position.x - 1, position.y, position.z);
         Vector3Int northSide = new Vector3Int(position.x, position.y + 1, position.z);
 
-        //Calculates our bitmap accordingly by adding the 4bit number of a corresponding side if it's the same tile
-        bitmask = (GetBitmask(tilemap, northSide) * 1) + (GetBitmask(tilemap, westSide) * 2) + (GetBitmask(tilemap, southSide) * 4) + (GetBitmask(tilemap, eastSide) * 8);
+        //Calculates our bitmap. Does a boolcheck on the neighboring tiles and adding the value if returns true
+        bitmask += CheckTile(tilemap, northSide) ? 1 : 0;
+        bitmask += CheckTile(tilemap, westSide) ? 2 : 0;
+        bitmask += CheckTile(tilemap, southSide) ? 4 : 0;
+        bitmask += CheckTile(tilemap, eastSide) ? 8 : 0;
 
-        //Case Switch construct to determine which sprite we use for this tile
-        switch(bitmask)
+
+        //Returns a random decoration sprite for plain grass tiles
+        if (bitmask == 15)
         {
-            case 0:
-                tileData.sprite = grassSprites[0];
-                break;
-            case 1:
-                tileData.sprite = grassSprites[1];
-                break;
-            case 2:
-                tileData.sprite = grassSprites[2];
-                break;
-            case 3:
-                tileData.sprite = grassSprites[3];
-                break;
-            case 4:
-                tileData.sprite = grassSprites[4];
-                break;
-            case 5:
-                tileData.sprite = grassSprites[5];
-                break;
-            case 6:
-                tileData.sprite = grassSprites[6];
-                break;
-            case 7:
-                tileData.sprite = grassSprites[7];
-                break;
-            case 8:
-                tileData.sprite = grassSprites[8];
-                break;
-            case 9:
-                tileData.sprite = grassSprites[9];
-                break;
-            case 10:
-                tileData.sprite = grassSprites[10];
-                break;
-            case 11:
-                tileData.sprite = grassSprites[11];
-                break;
-            case 12:
-                tileData.sprite = grassSprites[12];
-                break;
-            case 13:
-                tileData.sprite = grassSprites[13];
-                break;
-            case 14:
-                tileData.sprite = grassSprites[14];
-                break;
-            case 15:
-                //randomizes the center tile so we can different designs
-                int randomVal = Random.Range(15, 18);
-                tileData.sprite = grassSprites[randomVal];
-                break;
+            int randomVal = Random.Range(15, 18);
+            tileData.sprite = grassSprites[randomVal];
+            return;
         }
+
+        //Set the sprite of our tile according to the bitmask value
+        tileData.sprite = grassSprites[bitmask];
 
     }
 
-    //For when we calculate our bitmap. If the tile is the same tile, returns 1 and adds to our bitmap. Otherwise returns a 0 so it doesn't add to our bitmap.
-    private int GetBitmask(ITilemap tilemap, Vector3Int position)
-    {
-        if (tilemap.GetTile(position) == this)
-        {
-            return 1;
-        }
-
-        return 0;
-    }
-
-    //Bool function for when we check if neighboring tiles are the same. I realize its basically the same as GetBitmask, but I'm too lazy to write more code to cast a bool into an int. 
+    //Checks if neighboring tiles are the same tile. Returns true if so and false if not 
     private bool CheckTile(ITilemap tilemap, Vector3Int position)
     {
         return tilemap.GetTile(position) == this;
     }
-
-
-
-
-
-
-#if UNITY_EDITOR
-    //Adds a new menu option for creating a grasstile in assets
-    [MenuItem("Assets/Create/Tiles/GrassTile")]
-    public static void CreateGrassTile()
-    {
-        string path = EditorUtility.SaveFilePanelInProject("Save Grasstile", "New Grasstile", "asset", "Save grasstile", "Assets");
-        if (path == "")
-        {
-            return;
-        }
-        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<GrassTile>(), path);
-    }
-#endif
 }
+

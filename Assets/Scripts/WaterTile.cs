@@ -6,9 +6,11 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 
-//Class for setting a new Water Tile
+//ScriptableTile Class to create new water tiles and set the sprite accordingly
+//8bit bitmasking scheme. Need at least 48 sprites mapped out to 256 values (some duplicating, use the array to match sprites)
 
-
+//Create a new asset via AssetMenu. Former code to create a new asset is unnecessary and Unity handles new asset creation under the hood
+[CreateAssetMenu(fileName = "NewWaterTile", menuName = "Tiles/TileSet0/WaterTile", order = 1)]
 public class WaterTile : Tile
 {
 
@@ -16,8 +18,6 @@ public class WaterTile : Tile
     [SerializeField]
     private Sprite[] waterSprites;
 
-    [SerializeField]
-    private Sprite preview;
 
     //Sets the size of our tile array
     const int tileNumber = 48;
@@ -48,8 +48,11 @@ public class WaterTile : Tile
         //bitmask integer
         int bitmask = 0;
 
-        //Index for which sprite to display. Default to 0.
+        //Index for which sprite to display. Default to 0 just in case
         int tileNum = 0;
+
+        //Set the collider for this Tile
+        tileData.colliderType = ColliderType.Sprite;
 
         //Vector3Ints for cardinal directions
         Vector3Int eastSide = new Vector3Int(position.x + 1, position.y, position.z);
@@ -66,15 +69,17 @@ public class WaterTile : Tile
 
 
         //Calculate our bitmask accordingly. From Top Left to Bottom right around our tile, its 1-2-4-8-16-32-64-128
-        //Uses checkcorners for any corner tiles. Uses GetBitmask for cardinal directions
-        bitmask = (CheckCorners(tilemap, northWestSide, northSide, westSide) * 1)
-                + (GetBitmask(tilemap, northSide) * 2)
-                + (CheckCorners(tilemap, northEastSide, northSide, eastSide) * 4)
-                + (GetBitmask(tilemap, westSide) * 8)
-                + (GetBitmask(tilemap, eastSide) * 16)
-                + (CheckCorners(tilemap, southWestSide, westSide, southSide) * 32)
-                + (GetBitmask(tilemap, southSide) * 64)
-                + (CheckCorners(tilemap, southEastSide, eastSide, southSide) * 128);
+        //Uses checkcorners for any corner tiles. Uses checktiles for orthogonal
+        //Adds the corresponding value if the checkcorner/checktiles returns True
+        bitmask += CheckCorners(tilemap, northWestSide, northSide, westSide) ? 1 : 0;
+        bitmask += CheckTile(tilemap, northSide) ? 2 : 0;
+        bitmask += CheckCorners(tilemap, northEastSide, northSide, eastSide) ? 4 : 0;
+        bitmask += CheckTile(tilemap, westSide) ? 8 : 0;
+        bitmask += CheckTile(tilemap, eastSide) ? 16 : 0;
+        bitmask += CheckCorners(tilemap, southWestSide, westSide, southSide) ? 32 : 0;
+        bitmask += CheckTile(tilemap, southSide) ? 64 : 0;
+        bitmask += CheckCorners(tilemap, southEastSide, eastSide, southSide) ? 128 : 0;
+
 
         //Checks if surrounded at all sides
         if (bitmask == 255)
@@ -93,17 +98,19 @@ public class WaterTile : Tile
         //Gets the index from our values array of the bitmask, and sets our tile sprite
         int tempNum = Array.IndexOf(valuesArray, bitmask);
 
+        //if we do return an index, then set the tileNum
         if (tempNum != -1)
         {
             tileNum = tempNum;
         }
-        
+
         tileData.sprite = waterSprites[tileNum];
-        
     }
 
     //Array to store bitmask values. Match the index number to the index in the sprite array. Make sure new tilesets are ordered in the same way
-    private int[] valuesArray = new int[] 
+    //Array is ordered around the left to right numbering scheme for neighboring tiles. 
+    //Store 48 possible tiles
+    private int[] valuesArray = new int[]
     {
     0, 2, 8, 10, 11, 16, 18, 22, 24, 26, 27, 30,
     31, 64, 66, 72, 74, 75, 80, 82, 86, 88, 90, 91, 94,
@@ -118,44 +125,17 @@ public class WaterTile : Tile
         return tilemap.GetTile(position) == this;
     }
 
-    //For when we calculate our bitmap. If the tile is the same tile, returns 1 and adds to our bitmap. Otherwise returns a 0 so it doesn't add to our bitmap.
-    private int GetBitmask(ITilemap tilemap, Vector3Int position)
-    {
-        if (tilemap.GetTile(position) == this)
-        {
-            return 1;
-        }
-
-        return 0;
-    }
-
     //For checkcorners. Same thing as GetBitMask but additional boolean check to see if it's surrounded by neighbors so we don't have to consider any unsurrounded corner tiles
-    private int CheckCorners(ITilemap tilemap, Vector3Int position, Vector3Int neighbor1, Vector3Int neighbor2)
+    private bool CheckCorners(ITilemap tilemap, Vector3Int position, Vector3Int neighbor1, Vector3Int neighbor2)
     {
         if (tilemap.GetTile(neighbor1) == this && tilemap.GetTile(neighbor2) == this)
         {
             if (tilemap.GetTile(position) == this)
             {
-                return 1;
+                return true;
             }
 
         }
-        return 0;
+        return false;
     }
-
-
-#if UNITY_EDITOR
-    //Adds a new menu for creating a watertile in assets
-    [MenuItem("Assets/Create/Tiles/WaterTile")]
-    public static void CreateWaterTile()
-    {
-        string path = EditorUtility.SaveFilePanelInProject("Save Watertile", "New Watertile", "asset", "Save watertile", "Assets");
-        if (path =="")
-        {
-            return;
-        }
-        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<WaterTile>(), path);
-    }
-#endif
-
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 
-//Gets us the tile coordinates of whatever we're standing on. For informational purposes, delete. 
+//Gets us the tile coordinates of whatever we're standing on. For informational purposes, delete later. 
 
 public class TileGet : MonoBehaviour
 {
