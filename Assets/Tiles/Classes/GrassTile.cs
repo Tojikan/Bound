@@ -10,7 +10,7 @@ using UnityEngine.Tilemaps;
 
 
 //Create a new asset via AssetMenu. Former code to create a new asset is unnecessary and Unity handles new asset creation under the hood
-[CreateAssetMenu(fileName = "NewGrassTile", menuName = "Tiles/TileSet0/GrassTile", order = 1)]
+[CreateAssetMenu(fileName = "NewGrassTile", menuName = "Tiles/TestTileSet/GrassTile", order = 1)]
 public class GrassTile : Tile
 {
 

@@ -10,7 +10,7 @@ using UnityEngine.Tilemaps;
 //8bit bitmasking scheme. Need at least 48 sprites mapped out to 256 values (some duplicating, use the array to match sprites)
 
 //Create a new asset via AssetMenu. Former code to create a new asset is unnecessary and Unity handles new asset creation under the hood
-[CreateAssetMenu(fileName = "NewWaterTile", menuName = "Tiles/TileSet0/WaterTile", order = 1)]
+[CreateAssetMenu(fileName = "NewWaterTile", menuName = "Tiles/TestTileSet/WaterTile", order = 1)]
 public class WaterTile : Tile
 {
 
