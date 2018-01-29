@@ -8,7 +8,7 @@ using UnityEditor;
 //Figured out how to call a reference to a scriptable tile. Treat as a scriptable object and call it via the AssetDatabase class
 //Then populate an array with tiles and use SetTilesBlock. Works!
 
-public class MapLoader : MonoBehaviour
+public class MapLoad : MonoBehaviour
 {
 
     private TileBase tileA;
