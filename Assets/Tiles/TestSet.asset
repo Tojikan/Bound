@@ -9,7 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71096fc3d2aabb14a95fe035f9818ed3, type: 3}
-  m_Name: NewTileSet
+  m_Name: TestSet
   m_EditorClassIdentifier: 
   tilesetName: New TileSet
-  tilesArray: []
+  tilesArray:
+  - {fileID: 11400000, guid: 9f92ab52fe630e64797b77d166a7e7c1, type: 2}
+  - {fileID: 11400000, guid: 37cec72dc510f274dbf0bd6f5167ed69, type: 2}
