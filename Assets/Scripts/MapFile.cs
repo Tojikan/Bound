@@ -12,14 +12,16 @@ namespace BoundMaps
 	[Serializable]
     public class MapFile
     {
-        //Store the tileset the map uses and stores all levels in a list
-        public TileSet tileset;                             
+        //Store the tileset the map uses as a path to the tileset and stores all levels in a list
+        public string tileset;                             
         public List<LevelData> levels = new List<LevelData>();
+        public int numberOfLevels;
 
-        public MapFile(TileSet set, List<LevelData> list)
+        public MapFile(string set, List<LevelData> list)
         {
             tileset = set;
             levels = list;
+            numberOfLevels = list.Count;
         }
 
 

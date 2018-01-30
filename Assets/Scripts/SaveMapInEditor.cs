@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using BoundMaps;
-using UnityEngine.Tilemaps;
 using System;
 using System.IO;
+using System.Linq;
 
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using UnityEditor;
+using BoundMaps;
 //Class to save current tiles within a game area on screen to a map. 
 //Works entirely in the Editor
 //Supports saving multiple levels to a single map
@@ -107,13 +109,14 @@ public class SaveMapInEditor : MonoBehaviour
         }
 
         //Create a mapfile and pass in the tileset and our level list
-        MapFile newMap = new MapFile(tileSet, levelList);
+        //Must cast the tileSet name into a string. We call the tileSet by path because JsonUtility only gives us an instance ID which may not work
+        MapFile newMap = new MapFile(tileSet.name.ToString(), levelList);
 
         //Gets a path to save our map to
         string path = "Assets/Maps/" + mapName + ".bound";
 
         //Serializes the mapfile into a string
-        string mapData = JsonUtility.ToJson(newMap);
+        string mapData = EditorJsonUtility.ToJson(newMap);
 
         //Tries to write our data into the path. If unable to write for whatever reason, we just get a debug
         try
@@ -135,5 +138,60 @@ public class SaveMapInEditor : MonoBehaviour
     public void ClearLevels()
     {
         levelList.Clear();
+    }
+
+    
+
+    //Method to let us load the level from memory into the editor
+    //Essentially like loading a map except from memory instead of a file. 
+    //Parameter tells us which level we're loading
+    public void LoadCurrentLevel(int levelnum)
+    {
+        //First check if exists
+        if (levelList.ElementAtOrDefault(levelnum) == null)
+        {
+            Debug.Log("Level does not exist!");
+            return;
+        }
+
+        //Clear our editor game board
+        groundLayer.ClearAllTiles();
+        wallLayer.ClearAllTiles();
+
+        //Creates arrays for our layers with size equal to our game board
+        TileBase[] groundArray = new TileBase[GameArea.size.x * GameArea.size.y];
+        TileBase[] wallArray = new TileBase[GameArea.size.x * GameArea.size.y];
+
+        //iterates over the ground array and populates it with tilebases from our file
+        for (int index = 0; index < groundArray.Length; index++)
+        {
+            //If the value is -1, then it means there was no tile in that position
+            if (levelList[levelnum].groundTiles[index] != -1)
+            {
+                //Sets our ground tile array by matching the value stored in the tile data of the current level with our tileset's array
+                groundArray[index] = tileSet.tilesArray[levelList[levelnum].groundTiles[index]];
+                Debug.Log("this happens");
+            }
+            Debug.Log("then this");
+        }
+
+        //iterates over the wall array and populates it with tilebases from our file
+        for (int index = 0; index < wallArray.Length; index++)
+        {
+            //Checks if there is a tile. If it's -1, then no tile
+            if (levelList[levelnum].wallTiles[index] != -1)
+            {
+                //Sets our wall tile array by matching the value stored in the tile data of the current level with our tileset's array
+                wallArray[index] = tileSet.tilesArray[levelList[levelnum].wallTiles[index]];
+            }
+        }
+
+        //Sets the tiles on the map layer by layer
+        groundLayer.SetTilesBlock(GameArea, groundArray);
+        wallLayer.SetTilesBlock(GameArea, wallArray);
+
+
+        Debug.Log("Loaded level: " + levelnum);
+
     }
 }

@@ -34,23 +34,31 @@ public class SaveMapWindow : Editor
         {
             mySaveScript.SaveLevel();
         }
+        EditorGUILayout.HelpBox("Only saves to Editor memory", MessageType.None);
 
-        //Button to save our map
-        EditorGUILayout.Space();
-        if (GUILayout.Button("Save Map"))
+        if (GUILayout.Button("Load Selected Level"))
         {
-            mySaveScript.SaveMap();
+            mySaveScript.LoadCurrentLevel(mySaveScript.levelNumber);
         }
+        EditorGUILayout.HelpBox("Loading from memory is still kind of buggy so beware. Memory resets if you enter play mode, so keep that in mind", MessageType.None);
 
         //Button to clear our level list
-        EditorGUILayout.Space();
+
         if (GUILayout.Button("Clear All Levels"))
         {
             mySaveScript.ClearLevels();
         }
+        EditorGUILayout.HelpBox("Clears the level memory", MessageType.None);
 
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
+
+        //Button to save our map
+        if (GUILayout.Button("Save Map"))
+        {
+            mySaveScript.SaveMap();
+        }
+        EditorGUILayout.HelpBox("Saves all the levels to a file", MessageType.None);
+
+
         EditorGUILayout.Space();
         EditorGUILayout.Space();
     }

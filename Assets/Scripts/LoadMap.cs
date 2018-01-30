@@ -8,6 +8,7 @@ using BoundMaps;
 
 //Loads tiles from a file
 //Takes a file, deserializes it, and then sets the tiles
+//Runs in PlayMode
 
 public class LoadMap : MonoBehaviour
 {
@@ -40,15 +41,17 @@ public class LoadMap : MonoBehaviour
         //Deserialize the mapfile string into a mapfile class
         map = JsonUtility.FromJson<MapFile>(loadMap);
 
-        //Sets our tileset path by getting the info from the mapfile
-        mapTileset = map.tileset;
+
+        //Sets our tileset path by getting the info from the mapfile and setting a path
+        Object temp = Resources.Load("Tiles/" + map.tileset);
+        mapTileset = (TileSet)temp;
 
         //Clears any current tiles on the game board
         groundTiles.ClearAllTiles();
         wallTiles.ClearAllTiles();
 
         //If selected level doesn't exist, then we just start from the beginning
-        if (LevelToLoad > map.levels.Count - 1 || LevelToLoad < 0)
+        if (LevelToLoad > map.numberOfLevels - 1 || LevelToLoad < 0)
         {
             LevelToLoad = 0;
             Debug.Log("Level does not exist! Set to 0");
@@ -90,6 +93,12 @@ public class LoadMap : MonoBehaviour
             return;
         }
 
+        if (levelnum > map.numberOfLevels - 1)
+        {
+            levelnum = 0;
+            Debug.Log("Level does not exist. Loading first level");
+        }
+
         //Creates arrays for our layers with size equal to our game board
         TileBase[] groundArray = new TileBase[GameArea.size.x * GameArea.size.y * GameArea.size.z];
         TileBase[] wallArray = new TileBase[GameArea.size.x * GameArea.size.y * GameArea.size.z];
@@ -121,7 +130,7 @@ public class LoadMap : MonoBehaviour
         wallTiles.SetTilesBlock(GameArea, wallArray);
 
 
-        Debug.Log("Loaded map and level: " + LevelToLoad);
+        Debug.Log("Loaded map and level: " + levelnum);
     }
 
 }

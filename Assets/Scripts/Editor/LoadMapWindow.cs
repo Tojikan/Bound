@@ -53,5 +53,6 @@ public class LoadMapWindow : Editor
         {
             myLoadScript.LoadLevel(myLoadScript.LevelToLoad);
         }
+        EditorGUILayout.HelpBox("Useful for changing in between levels during PlayMode so you don't have to exit", MessageType.None);
     }
 }

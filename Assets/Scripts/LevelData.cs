@@ -11,7 +11,7 @@ namespace BoundMaps
     [Serializable]
     public class LevelData
     {
-        //Two layers to store in
+        //Two layers to store tiles in
         public int[] groundTiles;                                  
         public int[] wallTiles;
 
