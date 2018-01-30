@@ -5,22 +5,23 @@ using UnityEngine;
 
 
 //Public struct to hold tile information for each map
-//Be sure to use the BoundMaps namespace
+
 namespace BoundMaps
 {
 
 	[Serializable]
     public class MapFile
     {
-        public string tilesetPath;                              //string which should be the path to our chosen tileset
-        public int[] levelone;                                  //int array which holds our tiles
+        //Store the tileset the map uses and stores all levels in a list
+        public TileSet tileset;                             
+        public List<LevelData> levels = new List<LevelData>();
 
-        //Constructor
-        public MapFile(string a, int[] b)
+        public MapFile(TileSet set, List<LevelData> list)
         {
-            tilesetPath = a;
-            levelone = b;
+            tileset = set;
+            levels = list;
         }
+
 
     }
 
