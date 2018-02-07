@@ -88,6 +88,9 @@ public class SaveMapInEditor : MonoBehaviour
     }
 
 
+    //Lazy bit of code as it's pretty much just copy pasted but it works so whatever
+    //Overwrites the current level we're on
+    //TO DO - Incorporate it into one method. Basically we need to figure out a way to check if the list element exists or not. 
     public void OverwriteLevel()
     {
         //Check our levels aren't negative
