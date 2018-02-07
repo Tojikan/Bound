@@ -14,6 +14,8 @@ public class LoadMap : MonoBehaviour
 {
     public Tilemap groundTiles;                                     //Layer for our ground tiles
     public Tilemap wallTiles;                                       //Layer for our wall tiles
+    public GameObject spawnPoint;                                   //Lazy way to get a reference to our start point
+    public GameObject finishPoint;                                  //Lazy way to get a reference to our finish point
     public BoundsInt GameArea;                                      //Bounding area for our game. Only loads within this area. MATCH IT TO OUR SAVEMAPEDITOR or else it might get buggy
 
     [HideInInspector]
@@ -36,7 +38,7 @@ public class LoadMap : MonoBehaviour
         }
 
         //Loads the map information from designated map file into a string
-        string loadMap = ReadString();
+        string loadMap = ReadString(FileToLoad);
 
         //Deserialize the mapfile string into a mapfile class
         map = JsonUtility.FromJson<MapFile>(loadMap);
@@ -62,10 +64,10 @@ public class LoadMap : MonoBehaviour
     }
 
     //Method to read from a file. Returns a string
-    string ReadString()
+    public string ReadString(string file)
     {
         //Open up a stream to the file
-        StreamReader reader = new StreamReader(FileToLoad);
+        StreamReader reader = new StreamReader(file);
 
         //Reads it into a string
         string mapInfo = reader.ReadToEnd();
@@ -97,6 +99,17 @@ public class LoadMap : MonoBehaviour
         {
             levelnum = 0;
             Debug.Log("Level does not exist. Loading first level");
+        }
+
+        //Check we have a start or endpoint game object
+        if (!spawnPoint || !finishPoint)
+        {
+            Debug.Log("No Spawn or Finish object!!");
+        }
+        else
+        {
+            spawnPoint.transform.position = map.levels[levelnum].startPoint;
+            finishPoint.transform.position = map.levels[levelnum].endPoint;
         }
 
         //Creates arrays for our layers with size equal to our game board

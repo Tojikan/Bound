@@ -20,10 +20,20 @@ public class SaveMapInEditor : MonoBehaviour
     public TileSet tileSet;                                                             //Tileset to store our Scriptable Tiles. Lets us also store the map tiles as ints to save space
     public Tilemap groundLayer;                                                         //Ground layer for tiles. Has no collision in the layer
     public Tilemap wallLayer;                                                           //Wall Layer for tiles. Has collisions. Check Tile Classes if collisions aren't happening
+    public GameObject spawnPoint;                                                       //Lazy way of getting a reference to our start point
+    public GameObject finishPoint;                                                      //Lazy way of getting a reference to our end point
     public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from
+ 
 
 
+
+    [HideInInspector]
+    public string FileToLoad;                                                           //Path to our a map to load if we're editing a file. 
+
+    private LoadMap LoadScript;
     private List<LevelData> levelList = new List<LevelData>();                          //Private variable to store the list of all levels in the map
+
+
 
 
     //Saves the current level we're working on. Note it doesn't write to the file, only stores the tiles into an array
@@ -50,8 +60,18 @@ public class SaveMapInEditor : MonoBehaviour
             return;
         }
 
+        //Check we have a reference to our spawn/finish
+        if (!spawnPoint || !finishPoint)
+        {
+            Debug.Log("No Start or Finish Point reference!!!");
+            return;
+        }
+
+        Vector2 end = finishPoint.transform.position;
+        Vector2 start = spawnPoint.transform.position;
+
         //Instantiates a new LevelData class and saves our tiles into the appropriate layers
-        LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer));
+        LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end);
 
         //Saves our level into the list. If you don't start the first level at 0 or if you try to skip over an uncreated level number, it'll cause an error. 
         try
@@ -154,6 +174,17 @@ public class SaveMapInEditor : MonoBehaviour
             return;
         }
 
+        //Check we have a start or endpoint game object
+        if (!spawnPoint || !finishPoint)
+        {
+            Debug.Log("No Spawn or Finish object!!");
+        }
+        else
+        {
+            spawnPoint.transform.position = levelList[levelnum].startPoint;
+            finishPoint.transform.position = levelList[levelnum].endPoint;
+        }
+
         //Clear our editor game board
         groundLayer.ClearAllTiles();
         wallLayer.ClearAllTiles();
@@ -170,9 +201,7 @@ public class SaveMapInEditor : MonoBehaviour
             {
                 //Sets our ground tile array by matching the value stored in the tile data of the current level with our tileset's array
                 groundArray[index] = tileSet.tilesArray[levelList[levelnum].groundTiles[index]];
-                Debug.Log("this happens");
             }
-            Debug.Log("then this");
         }
 
         //iterates over the wall array and populates it with tilebases from our file
@@ -193,5 +222,29 @@ public class SaveMapInEditor : MonoBehaviour
 
         Debug.Log("Loaded level: " + levelnum);
 
+    }
+
+    //Lets us load a map file into the editor. Basically ripped from our load level script
+    public void LoadMapInEditor()
+    {
+        //Check if we have a file
+        if (FileToLoad == "" || FileToLoad == null)
+        {
+            Debug.Log("No Map Found");
+            return;
+        }
+
+        //Get reference to our loadscript so we can call a function. I'm not sure if we can put this elsewhere
+        LoadScript = GetComponent<LoadMap>();
+
+        //Reads our file
+        string loadMap = LoadScript.ReadString(FileToLoad);
+
+        //Converts back to a map file
+        MapFile map = JsonUtility.FromJson<MapFile>(loadMap);
+
+        //Sets our level list from the mapfile. 
+        levelList = map.levels;
+        Debug.Log("Map Loaded");
     }
 }
