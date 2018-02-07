@@ -51,10 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd87d9988f1a39429364ec878d0e964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundTiles: {fileID: 0}
-  wallTiles: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  finishPoint: {fileID: 0}
+  groundTiles: {fileID: 8195094280193160244, guid: 2f53b002ec8ea894a8424f8d7ceccaa3,
+    type: 2}
+  wallTiles: {fileID: 8195094281457320376, guid: 9baf8004caaaddb4e9d0ed2f7021995c,
+    type: 2}
+  spawnPoint: {fileID: 1976319549312418, guid: 95c688d7ae7352f448344d27d32245bc, type: 2}
+  finishPoint: {fileID: 1121473235469510, guid: dc17a040b526b454dacac2dfc35ef1b0,
+    type: 2}
   GameArea:
     m_Position: {x: -11, y: -5, z: 1}
     m_Size: {x: 22, y: 10, z: 1}

@@ -14,6 +14,7 @@ public class LoadMap : MonoBehaviour
 {
     public Tilemap groundTiles;                                     //Layer for our ground tiles
     public Tilemap wallTiles;                                       //Layer for our wall tiles
+    public GameObject player;                                       //Change position of player
     public GameObject spawnPoint;                                   //Lazy way to get a reference to our start point
     public GameObject finishPoint;                                  //Lazy way to get a reference to our finish point
     public BoundsInt GameArea;                                      //Bounding area for our game. Only loads within this area. MATCH IT TO OUR SAVEMAPEDITOR or else it might get buggy
@@ -28,7 +29,8 @@ public class LoadMap : MonoBehaviour
     private MapFile map;                                            //The map file we're loading
 
 
-    void Start()
+    //Used for the initial setup of a level. Loads a map from file. 
+    public void SetUpLevel()
     {
         //Checks to see if we have a file to load
         if (FileToLoad == "" || FileToLoad == null)
@@ -58,9 +60,14 @@ public class LoadMap : MonoBehaviour
             LevelToLoad = 0;
             Debug.Log("Level does not exist! Set to 0");
         }
-
         //Load a level
-        LoadLevel(LevelToLoad);
+        LoadLevel(0);
+    }
+
+    //Gets the end level from the map we've loaded
+    public int GetEndLevel()
+    {
+        return map.numberOfLevels;
     }
 
     //Method to read from a file. Returns a string
@@ -119,6 +126,7 @@ public class LoadMap : MonoBehaviour
         //iterates over the ground array and populates it with tilebases from our file
         for (int index = 0; index < groundArray.Length; index++)
         {
+            
             //If the value is -1, then it means there was no tile in that position
             if (map.levels[levelnum].groundTiles[index] != -1)
             {
@@ -142,8 +150,11 @@ public class LoadMap : MonoBehaviour
         groundTiles.SetTilesBlock(GameArea, groundArray);
         wallTiles.SetTilesBlock(GameArea, wallArray);
 
+        //Move our player to the spawn point
+        player.transform.position = spawnPoint.transform.position;
 
         Debug.Log("Loaded map and level: " + levelnum);
+        return;
     }
 
 }
