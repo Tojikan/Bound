@@ -31,11 +31,17 @@ public class SaveMapWindow : Editor
         EditorGUILayout.Space();
 
         //Button to save our level. Clicking a button returns true
-        if (GUILayout.Button("Save Current Level"))
+        if (GUILayout.Button("Add New Level"))
         {
             mySaveScript.SaveLevel();
         }
-        EditorGUILayout.HelpBox("Saves current grid to the level number in memory", MessageType.None);
+        EditorGUILayout.HelpBox("Saves the current grid into a new level at the specified level number. Will push levels up if the level already exists", MessageType.None);
+
+        if (GUILayout.Button("Overwrite Current Level"))
+        {
+            mySaveScript.OverwriteLevel();
+        }
+        EditorGUILayout.HelpBox("Overwrites the current level. ", MessageType.None);
 
         if (GUILayout.Button("Load Selected Level"))
         {

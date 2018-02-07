@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114819992152262244}
   - component: {fileID: 114614363896033272}
   m_Layer: 0
-  m_Name: EditorSaveMap
+  m_Name: Save_Load Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212616992074743346}
   - component: {fileID: 61594145418363106}
   m_Layer: 0
-  m_Name: StartPoint
+  m_Name: Start Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

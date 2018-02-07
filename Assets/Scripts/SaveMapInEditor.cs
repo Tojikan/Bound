@@ -67,6 +67,7 @@ public class SaveMapInEditor : MonoBehaviour
             return;
         }
 
+        //get the position of our start/finish points
         Vector2 end = finishPoint.transform.position;
         Vector2 start = spawnPoint.transform.position;
 
@@ -84,6 +85,51 @@ public class SaveMapInEditor : MonoBehaviour
             Debug.Log("Level Save Unsuccessful. Did you skip a level?");
         }
         
+    }
+
+
+    public void OverwriteLevel()
+    {
+        //Check our levels aren't negative
+        if (levelNumber < 0)
+        {
+            Debug.Log("Error: Invalid level");
+            return;
+        }
+
+        //Check that we set our layers and tile set
+        if (tileSet == null || groundLayer == null || wallLayer == null)
+        {
+            Debug.Log("Error: Must set all Inspector options");
+            return;
+        }
+
+        //Check we have a reference to our spawn/finish
+        if (!spawnPoint || !finishPoint)
+        {
+            Debug.Log("No Start or Finish Point reference!!!");
+            return;
+        }
+
+
+        //get the position of our start/finish points
+        Vector2 end = finishPoint.transform.position;
+        Vector2 start = spawnPoint.transform.position;
+
+        //Instantiates a new LevelData class and saves our tiles into the appropriate layers
+        LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end);
+
+        // 
+        try
+        {
+            levelList[levelNumber] = currLevel;
+            Debug.Log("Level Overwrite Successful!");
+        }
+        catch
+        {
+            Debug.Log("Not able to overwrite. Does the level currently exist?");
+        }
+
     }
 
     //Method to save our tiles into an array
