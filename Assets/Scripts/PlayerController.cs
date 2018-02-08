@@ -126,6 +126,7 @@ public class PlayerController : TouchInput
 
     private void Death()
     {
+        Debug.Log("OHMYGOD, WE KILLED KENNY");
         //Checks to see if we have lives, then calls Game Over if not
         if (lives <= 0)
         {

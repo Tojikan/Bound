@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundTiles: {fileID: 0}
   wallTiles: {fileID: 0}
+  player: {fileID: 0}
   spawnPoint: {fileID: 0}
   finishPoint: {fileID: 0}
   GameArea:

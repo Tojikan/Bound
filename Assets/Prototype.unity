@@ -1539,6 +1539,11 @@ Prefab:
       propertyPath: endText
       value: 
       objectReference: {fileID: 1779368883}
+    - target: {fileID: 114989530851204982, guid: 16eaa7ac0f2946546b3e16dbe389a80d,
+        type: 2}
+      propertyPath: endImage
+      value: 
+      objectReference: {fileID: 61909986}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16eaa7ac0f2946546b3e16dbe389a80d, type: 2}
   m_IsPrefabParent: 0
