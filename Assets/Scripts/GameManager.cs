@@ -6,13 +6,19 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager GameManagerInstance = null;                   //Make the game manager a singleton
+    public LoadMap loadScript;                                              //create a load map instance
+    public PlayerController playControl;                                    //reference to our player controller to set movement
+
     public GameObject Player;                                               //Player Game Object
     public GameObject Spawn;                                                //Spawn point
-    public LoadMap loadScript;                                              //create a load map instance
-    public Text endText;                                                    //reference to our end screen text
     public GameObject endImage;                                             //reference to our end screen
+
+    public Text endText;                                                    //reference to our end screen text
+    public Text livesCounter;                                              //Text to display our lives
+
     public int playerLives = 50;                                            //Int for player lives
-    public PlayerController playControl;                                    //reference to our player controller to set movement
+    
+   
 
     [HideInInspector] public int endLevel;                                  //Last level
     [HideInInspector] public int currentLevel;                              //Current Level
@@ -33,6 +39,8 @@ public class GameManager : MonoBehaviour
         //Get our load and player controller components
         loadScript = GetComponent<LoadMap>();
         playControl = Player.GetComponent<PlayerController>();
+
+        livesCounter.text = "Lives: " + playerLives;                              //Set our lives text
 
         //Initiate game
         InitGame();
@@ -71,6 +79,29 @@ public class GameManager : MonoBehaviour
 
             currentLevel += 1;
             loadScript.LoadLevel(currentLevel);
+            playControl.EnableMovement();
+        }
+    }
+
+
+    public void PlayerDeath()
+    {
+        //Checks to see if we have lives, then calls Game Over if not
+        if (playerLives <= 0)
+        {
+            playControl.StopMovement();
+            playControl.DisableMovement();
+            GameOver();
+        }
+
+        //Decrease lives by one. Stop movement and call Respawn to move our player
+        else
+        {
+            playControl.StopMovement();
+            playControl.DisableMovement();
+            playerLives -= 1;
+            livesCounter.text = "Lives: " + playerLives;
+            Respawn();
             playControl.EnableMovement();
         }
     }

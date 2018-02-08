@@ -8,7 +8,7 @@ public class PlayerController : TouchInput
     public static bool movementEnabled;                                    //bool to check if we're supposed to move and not, such as during pauses and level starts/ends
     public bool dragPlay;                                                  //Bool to set if Drag Play controls are enabled
     public float restartDelay = 1f;                                        //Delay between restarts;
-    public Text livesCounter;                                              //Text to display our lives
+    
    
     private PlayerMovement movePlayer;                                     //reference to our component that moves the player
     private int lives;                                                     //Lives Count
@@ -19,9 +19,7 @@ public class PlayerController : TouchInput
         //initialize bools and get reference to component
         movePlayer = GetComponent<PlayerMovement>();
         dragPlay = false;
-        lives = GameManager.GameManagerInstance.playerLives;                //Get our number of lives from Game Manager
-        livesCounter.text = "Lives: " + lives;                              //Set our lives text
-
+        movementEnabled = true;
     }
 
     protected override void Update()
@@ -126,22 +124,7 @@ public class PlayerController : TouchInput
 
     private void Death()
     {
-        Debug.Log("OHMYGOD, WE KILLED KENNY");
-        //Checks to see if we have lives, then calls Game Over if not
-        if (lives <= 0)
-        {
-            GameManager.GameManagerInstance.GameOver();
-        }
-
-        //Decrease lives by one. Stop movement and call Respawn to move our player
-        else
-        {
-            lives -= 1;
-            livesCounter.text = "Lives: " + lives;
-            StopMovement();
-            DisableMovement();
-            GameManager.GameManagerInstance.Respawn();
-        }
+        GameManager.GameManagerInstance.PlayerDeath();
     }
 
     //To stop movement for our player.

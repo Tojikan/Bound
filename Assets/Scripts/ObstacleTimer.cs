@@ -8,6 +8,8 @@ public class ObstacleTimer : MonoBehaviour
     public int loopLength;
     public float timeScale;
     public int time;
+    public GameObject bomb;
+    public float explode;
 
     void Start()
     {
@@ -31,6 +33,11 @@ public class ObstacleTimer : MonoBehaviour
             if (time >= loopLength)
             {
                 time = 0;
+            }
+
+            if (time == explode)
+            {
+                Instantiate(bomb, transform.position, transform.rotation);
             }
         }
     }
