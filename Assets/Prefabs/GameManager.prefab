@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114989530851204982}
   - component: {fileID: 114388524224233746}
   - component: {fileID: 114468871669586138}
+  - component: {fileID: 114458799126564858}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -53,6 +54,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd87d9988f1a39429364ec878d0e964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114458799126564858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450189564355146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eedd54fe70b7224f9f720a2a3beda72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114468871669586138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,9 +92,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playControl: {fileID: 0}
+  obstacles: {fileID: 1450189564355146}
   Player: {fileID: 0}
   Spawn: {fileID: 0}
   endImage: {fileID: 0}
+  pathToMap: {fileID: 11400000, guid: fec6edda9d6ca0a4f86af5dca1ed7276, type: 2}
   playerLives: 50
   levelToLoad: 0
   endText: {fileID: 0}
@@ -90,6 +104,6 @@ MonoBehaviour:
   gameArea:
     m_Position: {x: -11, y: -5, z: 0}
     m_Size: {x: 22, y: 10, z: 1}
-  mapPath: C:/Users/Andrew Qian/Documents/GitHub/Bound/Assets/Maps/Prototype Map.bound
+  mapPath: C:/Users/Andrew Qian/Documents/GitHub/Bound/Assets/Maps/TestExplosions.bound
   endLevel: 0
   currentLevel: 0

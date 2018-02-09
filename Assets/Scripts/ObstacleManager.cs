@@ -13,16 +13,17 @@ namespace BoundEngine
         void Start()
         {
             thisTransform = GetComponent<Transform>();
-            ClearObstacles();
         }
 
         
         public void CreateExploders(List<ExplosionData> explosions, ExplosionSet set)
         {
-            foreach(ExplosionData data in explosions)
+            explosionList = new List<Exploder>();
+
+            foreach (ExplosionData data in explosions)
             {
                 GameObject newBomb = Instantiate(set.ExplosionPrefabs[data.explodeType], data.position, transform.rotation, thisTransform);
-                Exploder exploder = newBomb.GetComponent<Exploder>();
+                Exploder exploder = newBomb.GetComponent<Exploder>();               
                 exploder.Initialize(data.explodeTime, data.loopLength);
                 explosionList.Add(exploder);
             }
@@ -46,7 +47,7 @@ namespace BoundEngine
 
         public void ClearObstacles()
         {
-            foreach (Transform child in thisTransform)
+            foreach (Exploder child in explosionList)
             {
                 Destroy(child.gameObject);
             }

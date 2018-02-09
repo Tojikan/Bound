@@ -11,10 +11,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager GameManagerInstance = null;                   //Make the game manager a singleton
     public PlayerController playControl;                                    //reference to our player controller to set movement 
-    public ObstacleManager obstacleManager;                                 //reference to our obstacle manager
+    public GameObject obstacles;                                            //reference to our obstacle container object;
     public GameObject Player;                                               //Player Game Object
     public GameObject Spawn;                                                //Spawn point
     public GameObject endImage;                                             //reference to our end screen
+    public MapPath pathToMap;                                               //reference our map path scriptable object
     public int playerLives = 50;                                            //Int for player lives
     public int levelToLoad = 0;                                             //Set which level we're loading
     
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
     public BoundsInt gameArea;                                              //our game area to play in
 
 
-    [HideInInspector] public string mapPath;                                //Path to the map we're trying to load. Set in the Editor Window
+    public string mapPath;                                                  //Path to the map we're trying to load. Set in the Editor Window
     [HideInInspector] public int endLevel;                                  //Last level
     [HideInInspector] public int currentLevel;                              //Current Level
 
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
     private TileSet tileSet;                                                //reference to our tileset
     private RenderMap mapRenderer;                                          //reference to our renderMap Component
     private ExplosionSet explosionSet;                                      //reference to our explosion set
+    private ObstacleManager obstacleManager;                                //reference to our obstacle manager
+
 
     private void Awake()
     {
@@ -47,7 +50,7 @@ public class GameManager : MonoBehaviour
         mapLoad = GetComponent<MapLoader>();
         playControl = Player.GetComponent<PlayerController>();
         mapRenderer = GetComponent<RenderMap>();
-        obstacleManager = GetComponent<ObstacleManager>();
+        obstacleManager = obstacles.GetComponent<ObstacleManager>();
 
         //livesCounter.text = "Lives: " + playerLives;                              //Set our lives text
 
@@ -60,16 +63,12 @@ public class GameManager : MonoBehaviour
     //Initial setup of the game
     void InitGame()
     {
-        try
-        {
-            //Loads level one and reads from our file
-            currentMap = mapLoad.LoadMap(mapPath);
-        }
-        catch
-        {
-            Debug.Log("Unable to load map. Exiting...");
-            return;
-        }
+        //Set the map path
+        SetMapPath();
+
+        //Loads level one and reads from our file
+        currentMap = mapLoad.LoadMap(mapPath);
+
 
         Debug.Log("Loading " + mapPath);
 
@@ -88,6 +87,12 @@ public class GameManager : MonoBehaviour
         playControl.EnableMovement();
     }
 
+    //Gets the path to the selected map from the mapPath scriptable object
+    public void SetMapPath()
+    {
+        mapPath = pathToMap.mapfilePath;
+    }
+
     //Checks if the current level exceeds total levels
     public bool CheckLevelNum()
     {
@@ -102,25 +107,10 @@ public class GameManager : MonoBehaviour
     //Loads a given level from the current loaded map. Sets up our tiles, places our exploders and then calls our transition
     public void LoadLevel(int level)
     {
-        try
-        {
-            mapRenderer.LoadTiles(currentMap.levels[level], tileSet, gameArea);
-            Debug.Log("Successfully created Tiles!");
-        }
-        catch
-        {
-            Debug.Log("Something went wrong creating tiles.");
-        }
-
-        try
-        {
-            obstacleManager.CreateExploders(currentMap.levels[level].explosions, explosionSet);
-            Debug.Log("Successfully created Exploders!");
-        }
-        catch
-        {
-            Debug.Log("Something went wrong creating Exploders.");
-        }
+        Debug.Log(currentMap.levels[level].explosions[0]);
+        Debug.Log(explosionSet);
+        mapRenderer.LoadTiles(currentMap.levels[level], tileSet, gameArea);
+        obstacleManager.CreateExploders(currentMap.levels[level].explosions, explosionSet);
         LevelStartTransition();
     }
 
