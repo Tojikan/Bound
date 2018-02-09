@@ -15,6 +15,9 @@ namespace BoundMaps
         public int[] groundTiles;                                  
         public int[] wallTiles;
 
+        //List of explosions and their data
+        public List<ExplosionData> explosions = new List<ExplosionData>();
+
 
         //Stores our start and end points. 
         //TO DO: Can reduce map storage space by 3-4 kb by figuring out a better way of storing than Vector2
@@ -22,13 +25,13 @@ namespace BoundMaps
         public Vector2 endPoint;
 
         //Constructor
-        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end)
+        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ExplosionData> bombs)
         {
             groundTiles = ground;
             wallTiles = wall;
             startPoint = start;
             endPoint = end;
-
+            explosions = bombs;
         }
 
     }

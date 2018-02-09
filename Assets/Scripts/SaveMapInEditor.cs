@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEditor;
 using BoundMaps;
+
 //Class to save current tiles within a game area on screen to a map. 
 //Works entirely in the Editor
 //Supports saving multiple levels to a single map
@@ -18,12 +19,16 @@ public class SaveMapInEditor : MonoBehaviour
     public int levelNumber;                                                             //Current Level we are working on                           
     public string mapName;                                                              //Name of the map to save
     public TileSet tileSet;                                                             //Tileset to store our Scriptable Tiles. Lets us also store the map tiles as ints to save space
+    public ExplosionSet explosionSet;                                                   //Explosion set to store our explosion types
+
     public Tilemap groundLayer;                                                         //Ground layer for tiles. Has no collision in the layer
     public Tilemap wallLayer;                                                           //Wall Layer for tiles. Has collisions. Check Tile Classes if collisions aren't happening
+
+    public GameObject explosionContainer;                                               //Container to save explosions. Saves all the children class of it. 
     public GameObject spawnPoint;                                                       //Lazy way of getting a reference to our start point
     public GameObject finishPoint;                                                      //Lazy way of getting a reference to our end point
     public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from
- 
+    public Transform containerTransform;                                                //Gets a reference to our container's transform.
 
 
 
@@ -32,6 +37,7 @@ public class SaveMapInEditor : MonoBehaviour
 
     private LoadMap LoadScript;
     private List<LevelData> levelList = new List<LevelData>();                          //Private variable to store the list of all levels in the map
+   
 
 
 
@@ -72,7 +78,7 @@ public class SaveMapInEditor : MonoBehaviour
         Vector2 start = spawnPoint.transform.position;
 
         //Instantiates a new LevelData class and saves our tiles into the appropriate layers
-        LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end);
+        LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end, SaveExplosionData());
 
         //Saves our level into the list. If you don't start the first level at 0 or if you try to skip over an uncreated level number, it'll cause an error. 
         try
@@ -84,7 +90,6 @@ public class SaveMapInEditor : MonoBehaviour
         {
             Debug.Log("Level Save Unsuccessful. Did you skip a level?");
         }
-        
     }
 
 
@@ -120,7 +125,7 @@ public class SaveMapInEditor : MonoBehaviour
         Vector2 start = spawnPoint.transform.position;
 
         //Instantiates a new LevelData class and saves our tiles into the appropriate layers
-        LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end);
+        LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end, SaveExplosionData());
 
         // 
         try
@@ -167,6 +172,30 @@ public class SaveMapInEditor : MonoBehaviour
 
     }
 
+    //Saves all of our Explosion Prefabs that are under our obstacle container
+    public List<ExplosionData> SaveExplosionData()
+    {
+        //Get component reference to our container's transform
+        containerTransform = explosionContainer.GetComponent<Transform>();
+
+        //Temp list to hold our data
+        List<ExplosionData> bombArray = new List<ExplosionData>();
+
+        //Iterates over each child within our container
+        foreach (Exploder child in containerTransform)
+        {
+            //Matches the explosiontype to our array and gets an int
+            int type = Array.IndexOf(explosionSet.ExplosionPrefabs, child.explosionType);
+            //Creates new Explosion Data and initializes it
+            ExplosionData newData = new ExplosionData(child.transform.position, child.countdown, type);
+            //Adds it to our temp list
+            bombArray.Add(newData);
+        }
+
+        //returns list
+        return bombArray;
+    }
+
     //Method to save map
     public void SaveMap()
     {
@@ -179,7 +208,7 @@ public class SaveMapInEditor : MonoBehaviour
 
         //Create a mapfile and pass in the tileset and our level list
         //Must cast the tileSet name into a string. We call the tileSet by path because JsonUtility only gives us an instance ID which may not work
-        MapFile newMap = new MapFile(tileSet.name.ToString(), levelList);
+        MapFile newMap = new MapFile(tileSet.name.ToString(), explosionSet.name.ToString(), levelList);
 
         //Gets a path to save our map to
         string path = "Assets/Maps/" + mapName + ".bound";
