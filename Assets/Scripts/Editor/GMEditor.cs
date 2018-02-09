@@ -15,11 +15,23 @@ public class GMEditor : Editor
         base.OnInspectorGUI();
         GameManager myGame = (GameManager)target;
 
-        EditorGUILayout.HelpBox("Lets us skip levels for testing purposes. Enter the level you want to skip around and then press to move to the level after that.", MessageType.None);
+        //Selects a map to load
+        EditorGUILayout.LabelField("Map Name", System.IO.Path.GetFileName(myGame.mapPath));
+        if (GUILayout.Button("Select a file to load from"))
+        {
+            string path = EditorUtility.OpenFilePanel("Open Bound", "/Assets/Maps/", "bound");
 
+            //Make sure we have a path and then set our map to load
+            if (path.Length != 0)
+            {
+                myGame.mapPath = path;
+            }
+        }
+
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+        EditorGUILayout.HelpBox("Lets us skip levels for testing purposes. Enter the level you want to skip around and then press to move to the level after that.", MessageType.None);
         myGame.currentLevel = EditorGUILayout.IntField("Level To Load", myGame.currentLevel);
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
 
         if (GUILayout.Button("Skip to"))
         {

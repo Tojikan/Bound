@@ -8,8 +8,6 @@ public class Exploder : MonoBehaviour
     public int loopLength;
     public static float millisecond = 0.01f;
 
-    public GameObject explosionType;
-
     public int timeleft;
     
     void Start()
@@ -17,11 +15,10 @@ public class Exploder : MonoBehaviour
         BeginSequence();
     }
 
-    public void Initialize(int countdown,  GameObject explosionType, int loopLength)
+    public void Initialize(int countdown,  int loopLength)
     {
         this.countdown = countdown;
         this.loopLength = loopLength; 
-        this.explosionType = explosionType;
     }
 
 
