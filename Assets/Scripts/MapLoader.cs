@@ -69,6 +69,15 @@ namespace BoundEngine
         }
 
 
+        //Returns a reference to explosion set. Takes in the name of the set
+        public ExplosionSet GetExplosionSet(string path)
+        {
+            //Sets our tileset path by getting the info from the mapfile and setting a path
+            Object temp = Resources.Load("Explosions/Assets/" + path);
+            return (ExplosionSet)temp;
+        }
+
+
 
         //Method to read from a file. Returns a string
         public string ReadString(string file)

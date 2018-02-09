@@ -19,7 +19,6 @@ public class PlayerController : TouchInput
         //initialize bools and get reference to component
         movePlayer = GetComponent<PlayerMovement>();
         dragPlay = false;
-        movementEnabled = true;
     }
 
     protected override void Update()

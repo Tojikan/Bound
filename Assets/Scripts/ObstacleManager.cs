@@ -17,7 +17,7 @@ namespace BoundEngine
         }
 
         
-        public void CreateExplosions(List<ExplosionData> explosions, ExplosionSet set)
+        public void CreateExploders(List<ExplosionData> explosions, ExplosionSet set)
         {
             foreach(ExplosionData data in explosions)
             {
@@ -44,7 +44,7 @@ namespace BoundEngine
             }
         }
 
-        void ClearObstacles()
+        public void ClearObstacles()
         {
             foreach (Transform child in thisTransform)
             {

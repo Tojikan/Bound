@@ -16,7 +16,7 @@ public class GMEditor : Editor
         GameManager myGame = (GameManager)target;
 
         //Selects a map to load
-        EditorGUILayout.LabelField("Map Name", System.IO.Path.GetFileName(myGame.mapPath));
+        EditorGUILayout.LabelField("Map Name", System.IO.Path.GetFileName(path: myGame.mapPath));
         if (GUILayout.Button("Select a file to load from"))
         {
             string path = EditorUtility.OpenFilePanel("Open Bound", "/Assets/Maps/", "bound");
