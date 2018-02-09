@@ -182,12 +182,13 @@ public class SaveMapInEditor : MonoBehaviour
         List<ExplosionData> bombArray = new List<ExplosionData>();
 
         //Iterates over each child within our container
-        foreach (Exploder child in containerTransform)
+        foreach (Transform child in containerTransform)
         {
+            Exploder childData = child.GetComponent<Exploder>();
             //Matches the explosiontype to our array and gets an int
-            int type = Array.IndexOf(explosionSet.ExplosionPrefabs, child.explosionType);
+            int type = Array.IndexOf(explosionSet.ExplosionPrefabs, childData.explosionType);
             //Creates new Explosion Data and initializes it
-            ExplosionData newData = new ExplosionData(child.transform.position, child.countdown, type);
+            ExplosionData newData = new ExplosionData(child.transform.position, childData.loopLength, childData.countdown, type);
             //Adds it to our temp list
             bombArray.Add(newData);
         }

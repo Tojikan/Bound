@@ -11,15 +11,17 @@ namespace BoundMaps
     public class ExplosionData
     {
         public Vector2 position;                            //Position of each bomb
-        public float countdownTime;                         //Location of each bomb
+        public int loopLength;                              //Length of each loop
+        public int explodeTime;                             //Timing of the explosion
         public int explodeType;                             //Type of Bomb based on our bomb set
 
 
         //Constructor
-        public ExplosionData(Vector2 point, float countdown, int explode)
+        public ExplosionData(Vector2 point, int loop, int time, int explode)
         {
             position = point;
-            countdownTime = countdown;
+            loopLength = loop;
+            explodeTime = time;
             explodeType = explode;
         }
     }
