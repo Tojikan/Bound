@@ -7,14 +7,10 @@ public class Exploder : MonoBehaviour
     public int countdown;
     public int loopLength;
     public static float millisecond = 0.01f;
+    public GameObject explosionType;
 
     public int timeleft;
     
-    void Start()
-    {
-        BeginSequence();
-    }
-
     public void Initialize(int countdown,  int loopLength)
     {
         this.countdown = countdown;
@@ -25,6 +21,11 @@ public class Exploder : MonoBehaviour
     public void BeginSequence()
     {
         StartCoroutine("Timer", loopLength);
+    }
+
+    public void StopSequence()
+    {
+        StopAllCoroutines(); 
     }
 
 
