@@ -124,7 +124,7 @@ public class PlayerController : TouchInput
     private void Death()
     {
         Debug.Log("You Dead");
-        //GameManager.GameManagerInstance.PlayerDeath();
+        GameManager.GameManagerInstance.PlayerDeath();
     }
 
     //To stop movement for our player.

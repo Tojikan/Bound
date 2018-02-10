@@ -24,10 +24,10 @@ namespace BoundEditor
         public string mapName;                                                              //Name of the map to save
         public TileSet tileSet;                                                             //Tileset to store our Scriptable Tiles. Lets us also store the map tiles as ints to save space
         public ExplosionSet explosionSet;                                                   //Explosion set to store our explosion types
-
+        public ExplosionSet explosionTypeSet;                                               //Explosion set to store our exploder types
         public Tilemap groundLayer;                                                         //Ground layer for tiles. Has no collision in the layer
         public Tilemap wallLayer;                                                           //Wall Layer for tiles. Has collisions. Check Tile Classes if collisions aren't happening
-
+        public ExploderDataObject exploderData;                                             //Scriptable Object that contains all of our exploder data
         public GameObject explosionContainer;                                               //Container to save explosions. Saves all the children class of it. 
         public GameObject spawnPoint;                                                       //Lazy way of getting a reference to our start point
         public GameObject finishPoint;                                                      //Lazy way of getting a reference to our end point
@@ -41,6 +41,7 @@ namespace BoundEditor
 
         private MapLoader mapLoader;                                                        //mapLoader component so we can preview in the editor window
         private RenderMap renderMap;                                                        //rendermap component to render in the editor window
+        private ObstacleManager obstacleManager;                                            //Obstacle Manager component to reload our obstacles
         private List<LevelData> levelList = new List<LevelData>();                          //Private variable to store the list of all levels in the map
 
 
@@ -48,6 +49,7 @@ namespace BoundEditor
         {
             mapLoader = GetComponent<MapLoader>();
             renderMap = GetComponent<RenderMap>();
+            obstacleManager = GetComponent<ObstacleManager>();
         }
 
 
@@ -85,9 +87,12 @@ namespace BoundEditor
             //get the position of our start/finish points
             Vector2 end = finishPoint.transform.position;
             Vector2 start = spawnPoint.transform.position;
+            
+            //Save our exploders into our level object
+            SaveExplosionData();
 
             //Instantiates a new LevelData class and saves our tiles into the appropriate layers
-            LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end, SaveExplosionData());
+            LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end, exploderData.data);
 
             
             try
@@ -146,8 +151,8 @@ namespace BoundEditor
 
         }
 
-        //Saves all of our Explosion Prefabs that are under our obstacle container
-        public List<ExplosionData> SaveExplosionData()
+        //Saves all of our Explosion Prefabs that are under our obstacle container into our scriptable object
+        public void SaveExplosionData()
         {
             //Get component reference to our container's transform
             containerTransform = explosionContainer.GetComponent<Transform>();
@@ -160,15 +165,15 @@ namespace BoundEditor
             {
                 Exploder childData = child.GetComponent<Exploder>();
                 //Matches the explosiontype to our array and gets an int
-                int type = Array.IndexOf(explosionSet.ExplosionPrefabs, childData.explosionType);
+                int type = Array.IndexOf(explosionTypeSet.ExplosionPrefabs, childData.explosionType);
                 //Creates new Explosion Data and initializes it
                 ExplosionData newData = new ExplosionData(child.transform.position, childData.loopLength, childData.countdown, type);
                 //Adds it to our temp list
                 bombArray.Add(newData);
             }
 
-            //returns list
-            return bombArray;
+            exploderData.data = bombArray;
+            Debug.Log("Exploders Saved!");
         }
 
         //Method to save map
@@ -212,6 +217,11 @@ namespace BoundEditor
             levelList.Clear();
         }
 
+        //Method to update our scene with the exploders that are stored in the exploder data object;
+        public void UpdateExploders()
+        {
+            obstacleManager.CreateExploders(exploderData.data, explosionSet);
+        }
 
 
         //Method to let us load the level from memory into the editor

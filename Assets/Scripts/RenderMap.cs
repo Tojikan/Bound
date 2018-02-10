@@ -61,8 +61,10 @@ namespace BoundEngine
             wallLayer.SetTilesBlock(gameArea, wallArray);
         }
 
+        //Sets our start and end points on the map. 
         public void SetBeacons(Vector2 start, Vector2 end)
         {
+            //If beacons don't exist, return
             if (CheckBeacons() == false)
             {
                 return;
@@ -80,7 +82,8 @@ namespace BoundEngine
             wallLayer.ClearAllTiles();
         }
 
-
+       
+        //Checks if our beacons exist or not
         public bool CheckBeacons()
         {
             if (!spawnPoint || !finishPoint)

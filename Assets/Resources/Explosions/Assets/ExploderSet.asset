@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18395424768104342a91335ea0452ff1, type: 3}
-  m_Name: ExplosionSet
+  m_Name: ExploderSet
   m_EditorClassIdentifier: 
-  setName: ExplosionsList
+  setName: New ExplosionSet
   ExplosionPrefabs:
-  - {fileID: 1138727490580294, guid: 1af575b4c0d7d644598d2e4c13d95d7d, type: 2}
-  - {fileID: 1486866175684186, guid: a4c33fdcac0f7da489dd284c2dcfca0b, type: 2}
+  - {fileID: 1768409050993226, guid: 3b2cdf7aae3ab8d40b7817a3683227a2, type: 2}
+  - {fileID: 1789047035794936, guid: b57fb7e16c200c949af4f4358888be44, type: 2}

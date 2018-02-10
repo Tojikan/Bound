@@ -83,8 +83,10 @@ MonoBehaviour:
   mapName: TestExplosions
   tileSet: {fileID: 11400000, guid: 8d7e0a1d2db17f8439d7c938e8b78af8, type: 2}
   explosionSet: {fileID: 11400000, guid: 06e82d4659b841c4fb61013244bd76e3, type: 2}
+  explosionTypeSet: {fileID: 0}
   groundLayer: {fileID: 0}
   wallLayer: {fileID: 0}
+  exploderData: {fileID: 0}
   explosionContainer: {fileID: 0}
   spawnPoint: {fileID: 0}
   finishPoint: {fileID: 0}

@@ -78,11 +78,15 @@ public class GameManager : MonoBehaviour
         //initial level set to 0
         currentLevel = 0;
 
+        //Load from File
         tileSet = mapLoad.GetTileSet(currentMap.tileset);
         explosionSet = mapLoad.GetExplosionSet(currentMap.explosionSet);
 
+        //Load level
         LoadLevel(0);
 
+        //Set Text
+        livesCounter.text = "Lives: " + playerLives;
         //Allow movement after we load our level
         playControl.EnableMovement();
     }
@@ -107,10 +111,13 @@ public class GameManager : MonoBehaviour
     //Loads a given level from the current loaded map. Sets up our tiles, places our exploders and then calls our transition
     public void LoadLevel(int level)
     {
-        Debug.Log(currentMap.levels[level].explosions[0]);
-        Debug.Log(explosionSet);
+        //Renders the tiles of our current map file
         mapRenderer.LoadTiles(currentMap.levels[level], tileSet, gameArea);
+        //set our start/endpoints
+        mapRenderer.SetBeacons(currentMap.levels[level].startPoint, currentMap.levels[level].endPoint);
+        //Creates our exploders
         obstacleManager.CreateExploders(currentMap.levels[level].explosions, explosionSet);
+        //Starts level transition
         LevelStartTransition();
     }
 
@@ -143,11 +150,15 @@ public class GameManager : MonoBehaviour
     //Currently contains methods to start the games, such as telling our exploders to start exploding and enabling movement. 
     public void LevelStartTransition()
     {
-        try { obstacleManager.StartExplosions(); }
-        catch { }
+        //Moves our player to the start point
+        Respawn();
+        //trigger our explosions to start
+        obstacleManager.StartExplosions();
+        //Allow movement
         playControl.EnableMovement();
     }
 
+    //Called when player runs into an obstacle
     public void PlayerDeath()
     {
         //Checks to see if we have lives, then calls Game Over if not
@@ -158,7 +169,7 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-        //Decrease lives by one. Stop movement and call Respawn to move our player
+        //Decrease lives by one. Stops movement and call Respawn to move our player
         else if (playerLives > 0)
         {
             playControl.StopMovement();
@@ -171,7 +182,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //Displays text upon successful completion
+    //Displays text upon successful completion. Clears our obstacles and ends the game manager
     void MapComplete()
     {
         endImage.SetActive(true);
@@ -180,12 +191,12 @@ public class GameManager : MonoBehaviour
         Destroy(GameManagerInstance);
     }
 
-    //Displays text upon defeat
+    //Displays text upon defeat. Clears obstacles and ends the game manager
     public void GameOver()
     {
         endImage.SetActive(true);
         obstacleManager.ClearObstacles();
-        endText.text = "Out of Lives";
+        endText.text = "You Lose";
         Destroy(GameManagerInstance);
     }
 
