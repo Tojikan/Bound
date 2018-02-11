@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73b796dad73fe4f4bbc7d22fbad2b602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNumber: 0
+  levelNumber: 40
   mapName: Prototype Map
   tileSet: {fileID: 11400000, guid: 8d7e0a1d2db17f8439d7c938e8b78af8, type: 2}
   explosionSet: {fileID: 0}
@@ -235,7 +235,7 @@ MonoBehaviour:
     m_Position: {x: -11, y: -5, z: 0}
     m_Size: {x: 22, y: 10, z: 1}
   containerTransform: {fileID: 0}
-  FileToLoad: C:/Users/Andrew Qian/Documents/GitHub/Bound/Assets/Maps/Prototype Map.bound
+  FileToLoad: C:/Users/Andrew Qian/Documents/GitHub/Bound/Assets/Maps/Prototype1.bound
 --- !u!4 &197105533
 Transform:
   m_ObjectHideFlags: 0
