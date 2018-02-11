@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85f66d6a2337ea4ab34d70a781b3b26, type: 3}
+  m_Name: prototypeBombData
+  m_EditorClassIdentifier: 
+  data:
+  - position: {x: -8.505088, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -6.9550886, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -5.4050884, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -3.8450882, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -2.3050883, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -0.7650879, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 0.78491133, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 2.3349116, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 3.8949115, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 5.4349113, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 6.9849114, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 8.534911, y: 0.5210763}
+    loopLength: 120
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -8.505088, y: -0.90892375}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -6.9550886, y: -0.90892375}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -5.4050884, y: -0.90892375}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -3.8450882, y: -0.90892375}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -2.3050883, y: -0.9089237}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -0.7650879, y: -0.90892375}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 0.78491133, y: -0.90892375}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 2.3349116, y: -0.90892375}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 3.8949115, y: -0.90892375}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 5.4349113, y: -0.90892375}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 6.9849114, y: -0.90892375}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: 8.534911, y: -0.90892375}
+    loopLength: 60
+    explodeTime: 30
+    explodeType: 0
+  - position: {x: -8.505088, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0
+  - position: {x: -6.9550886, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0
+  - position: {x: -5.4050884, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0
+  - position: {x: -3.8450882, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0
+  - position: {x: -2.3050883, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0
+  - position: {x: -0.7650879, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0
+  - position: {x: 0.78491133, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0
+  - position: {x: 2.3349116, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0
+  - position: {x: 3.8949115, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0
+  - position: {x: 5.4349113, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0
+  - position: {x: 6.9849114, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0
+  - position: {x: 8.534911, y: -2.2589235}
+    loopLength: 120
+    explodeTime: 90
+    explodeType: 0

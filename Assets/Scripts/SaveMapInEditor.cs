@@ -8,292 +8,237 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEditor;
 using BoundMaps;
+using BoundEngine;
+
 //Class to save current tiles within a game area on screen to a map. 
 //Works entirely in the Editor
 //Supports saving multiple levels to a single map
 
-[ExecuteInEditMode]
-public class SaveMapInEditor : MonoBehaviour
+
+namespace BoundEditor
 {
-    public int levelNumber;                                                             //Current Level we are working on                           
-    public string mapName;                                                              //Name of the map to save
-    public TileSet tileSet;                                                             //Tileset to store our Scriptable Tiles. Lets us also store the map tiles as ints to save space
-    public Tilemap groundLayer;                                                         //Ground layer for tiles. Has no collision in the layer
-    public Tilemap wallLayer;                                                           //Wall Layer for tiles. Has collisions. Check Tile Classes if collisions aren't happening
-    public GameObject spawnPoint;                                                       //Lazy way of getting a reference to our start point
-    public GameObject finishPoint;                                                      //Lazy way of getting a reference to our end point
-    public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from
- 
-
-
-
-    [HideInInspector]
-    public string FileToLoad;                                                           //Path to our a map to load if we're editing a file. 
-
-    private LoadMap LoadScript;
-    private List<LevelData> levelList = new List<LevelData>();                          //Private variable to store the list of all levels in the map
-
-
-
-
-    //Saves the current level we're working on. Note it doesn't write to the file, only stores the tiles into an array
-    public void SaveLevel()
+    [ExecuteInEditMode]
+    public class SaveMapInEditor : MonoBehaviour
     {
-        //Check our levels aren't negative
-        if (levelNumber < 0)
+        public int levelNumber;                                                             //Current Level we are working on                           
+        public string mapName;                                                              //Name of the map to save
+        public TileSet tileSet;                                                             //Tileset to store our Scriptable Tiles. Lets us also store the map tiles as ints to save space
+        public ExplosionSet explosionSet;                                                   //Explosion set to store our explosion types
+        public ExplosionSet explosionTypeSet;                                               //Explosion set to store our exploder types
+        public Tilemap groundLayer;                                                         //Ground layer for tiles. Has no collision in the layer
+        public Tilemap wallLayer;                                                           //Wall Layer for tiles. Has collisions. Check Tile Classes if collisions aren't happening
+        public ExploderDataObject exploderData;                                             //Scriptable Object that contains all of our exploder data
+        public GameObject explosionContainer;                                               //Container to save explosions. Saves all the children class of it. 
+        public GameObject spawnPoint;                                                       //Lazy way of getting a reference to our start point
+        public GameObject finishPoint;                                                      //Lazy way of getting a reference to our end point
+        public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from
+        public Transform containerTransform;                                                //Gets a reference to our container's transform.
+
+
+
+        [HideInInspector]
+        public string FileToLoad;                                                           //Path to our a map to load if we're editing a file. 
+
+        private MapLoader mapLoader;                                                        //mapLoader component so we can preview in the editor window
+        private RenderMap renderMap;                                                        //rendermap component to render in the editor window
+        private ObstacleManager obstacleManager;                                            //Obstacle Manager component to reload our obstacles
+        private List<LevelData> levelList = new List<LevelData>();                          //Private variable to store the list of all levels in the map
+
+
+        private void Awake()
         {
-            Debug.Log("Error: Invalid level");
-            return;
-        }
-
-        //Check we have a mapname
-        if (mapName == "")
-        {
-            Debug.Log("Error: Invalid Map Name");
-            return;
-        }
-
-        //Check that we set our layers and tile set
-        if (tileSet == null || groundLayer == null || wallLayer == null)
-        {
-            Debug.Log("Error: Must set all Inspector options");
-            return;
-        }
-
-        //Check we have a reference to our spawn/finish
-        if (!spawnPoint || !finishPoint)
-        {
-            Debug.Log("No Start or Finish Point reference!!!");
-            return;
-        }
-
-        //get the position of our start/finish points
-        Vector2 end = finishPoint.transform.position;
-        Vector2 start = spawnPoint.transform.position;
-
-        //Instantiates a new LevelData class and saves our tiles into the appropriate layers
-        LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end);
-
-        //Saves our level into the list. If you don't start the first level at 0 or if you try to skip over an uncreated level number, it'll cause an error. 
-        try
-        {
-            levelList.Insert(levelNumber, currLevel);
-            Debug.Log("Level Save Successful!");
-        }
-        catch
-        {
-            Debug.Log("Level Save Unsuccessful. Did you skip a level?");
-        }
-        
-    }
-
-
-    //Lazy bit of code as it's pretty much just copy pasted but it works so whatever
-    //Overwrites the current level we're on
-    //TO DO - Incorporate it into one method. Basically we need to figure out a way to check if the list element exists or not. 
-    public void OverwriteLevel()
-    {
-        //Check our levels aren't negative
-        if (levelNumber < 0)
-        {
-            Debug.Log("Error: Invalid level");
-            return;
-        }
-
-        //Check that we set our layers and tile set
-        if (tileSet == null || groundLayer == null || wallLayer == null)
-        {
-            Debug.Log("Error: Must set all Inspector options");
-            return;
-        }
-
-        //Check we have a reference to our spawn/finish
-        if (!spawnPoint || !finishPoint)
-        {
-            Debug.Log("No Start or Finish Point reference!!!");
-            return;
+            mapLoader = GetComponent<MapLoader>();
+            renderMap = GetComponent<RenderMap>();
+            obstacleManager = GetComponent<ObstacleManager>();
         }
 
 
-        //get the position of our start/finish points
-        Vector2 end = finishPoint.transform.position;
-        Vector2 start = spawnPoint.transform.position;
-
-        //Instantiates a new LevelData class and saves our tiles into the appropriate layers
-        LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end);
-
-        // 
-        try
+        //Saves the current level we're working on. Note it doesn't write to the file, only stores the tiles into an array
+        public void SaveLevel()
         {
-            levelList[levelNumber] = currLevel;
-            Debug.Log("Level Overwrite Successful!");
-        }
-        catch
-        {
-            Debug.Log("Not able to overwrite. Does the level currently exist?");
-        }
-
-    }
-
-    //Method to save our tiles into an array
-    public int[] SaveLevelTiles(Tilemap tilemap)
-    {
-        //Declare new array based on game area size
-        int[] tileArray = new int[GameArea.size.x * GameArea.size.y];
-
-        //counter variable for our array storage
-        int index = 0;
-
-        //Nested for loop to iterate over each tile in our tilemap
-        for (int column = GameArea.position.y; column < (GameArea.position.y + GameArea.size.y); column++)
-        {
-            for (int row = GameArea.position.x; row < (GameArea.position.x + GameArea.size.x); row++)
+            //Check our levels aren't negative
+            if (levelNumber < 0)
             {
-                //Gets the current tile and stores it
-                TileBase currentTile = tilemap.GetTile(new Vector3Int(row, column, 0));
+                Debug.Log("Error: Invalid level");
+                return;
+            }
 
-                //Gets an int value for that tile by searching it against the tileset array
-                int tileValue = Array.IndexOf(tileSet.tilesArray, currentTile);
-              
-                //Store the int into the tile array
-                tileArray[index] = tileValue;
+            //Check we have a mapname
+            if (mapName == "")
+            {
+                Debug.Log("Error: Invalid Map Name");
+                return;
+            }
 
-                //Increment the index for the next tile
-                index++;
+            //Check that we set our layers and tile set
+            if (tileSet == null || groundLayer == null || wallLayer == null)
+            {
+                Debug.Log("Error: Must set all Inspector options");
+                return;
+            }
+
+            //Check we have a reference to our spawn/finish
+            if (!spawnPoint || !finishPoint)
+            {
+                Debug.Log("No Start or Finish Point reference!!!");
+                return;
+            }
+
+            //get the position of our start/finish points
+            Vector2 end = finishPoint.transform.position;
+            Vector2 start = spawnPoint.transform.position;
+            
+            //Save our exploders into our level object
+            SaveExplosionData();
+
+            //Instantiates a new LevelData class and saves our tiles into the appropriate layers
+            LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end, exploderData.data);
+
+            
+            try
+            {
+                //checks if level exists. If not, insert new.
+                if (levelNumber + 1 > levelList.Count)
+                {
+                    //Saves our level into the list. If you don't start the first level at 0 or if you try to skip over an uncreated level number, it'll cause an error. 
+                    levelList.Insert(levelNumber, currLevel);
+                    Debug.Log("Successfully added a new level!");
+                }
+                else 
+                {
+                    //Overwrites current level
+                    levelList[levelNumber] = currLevel;
+                    Debug.Log("Level Overwrite Successful!");
+                }
+       
+            }
+            catch
+            {
+                Debug.Log("Level Save Unsuccessful. Did you skip a level?");
             }
         }
 
-        return tileArray;
 
-    }
-
-    //Method to save map
-    public void SaveMap()
-    {
-        //Checks to make sure we have levels in the list
-        if (levelList.Count == 0)
+        //Method to save our tiles into an array
+        public int[] SaveLevelTiles(Tilemap tilemap)
         {
-            Debug.Log("No levels found");
-            return;
-        }
+            //Declare new array based on game area size
+            int[] tileArray = new int[GameArea.size.x * GameArea.size.y];
 
-        //Create a mapfile and pass in the tileset and our level list
-        //Must cast the tileSet name into a string. We call the tileSet by path because JsonUtility only gives us an instance ID which may not work
-        MapFile newMap = new MapFile(tileSet.name.ToString(), levelList);
+            //counter variable for our array storage
+            int index = 0;
 
-        //Gets a path to save our map to
-        string path = "Assets/Maps/" + mapName + ".bound";
-
-        //Serializes the mapfile into a string
-        string mapData = EditorJsonUtility.ToJson(newMap);
-
-        //Tries to write our data into the path. If unable to write for whatever reason, we just get a debug
-        try
-        {
-            StreamWriter writer = new StreamWriter(path, false);
-            writer.WriteLine(mapData);
-            writer.Close();
-            Debug.Log("SaveMap successful!");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("An error occured while saving the map: '{0}'", e);
-            Debug.Log("Unable to save map");
-        }
-   
-    }
-
-    //Method to clear the current level list. 
-    public void ClearLevels()
-    {
-        levelList.Clear();
-    }
-
-    
-
-    //Method to let us load the level from memory into the editor
-    //Essentially like loading a map except from memory instead of a file. 
-    //Parameter tells us which level we're loading
-    public void LoadCurrentLevel(int levelnum)
-    {
-        //First check if exists
-        if (levelList.ElementAtOrDefault(levelnum) == null)
-        {
-            Debug.Log("Level does not exist!");
-            return;
-        }
-
-        //Check we have a start or endpoint game object
-        if (!spawnPoint || !finishPoint)
-        {
-            Debug.Log("No Spawn or Finish object!!");
-        }
-        else
-        {
-            spawnPoint.transform.position = levelList[levelnum].startPoint;
-            finishPoint.transform.position = levelList[levelnum].endPoint;
-        }
-
-        //Clear our editor game board
-        groundLayer.ClearAllTiles();
-        wallLayer.ClearAllTiles();
-
-        //Creates arrays for our layers with size equal to our game board
-        TileBase[] groundArray = new TileBase[GameArea.size.x * GameArea.size.y];
-        TileBase[] wallArray = new TileBase[GameArea.size.x * GameArea.size.y];
-
-        //iterates over the ground array and populates it with tilebases from our file
-        for (int index = 0; index < groundArray.Length; index++)
-        {
-            //If the value is -1, then it means there was no tile in that position
-            if (levelList[levelnum].groundTiles[index] != -1)
+            //Nested for loop to iterate over each tile in our tilemap
+            for (int column = GameArea.position.y; column < (GameArea.position.y + GameArea.size.y); column++)
             {
-                //Sets our ground tile array by matching the value stored in the tile data of the current level with our tileset's array
-                groundArray[index] = tileSet.tilesArray[levelList[levelnum].groundTiles[index]];
+                for (int row = GameArea.position.x; row < (GameArea.position.x + GameArea.size.x); row++)
+                {
+                    //Gets the current tile and stores it
+                    TileBase currentTile = tilemap.GetTile(new Vector3Int(row, column, 0));
+
+                    //Gets an int value for that tile by searching it against the tileset array
+                    int tileValue = Array.IndexOf(tileSet.tilesArray, currentTile);
+
+                    //Store the int into the tile array
+                    tileArray[index] = tileValue;
+
+                    //Increment the index for the next tile
+                    index++;
+                }
             }
+
+            return tileArray;
+
         }
 
-        //iterates over the wall array and populates it with tilebases from our file
-        for (int index = 0; index < wallArray.Length; index++)
+        //Saves all of our Explosion Prefabs that are under our obstacle container into our scriptable object
+        public void SaveExplosionData()
         {
-            //Checks if there is a tile. If it's -1, then no tile
-            if (levelList[levelnum].wallTiles[index] != -1)
+            //Get component reference to our container's transform
+            containerTransform = explosionContainer.GetComponent<Transform>();
+
+            //Temp list to hold our data
+            List<ExplosionData> bombArray = new List<ExplosionData>();
+
+            //Iterates over each child within our container
+            foreach (Transform child in containerTransform)
             {
-                //Sets our wall tile array by matching the value stored in the tile data of the current level with our tileset's array
-                wallArray[index] = tileSet.tilesArray[levelList[levelnum].wallTiles[index]];
+                Exploder childData = child.GetComponent<Exploder>();
+                //Matches the explosiontype to our array and gets an int
+                int type = Array.IndexOf(explosionTypeSet.ExplosionPrefabs, childData.explosionType);
+                //Creates new Explosion Data and initializes it
+                ExplosionData newData = new ExplosionData(child.transform.position, childData.loopLength, childData.countdown, type);
+                //Adds it to our temp list
+                bombArray.Add(newData);
             }
+
+            exploderData.data = bombArray;
+            Debug.Log("Exploders Saved!");
         }
 
-        //Sets the tiles on the map layer by layer
-        groundLayer.SetTilesBlock(GameArea, groundArray);
-        wallLayer.SetTilesBlock(GameArea, wallArray);
-
-
-        Debug.Log("Loaded level: " + levelnum);
-
-    }
-
-    //Lets us load a map file into the editor. Basically ripped from our load level script
-    public void LoadMapInEditor()
-    {
-        //Check if we have a file
-        if (FileToLoad == "" || FileToLoad == null)
+        //Method to save map
+        public void SaveMap()
         {
-            Debug.Log("No Map Found");
-            return;
+            //Checks to make sure we have levels in the list
+            if (levelList.Count == 0)
+            {
+                Debug.Log("No levels found");
+                return;
+            }
+
+            //Create a mapfile and pass in the tileset and our level list
+            //Must cast the tileSet name into a string. We call the tileSet by path because JsonUtility only gives us an instance ID which may not work
+            MapFile newMap = new MapFile(tileSet.name.ToString(), explosionSet.name.ToString(), levelList);
+
+            //Gets a path to save our map to
+            string path = "Assets/Maps/" + mapName + ".bound";
+
+            //Serializes the mapfile into a string
+            string mapData = EditorJsonUtility.ToJson(newMap);
+
+            //Tries to write our data into the path. If unable to write for whatever reason, we just get a debug
+            try
+            {
+                StreamWriter writer = new StreamWriter(path, false);
+                writer.WriteLine(mapData);
+                writer.Close();
+                Debug.Log("SaveMap successful!");
+            }
+            catch 
+            {
+                Debug.Log("Unable to save map");
+            }
+
         }
 
-        //Get reference to our loadscript so we can call a function. I'm not sure if we can put this elsewhere
-        LoadScript = GetComponent<LoadMap>();
+        //Method to clear the current level list. 
+        public void ClearLevels()
+        {
+            levelList.Clear();
+        }
 
-        //Reads our file
-        string loadMap = LoadScript.ReadString(FileToLoad);
+        //Method to update our scene with the exploders that are stored in the exploder data object;
+        public void UpdateExploders()
+        {
+            obstacleManager.CreateExploders(exploderData.data, explosionSet);
+        }
 
-        //Converts back to a map file
-        MapFile map = JsonUtility.FromJson<MapFile>(loadMap);
 
-        //Sets our level list from the mapfile. 
-        levelList = map.levels;
-        Debug.Log("Map Loaded");
+        //Method to let us load the level from memory into the editor
+        public void LoadCurrentLevel(int levelnum)
+        {
+            renderMap.LoadTiles(levelList[levelnum], tileSet, GameArea);
+            Debug.Log("Loaded level: " + levelnum);
+
+        }
+
+        //Lets us load a map file into the editor. 
+        public void LoadMapInEditor()
+        {
+            
+            MapFile loadedMap = mapLoader.LoadMap(FileToLoad);
+            levelList = loadedMap.levels;
+            Debug.Log("Map Loaded");
+        }
     }
 }
