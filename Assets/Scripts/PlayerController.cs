@@ -128,6 +128,7 @@ public class PlayerController : TouchInput
     //Called when player hits a lethal obstacle
     private void Death()
     {
+        Debug.Log("Hit");
         //Disabler colliders temporarily
         collide.enabled = false;
         //Create our death animation/sound

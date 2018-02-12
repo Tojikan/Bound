@@ -11,7 +11,7 @@ public class Exploder : MonoBehaviour
     public const float millisecond = 0.01f;                                 //Constant variable that sets our timer incremenets
     public GameObject explosionType;                                        //Reference which explosion prefab we are creating
     public int timeleft;                                                    //The current time on the timer
-    public bool showBox;
+    public bool showBox;                                                    //Draws a red box to illuminate the collider of the exploder
     
 
     //Constructor class that lets us initialize the variables for each new created instance of Exploder
@@ -34,6 +34,7 @@ public class Exploder : MonoBehaviour
         StopAllCoroutines(); 
     }
 
+    //Uses Unity gizmos to draw a red square over the area of the collider. Used to help us place our exploders appropriately. Toggle the public bool in the exploder container window to set all on or off. 
     private void OnDrawGizmos()
     {
         if (showBox == true)
