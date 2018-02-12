@@ -22,31 +22,32 @@ namespace BoundEditor
     {
         public int levelNumber;                                                             //Current Level we are working on                           
         public string mapName;                                                              //Name of the map to save
-        public TileSet tileSet;                                                             //Tileset to store our Scriptable Tiles. Lets us also store the map tiles as ints to save space
-        public ExplosionSet explosionSet;                                                   //Explosion set to store our explosion types
-        public ExplosionSet explosionTypeSet;                                               //Explosion set to store our exploder types
+        public TileSet tileSet;                                                             //Tileset scriptable object which contains an array holding references to our scriptable tiles. Lets us store the map tiles as ints to save space
+        public ExplosionSet explosionSet;                                                   //Explosion set to store our explosion types - the thing that actually explodes
+        public ExplosionSet explosionTypeSet;                                               //Explosion set to store our exploder types - the thing that creates explosions
         public Tilemap groundLayer;                                                         //Ground layer for tiles. Has no collision in the layer
         public Tilemap wallLayer;                                                           //Wall Layer for tiles. Has collisions. Check Tile Classes if collisions aren't happening
         public ExploderDataObject exploderData;                                             //Scriptable Object that contains all of our exploder data
         public GameObject explosionContainer;                                               //Container to save explosions. Saves all the children class of it. 
-        public GameObject spawnPoint;                                                       //Lazy way of getting a reference to our start point
-        public GameObject finishPoint;                                                      //Lazy way of getting a reference to our end point
+        public GameObject spawnPoint;                                                       //Drag any game object to this in the editor window to set our spawnpoint
+        public GameObject finishPoint;                                                      //Drag any game object to this in the editor window to set our finish point
         public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from
-        public Transform containerTransform;                                                //Gets a reference to our container's transform.
+        public Transform containerTransform;                                                //Drag the Game Object to this in the editor window. This sets the transform under which we save all our explosions from
 
 
 
         [HideInInspector]
         public string FileToLoad;                                                           //Path to our a map to load if we're editing a file. 
 
-        private MapLoader mapLoader;                                                        //mapLoader component so we can preview in the editor window
-        private RenderMap renderMap;                                                        //rendermap component to render in the editor window
-        private ObstacleManager obstacleManager;                                            //Obstacle Manager component to reload our obstacles
-        private List<LevelData> levelList = new List<LevelData>();                          //Private variable to store the list of all levels in the map
+        private MapLoader mapLoader;                                                        //mapLoader component so we can load a level/map without having to go into play mode
+        private RenderMap renderMap;                                                        //rendermap component to render the map
+        private ObstacleManager obstacleManager;                                            //Obstacle Manager component so we can reload obstacles from previous levels
+        private List<LevelData> levelList = new List<LevelData>();                          //List variable that holds a list of all of our levels
 
 
         private void Awake()
         {
+            //Get the reference to all of our components
             mapLoader = GetComponent<MapLoader>();
             renderMap = GetComponent<RenderMap>();
             obstacleManager = GetComponent<ObstacleManager>();
