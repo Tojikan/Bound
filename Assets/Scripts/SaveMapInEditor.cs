@@ -23,10 +23,9 @@ namespace BoundEditor
         public int levelNumber;                                                             //Current Level we are working on                           
         public string mapName;                                                              //Name of the map to save
         public TileSet tileSet;                                                             //Tileset scriptable object which contains an array holding references to our scriptable tiles. Lets us store the map tiles as ints to save space
-        public ExplosionSet explosionSet;                                                   //Explosion set to store our explosion types - the thing that actually explodes
-        public ExplosionSet explosionTypeSet;                                               //Explosion set to store our exploder types - the thing that creates explosions
-        public Tilemap groundLayer;                                                         //Ground layer for tiles. Has no collision in the layer
-        public Tilemap wallLayer;                                                           //Wall Layer for tiles. Has collisions. Check Tile Classes if collisions aren't happening
+        public ExplosionSet explosionSet;                                                   //Explosion set to store references to our exploder prefabs
+        public Tilemap groundLayer;                                                         //Ground layer for tiles. Use for ground level tiles
+        public Tilemap wallLayer;                                                           //Wall Layer for tiles. Use for any higher level tiles
         public ExploderDataObject exploderData;                                             //Scriptable Object that contains all of our exploder data
         public GameObject explosionContainer;                                               //Container to save explosions. Saves all the children class of it. 
         public GameObject spawnPoint;                                                       //Drag any game object to this in the editor window to set our spawnpoint
@@ -164,15 +163,25 @@ namespace BoundEditor
             //Iterates over each child within our container
             foreach (Transform child in containerTransform)
             {
-                Exploder childData = child.GetComponent<Exploder>();
+                //Get a reference to the exploder script
+                ExploderObstacle childData = child.GetComponent<ExploderObstacle>();
+
+
                 //Matches the explosiontype to our array and gets an int
-                int type = Array.IndexOf(explosionTypeSet.ExplosionPrefabs, childData.explosionType);
+                //Currently Deprecated as exploders have changed. Currently we have to type it in
+                //TO DO: Fix it somehow 
+                //int type = Array.IndexOf(explosionSet.ExplosionPrefabs, childData.exploderPrefabIndex);
+                //Debug.Log(type);
+                //Debug.Log(childData.exploderPrefabIndex + " vs " + explosionSet.ExplosionPrefabs[0]);
+
                 //Creates new Explosion Data and initializes it
-                ExplosionData newData = new ExplosionData(child.transform.position, childData.loopLength, childData.countdown, type);
+                ExplosionData newData = new ExplosionData(child.transform.position, childData.loopLength, childData.countdown, childData.exploderPrefabIndex);
+
                 //Adds it to our temp list
                 bombArray.Add(newData);
             }
 
+            //Sets our scriptable object to the bomb array to save it
             exploderData.data = bombArray;
             Debug.Log("Exploders Saved!");
         }

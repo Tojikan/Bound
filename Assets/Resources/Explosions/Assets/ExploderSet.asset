@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setName: New ExplosionSet
   ExplosionPrefabs:
-  - {fileID: 1768409050993226, guid: 3b2cdf7aae3ab8d40b7817a3683227a2, type: 2}
-  - {fileID: 1789047035794936, guid: b57fb7e16c200c949af4f4358888be44, type: 2}
+  - {fileID: 1610552530990058, guid: 03fbbd0a19646ac48b3ab4e18054cf54, type: 2}
+  - {fileID: 1951850330320728, guid: 94be75bb7eba6c249bd18a10c369cd14, type: 2}

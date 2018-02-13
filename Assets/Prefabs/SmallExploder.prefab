@@ -62,7 +62,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!61 &61746276311218038
@@ -88,7 +88,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
 --- !u!82 &82305751605911814
 AudioSource:
@@ -204,6 +204,8 @@ MonoBehaviour:
   timeleft: 0
   showBox: 0
   audioPlayer: 1
+  isTesting: 0
+  exploderPrefabIndex: 1
 --- !u!212 &212794941983916262
 SpriteRenderer:
   m_ObjectHideFlags: 1

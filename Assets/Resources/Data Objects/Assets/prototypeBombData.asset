@@ -12,147 +12,99 @@ MonoBehaviour:
   m_Name: prototypeBombData
   m_EditorClassIdentifier: 
   data:
-  - position: {x: -8.505088, y: 0.5210763}
-    loopLength: 120
+  - position: {x: -6.3450885, y: 1.7110763}
+    loopLength: 200
+    explodeTime: 10
+    explodeType: 0
+  - position: {x: -6.3650885, y: -0.008923709}
+    loopLength: 200
+    explodeTime: 10
+    explodeType: 0
+  - position: {x: -6.3850884, y: -1.7089237}
+    loopLength: 200
+    explodeTime: 10
+    explodeType: 0
+  - position: {x: -4.6050887, y: 1.7110763}
+    loopLength: 200
+    explodeTime: 20
+    explodeType: 0
+  - position: {x: -4.6250887, y: -0.008923709}
+    loopLength: 200
+    explodeTime: 20
+    explodeType: 0
+  - position: {x: -4.6450887, y: -1.7089237}
+    loopLength: 200
+    explodeTime: 20
+    explodeType: 0
+  - position: {x: -2.9050882, y: 1.7310762}
+    loopLength: 200
     explodeTime: 30
     explodeType: 0
-  - position: {x: -6.9550886, y: 0.5210763}
-    loopLength: 120
+  - position: {x: -2.9250884, y: 0.011076301}
+    loopLength: 200
     explodeTime: 30
     explodeType: 0
-  - position: {x: -5.4050884, y: 0.5210763}
-    loopLength: 120
+  - position: {x: -2.9450881, y: -1.6889237}
+    loopLength: 200
     explodeTime: 30
     explodeType: 0
-  - position: {x: -3.8450882, y: 0.5210763}
-    loopLength: 120
-    explodeTime: 30
+  - position: {x: -1.2050884, y: 1.7310762}
+    loopLength: 200
+    explodeTime: 40
     explodeType: 0
-  - position: {x: -2.3050883, y: 0.5210763}
-    loopLength: 120
-    explodeTime: 30
+  - position: {x: -1.2250886, y: 0.011076301}
+    loopLength: 200
+    explodeTime: 40
     explodeType: 0
-  - position: {x: -0.7650879, y: 0.5210763}
-    loopLength: 120
-    explodeTime: 30
+  - position: {x: -1.2450883, y: -1.6889237}
+    loopLength: 200
+    explodeTime: 40
     explodeType: 0
-  - position: {x: 0.78491133, y: 0.5210763}
-    loopLength: 120
-    explodeTime: 30
+  - position: {x: 0.47491163, y: 1.7110763}
+    loopLength: 200
+    explodeTime: 50
     explodeType: 0
-  - position: {x: 2.3349116, y: 0.5210763}
-    loopLength: 120
-    explodeTime: 30
+  - position: {x: 0.4749114, y: -0.00892368}
+    loopLength: 200
+    explodeTime: 50
     explodeType: 0
-  - position: {x: 3.8949115, y: 0.5210763}
-    loopLength: 120
-    explodeTime: 30
+  - position: {x: 0.4549117, y: -1.7089237}
+    loopLength: 200
+    explodeTime: 50
     explodeType: 0
-  - position: {x: 5.4349113, y: 0.5210763}
-    loopLength: 120
-    explodeTime: 30
+  - position: {x: 2.2549117, y: 1.6910763}
+    loopLength: 200
+    explodeTime: 60
     explodeType: 0
-  - position: {x: 6.9849114, y: 0.5210763}
-    loopLength: 120
-    explodeTime: 30
+  - position: {x: 2.2149115, y: -0.02892366}
+    loopLength: 200
+    explodeTime: 60
     explodeType: 0
-  - position: {x: 8.534911, y: 0.5210763}
-    loopLength: 120
-    explodeTime: 30
+  - position: {x: 2.1949117, y: -1.7289237}
+    loopLength: 200
+    explodeTime: 60
     explodeType: 0
-  - position: {x: -8.505088, y: -0.90892375}
-    loopLength: 60
-    explodeTime: 30
+  - position: {x: 3.9349115, y: 1.7310762}
+    loopLength: 200
+    explodeTime: 70
     explodeType: 0
-  - position: {x: -6.9550886, y: -0.90892375}
-    loopLength: 60
-    explodeTime: 30
+  - position: {x: 3.9149115, y: 0.011076301}
+    loopLength: 200
+    explodeTime: 70
     explodeType: 0
-  - position: {x: -5.4050884, y: -0.90892375}
-    loopLength: 60
-    explodeTime: 30
+  - position: {x: 3.8949115, y: -1.6889238}
+    loopLength: 200
+    explodeTime: 70
     explodeType: 0
-  - position: {x: -3.8450882, y: -0.90892375}
-    loopLength: 60
-    explodeTime: 30
+  - position: {x: 5.6149116, y: 1.7510762}
+    loopLength: 200
+    explodeTime: 80
     explodeType: 0
-  - position: {x: -2.3050883, y: -0.9089237}
-    loopLength: 60
-    explodeTime: 30
+  - position: {x: 5.5949116, y: 0.031076282}
+    loopLength: 200
+    explodeTime: 80
     explodeType: 0
-  - position: {x: -0.7650879, y: -0.90892375}
-    loopLength: 60
-    explodeTime: 30
-    explodeType: 0
-  - position: {x: 0.78491133, y: -0.90892375}
-    loopLength: 60
-    explodeTime: 30
-    explodeType: 0
-  - position: {x: 2.3349116, y: -0.90892375}
-    loopLength: 60
-    explodeTime: 30
-    explodeType: 0
-  - position: {x: 3.8949115, y: -0.90892375}
-    loopLength: 60
-    explodeTime: 30
-    explodeType: 0
-  - position: {x: 5.4349113, y: -0.90892375}
-    loopLength: 60
-    explodeTime: 30
-    explodeType: 0
-  - position: {x: 6.9849114, y: -0.90892375}
-    loopLength: 60
-    explodeTime: 30
-    explodeType: 0
-  - position: {x: 8.534911, y: -0.90892375}
-    loopLength: 60
-    explodeTime: 30
-    explodeType: 0
-  - position: {x: -8.505088, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
-    explodeType: 0
-  - position: {x: -6.9550886, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
-    explodeType: 0
-  - position: {x: -5.4050884, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
-    explodeType: 0
-  - position: {x: -3.8450882, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
-    explodeType: 0
-  - position: {x: -2.3050883, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
-    explodeType: 0
-  - position: {x: -0.7650879, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
-    explodeType: 0
-  - position: {x: 0.78491133, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
-    explodeType: 0
-  - position: {x: 2.3349116, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
-    explodeType: 0
-  - position: {x: 3.8949115, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
-    explodeType: 0
-  - position: {x: 5.4349113, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
-    explodeType: 0
-  - position: {x: 6.9849114, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
-    explodeType: 0
-  - position: {x: 8.534911, y: -2.2589235}
-    loopLength: 120
-    explodeTime: 90
+  - position: {x: 5.574911, y: -1.6689239}
+    loopLength: 200
+    explodeTime: 80
     explodeType: 0

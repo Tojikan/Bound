@@ -62,7 +62,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!61 &61804485063588934
@@ -204,6 +204,8 @@ MonoBehaviour:
   timeleft: 0
   showBox: 0
   audioPlayer: 0
+  isTesting: 0
+  exploderPrefabIndex: 0
 --- !u!212 &212252474488487832
 SpriteRenderer:
   m_ObjectHideFlags: 1
