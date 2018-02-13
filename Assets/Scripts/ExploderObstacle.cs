@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BoundEngine;
+using UnityEditor;
 
 public class ExploderObstacle : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class ExploderObstacle : MonoBehaviour
     public bool showBox;                                                    //Draws a red box to illuminate the collider of the exploder
     public bool audioPlayer;                                                //Sets which audio player we're going to use
     public bool isTesting;                                                  //Simple Bool for testing our maps when we're in the map editor scene. Remove later. 
-    public int exploderPrefabIndex;                                         //Index of the explosion Set this is on. TO DO: Temporary fix as we're not attaching explosion prefabs to this anymore. So figure out a way to auto reference it to the explosion Set
     private BoxCollider2D collide;                                          //Reference our collider component
     private Animator animate;                                               //Reference our animator component
     private SpriteRenderer sprite;                                          //Reference our sprite renderer
@@ -38,6 +38,7 @@ public class ExploderObstacle : MonoBehaviour
         {
             GetReferences();
         }
+        Debug.Log(PrefabUtility.FindPrefabRoot(this.gameObject));
     }
 
     //So we don't have to keep copying pasting. Get component references

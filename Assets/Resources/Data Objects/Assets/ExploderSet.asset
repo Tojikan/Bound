@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18395424768104342a91335ea0452ff1, type: 3}
   m_Name: ExploderSet
   m_EditorClassIdentifier: 
-  setName: New ExplosionSet
+  setName: ExplosionSet
   ExplosionPrefabs:
   - {fileID: 1610552530990058, guid: 03fbbd0a19646ac48b3ab4e18054cf54, type: 2}
   - {fileID: 1951850330320728, guid: 94be75bb7eba6c249bd18a10c369cd14, type: 2}

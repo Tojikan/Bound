@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40c4ba216e150846ab65d2ec32b326f, type: 3}
+  m_Name: ExplosionAnimations
+  m_EditorClassIdentifier: 
+  setName: Explosion Animations
+  ExplosionAnimations:
+  - {fileID: 7400000, guid: b127b1d558a5a894c803ceb016d089ad, type: 2}
+  - {fileID: 7400000, guid: 200a04fcd2040a34e99c9bed13171dbe, type: 2}

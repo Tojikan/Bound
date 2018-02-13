@@ -54,6 +54,7 @@ namespace BoundEngine
         {
             if(Path.GetExtension(file) != ".bound")
             {
+                Debug.Log("Invalid File Extension");
                 return false;
             }
             return true;
@@ -65,6 +66,8 @@ namespace BoundEngine
         {
             //Sets our tileset path by getting the info from the mapfile and setting a path
             Object temp = Resources.Load("Tiles/Assets/" + path);
+            if (!temp)
+                Debug.Log("Tileset could not be loaded");
             return (TileSet)temp;
         }
 
@@ -73,7 +76,9 @@ namespace BoundEngine
         public ExplosionSet GetExplosionSet(string path)
         {
             //Sets our tileset path by getting the info from the mapfile and setting a path
-            Object temp = Resources.Load("Explosions/Assets/" + path);
+            Object temp = Resources.Load("Data Objects/Assets/" + path);
+            if (!temp)
+                Debug.Log("Explosionset could not be loaded!");
             return (ExplosionSet)temp;
         }
 
