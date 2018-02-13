@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114904459932761924}
   - component: {fileID: 114521831646013438}
   - component: {fileID: 114791563358521736}
+  - component: {fileID: 114295939449331362}
   m_Layer: 0
   m_Name: Save_Load Map 1
   m_TagString: Untagged
@@ -42,6 +43,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114295939449331362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096225449971644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eedd54fe70b7224f9f720a2a3beda72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114521831646013438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,13 +92,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNumber: 2
-  mapName: TestExplosions
+  mapName: Prototype2
   tileSet: {fileID: 11400000, guid: 8d7e0a1d2db17f8439d7c938e8b78af8, type: 2}
   explosionSet: {fileID: 11400000, guid: 06e82d4659b841c4fb61013244bd76e3, type: 2}
-  explosionTypeSet: {fileID: 0}
+  animationSet: {fileID: 11400000, guid: 1c06cc859db835f45bf017345afe73bf, type: 2}
   groundLayer: {fileID: 0}
   wallLayer: {fileID: 0}
-  exploderData: {fileID: 0}
+  exploderData: {fileID: 11400000, guid: 111a50972edc90442bbc42e45fd5db68, type: 2}
   explosionContainer: {fileID: 0}
   spawnPoint: {fileID: 0}
   finishPoint: {fileID: 0}
@@ -94,4 +106,4 @@ MonoBehaviour:
     m_Position: {x: -11, y: -5, z: 0}
     m_Size: {x: 22, y: 10, z: 1}
   containerTransform: {fileID: 0}
-  FileToLoad: C:/Users/Andrew Qian/Documents/GitHub/Bound/Assets/Maps/Testmap.bound
+  FileToLoad: C:/Users/Andrew Qian/Documents/GitHub/Bound/Assets/Maps/Prototype2.bound

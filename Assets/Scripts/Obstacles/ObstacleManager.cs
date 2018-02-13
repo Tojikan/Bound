@@ -10,23 +10,25 @@ namespace BoundEngine
     public class ObstacleManager : MonoBehaviour
     {
 
-        private List<Exploder> explosionList;                                       //List of all explosions currently in the scene. Use this to control the explosions
+        private List<ExploderObstacle> explosionList;                                       //List of all exploders currently in the scene. Use this to control the explosions
 
         //Method to create our exploders. Takes in parameters of a list of explosions and the explosion set
         public void CreateExploders(List<ExplosionData> explosions, ExplosionSet set)
         {
             //Create a new list
-            explosionList = new List<Exploder>();
+            explosionList = new List<ExploderObstacle>();
 
             //Iterate over each explosiondata in the mapfile explosion list
             foreach (ExplosionData data in explosions)
             {
                 //Creates an exploder prefab at the specified position in the file
                 GameObject newBomb = Instantiate(set.ExplosionPrefabs[data.explodeType], data.position, transform.rotation);
+
                 //Get a reference to the exploder component of our newly created prefab
-                Exploder exploder = newBomb.GetComponent<Exploder>();    
+                ExploderObstacle exploder = newBomb.GetComponent<ExploderObstacle>();    
+
                 //Initialize the prefab data
-                exploder.Initialize(data.explodeTime, data.loopLength);
+                exploder.Initialize(data.explodeTime, data.loopLength, data.audioPlayer);
                 //Adds this expoder to our list for controls
                 explosionList.Add(exploder);
             }
@@ -35,7 +37,7 @@ namespace BoundEngine
         //Iterates over each exploder in the list and begins their sequences
         public void StartExplosions()
         {
-            foreach(Exploder exploder in explosionList)
+            foreach(ExploderObstacle exploder in explosionList)
             {
                 exploder.BeginSequence();
             }
@@ -44,7 +46,7 @@ namespace BoundEngine
         //Iterates over each exploder in the list and stops their sequences
         public void StopExplosions()
         {
-            foreach (Exploder exploder in explosionList)
+            foreach (ExploderObstacle exploder in explosionList)
             {
                 exploder.StopSequence();
             }
@@ -53,7 +55,7 @@ namespace BoundEngine
         //Iterates over each exploder in the list and destroys their GameObject, clearing all Obstacles. 
         public void ClearObstacles()
         {
-            foreach (Exploder child in explosionList)
+            foreach (ExploderObstacle child in explosionList)
             {
                 Destroy(child.gameObject);
             }

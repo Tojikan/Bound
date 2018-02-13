@@ -8,16 +8,20 @@ public class PlayerController : TouchInput
     public static bool movementEnabled;                                    //bool to check if we're supposed to move and not, such as during pauses and level starts/ends
     public bool dragPlay;                                                  //Bool to set if Drag Play controls are enabled
     public float restartDelay = 1f;                                        //Delay between restarts;
-    
-   
+
     private PlayerMovement movePlayer;                                     //reference to our component that moves the player
+    private CircleCollider2D collide;                                     //reference to our collider
+    private Player player;                                                 //reference to player component
     private int lives;                                                     //Lives Count
+
 
     // Use this for initialization
     void Start ()
     {
         //initialize bools and get reference to component
         movePlayer = GetComponent<PlayerMovement>();
+        player = GetComponent<Player>();
+        collide = GetComponent<CircleCollider2D>();
         dragPlay = false;
     }
 
@@ -121,10 +125,17 @@ public class PlayerController : TouchInput
         }
     }
 
+    //Called when player hits a lethal obstacle
     private void Death()
     {
-        Debug.Log("You Dead");
+        //Disabler colliders temporarily
+        collide.enabled = false;
+        //Create our death animation/sound
+        player.PlayerDeath();
+        //Move player
         GameManager.GameManagerInstance.PlayerDeath();
+        //Renable colliders
+        collide.enabled = true;
     }
 
     //To stop movement for our player.
