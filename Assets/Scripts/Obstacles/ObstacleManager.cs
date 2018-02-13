@@ -23,10 +23,12 @@ namespace BoundEngine
             {
                 //Creates an exploder prefab at the specified position in the file
                 GameObject newBomb = Instantiate(set.ExplosionPrefabs[data.explodeType], data.position, transform.rotation);
+
                 //Get a reference to the exploder component of our newly created prefab
                 ExploderObstacle exploder = newBomb.GetComponent<ExploderObstacle>();    
+
                 //Initialize the prefab data
-                exploder.Initialize(data.explodeTime, data.loopLength);
+                exploder.Initialize(data.explodeTime, data.loopLength, data.audioPlayer);
                 //Adds this expoder to our list for controls
                 explosionList.Add(exploder);
             }

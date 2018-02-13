@@ -324,6 +324,51 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 82131055919345608, guid: 0da32fc4e9c7dd54b8cea419c01997ff,
+        type: 2}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82131055919345608, guid: 0da32fc4e9c7dd54b8cea419c01997ff,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 82077655910082282, guid: 0da32fc4e9c7dd54b8cea419c01997ff,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 82559988086652580, guid: 0da32fc4e9c7dd54b8cea419c01997ff,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 82458985105852536, guid: 0da32fc4e9c7dd54b8cea419c01997ff,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 82169841397309138, guid: 0da32fc4e9c7dd54b8cea419c01997ff,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 82169841397309138, guid: 0da32fc4e9c7dd54b8cea419c01997ff,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82458985105852536, guid: 0da32fc4e9c7dd54b8cea419c01997ff,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82559988086652580, guid: 0da32fc4e9c7dd54b8cea419c01997ff,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0da32fc4e9c7dd54b8cea419c01997ff, type: 2}
   m_IsPrefabParent: 0

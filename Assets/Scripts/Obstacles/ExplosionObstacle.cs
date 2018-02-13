@@ -20,9 +20,9 @@ public class ExplosionObstacle : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         audioSource = GetComponent<AudioSource>();
         if (!audioPlayer)
-            SoundManager.instance.PlaySingleTwo(audioSource.clip);
+            SoundManager.instance.AudioPlayerOne(audioSource.clip);
         else
-            SoundManager.instance.PlaySingle(audioSource.clip);
+            SoundManager.instance.AudioPlayerTwo(audioSource.clip);
     }
 
     //Destroys this explosion

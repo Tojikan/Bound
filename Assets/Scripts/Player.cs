@@ -7,9 +7,8 @@ using BoundEngine;
 public class Player : MonoBehaviour
 {
     public GameObject deathAnimation;                                      //reference our deathAnimation prefab
-
-    public GameObject instance;
-    private AudioSource deathAudio;                                        //reference to our death Audio Source
+    public GameObject instance;                                            //Semi-Singleton for our death animation animation object
+    private AudioSource deathAudio;                                        //drag our player death audio here
     private void Start()
     {
         deathAudio = GetComponent<AudioSource>();
@@ -27,9 +26,8 @@ public class Player : MonoBehaviour
              instance = Instantiate(deathAnimation, transform.position, transform.rotation);
           }
 
-        //Spawn a prefab that does a death animation. 
-        //TO DO refine further. Maybe build it into the player animation? It caused some bugs but might be better to do that. 
-        SoundManager.instance.PlaySingleThree(deathAudio.clip);     
+        //Plays the death audio
+        SoundManager.instance.PlayerSounds(deathAudio.clip);     
 
     }
 }

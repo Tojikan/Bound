@@ -12,13 +12,12 @@ public class ExploderObstacle : MonoBehaviour
     public AnimationClip explosionType;                                     //Explosion animation we are using
     public int timeleft;                                                    //The current time on the timer
     public bool showBox;                                                    //Draws a red box to illuminate the collider of the exploder
-    public bool audioPlayer;                                                //Sets which audio player we're going to use
+    public int audioPlayer;                                                 //Sets which audio player we're going to use
     public bool isTesting;                                                  //Simple Bool for testing our maps when we're in the map editor scene. Remove later. 
     private BoxCollider2D collide;                                          //Reference our collider component
     private Animator animate;                                               //Reference our animator component
     private SpriteRenderer sprite;                                          //Reference our sprite renderer
     private AudioSource audioSource;                                        //Refernce our audio source component
-
 
 
     //Constructor class that lets us initialize the variables for each new created instance of Exploder and then gets references to our components
@@ -27,22 +26,19 @@ public class ExploderObstacle : MonoBehaviour
     {
         this.countdown = countdown;
         this.loopLength = loopLength;
-        GetReferences();
     }
 
-    //Temporary awake function to let us get component references when we're not in the game
-    //REMOVE IF YOU'RE PLAYTESTING THE FULL GAME. ONLY USE FOR WHEN EDITING/TESTING A MAP
-    private void Awake()
+    //Overload constructor with parameter for the audio player
+    public void Initialize(int countdown, int loopLength, int audioPlayerNum)
     {
-        if (isTesting)
-        {
-            GetReferences();
-        }
-        Debug.Log(PrefabUtility.FindPrefabRoot(this.gameObject));
+        this.countdown = countdown;
+        this.loopLength = loopLength;
+        audioPlayer = audioPlayerNum;
     }
+    
 
-    //So we don't have to keep copying pasting. Get component references
-    private void GetReferences()
+    //Gets our references and sets our audio player
+    private void Awake()
     {
         collide = GetComponent<BoxCollider2D>();
         animate = GetComponent<Animator>();
@@ -50,6 +46,32 @@ public class ExploderObstacle : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    //Switches audio players based on which Audio player is selected. Defaults to AudioPlayer one. 
+    //TO DO: Maybe change from switchcase?
+    public void PlayAudio()
+    {
+        switch(audioPlayer)
+        {
+            case 1:
+                SoundManager.instance.AudioPlayerOne(audioSource.clip);
+                break;
+            case 2:
+                SoundManager.instance.AudioPlayerTwo(audioSource.clip);
+                break;
+            case 3:
+                SoundManager.instance.AudioPlayerThree(audioSource.clip);
+                break;
+            case 4:
+                SoundManager.instance.AudioPlayerFour(audioSource.clip);
+                break;
+            case 5:
+                SoundManager.instance.AudioPlayerFive(audioSource.clip);
+                break;
+            default:
+                SoundManager.instance.AudioPlayerOne(audioSource.clip);
+                break;
+        }
+    }
 
     //Start the timer of this exploder. 
     public void BeginSequence()
@@ -71,12 +93,8 @@ public class ExploderObstacle : MonoBehaviour
         sprite.enabled = true;
         //Sets the animator to replay the animation from the beginning
         animate.Play(explosionType.name, -1, 0);
-        //Plays our explosion sound. If the bool is set to false, plays from Player two, otherwise player one
-        //TO DO: Make more than two players. 
-        if (!audioPlayer)
-            SoundManager.instance.PlaySingleTwo(audioSource.clip);
-        else
-            SoundManager.instance.PlaySingle(audioSource.clip);
+        //Plays our explosion sound based on which audio player is selected
+        PlayAudio();
     }
 
     //Disables the sprite renderer to make the explosion animation stop being rendered. Called by an animation event

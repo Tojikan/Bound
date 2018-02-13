@@ -24,7 +24,7 @@ namespace BoundEditor
         public string mapName;                                                              //Name of the map to save
         public TileSet tileSet;                                                             //Tileset scriptable object which contains an array holding references to our scriptable tiles. Lets us store the map tiles as ints to save space
         public ExplosionSet explosionSet;                                                   //Explosion set to store references to our exploder prefabs
-        public ExploderAnimationSet animationSet;                                           //Animation set to store references to our various explosion animations. Used to get an index number for each exploder
+        public ExploderAnimationSet animationSet;                                           //Animation set to store references to our various explosion animations. Used to get an index number for each exploder. Match the animations with the explosionSet prefab animations
         public Tilemap groundLayer;                                                         //Ground layer for tiles. Use for ground level tiles
         public Tilemap wallLayer;                                                           //Wall Layer for tiles. Use for any higher level tiles
         public ExploderDataObject exploderData;                                             //Scriptable Object that contains all of our exploder data
@@ -168,14 +168,12 @@ namespace BoundEditor
                 ExploderObstacle childData = child.GetComponent<ExploderObstacle>();
 
 
-                //Matches the explosiontype to our array and gets an int
-                //Currently Deprecated as exploders have changed. Currently we have to type it in
+                //Matches the explosion animation to the explosion animation array and gets the index
+                //Explosion animation array should be in the same order as our explosion set array
                 int type = Array.IndexOf(animationSet.ExplosionAnimations, childData.explosionType);
-                Debug.Log(type);
-                Debug.Log(childData.explosionType + " vs " + explosionSet.ExplosionPrefabs[0]);
 
                 //Creates new Explosion Data and initializes it
-                ExplosionData newData = new ExplosionData(child.transform.position, childData.loopLength, childData.countdown, type);
+                ExplosionData newData = new ExplosionData(child.transform.position, childData.loopLength, childData.countdown, type, childData.audioPlayer);
 
                 //Adds it to our temp list
                 bombArray.Add(newData);

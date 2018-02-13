@@ -5,14 +5,20 @@ using UnityEngine;
 namespace BoundEngine
 {
     //manages our sounds and music
-    //Can play music and simultaeneously play two clips at the same time
+    //Plays sounds and music from empty audio sources which are assigned clips when they are called, letting you dynamically assign sound
+    //Two dedicated channels for music and player sounds
+    //Five channels for other SFX from obstacles, etc. 
     public class SoundManager : MonoBehaviour
     {
         public static SoundManager instance = null;                         //Lets us call our sound manager from other scripts
-        public AudioSource efxSource;                                       //effect to be played
-        public AudioSource efxSourceTwo;                                    //second effect to be played
-        public AudioSource efxSourceThree;                                  //third effect to be played
-        public AudioSource musicSource;                                     //music to be played
+        public AudioSource efxSource;                                       //first SFX player
+        public AudioSource efxSourceTwo;                                    //second SFX player
+        public AudioSource efxSourceThree;                                  //third SFX player
+        public AudioSource efxSourceFour;                                   //fourth SFX player
+        public AudioSource efxSourceFive;                                   //fifth SFX player
+        public AudioSource playerSounds;                                    //Audio dedicated to player sounds
+        public AudioSource musicSource;                                     //Audio dedicated to BGM
+        private AudioSource[] audioPlayerArray;                             //array of audio players
 
 
         private void Awake()
@@ -24,8 +30,11 @@ namespace BoundEngine
                 Destroy(gameObject);
         }
 
-        //Plays a single clip at a time. 
-        public void PlaySingle(AudioClip clip)
+        
+
+
+        //First Clip Player
+        public void AudioPlayerOne(AudioClip clip)
         {
             //Set clip
             efxSource.clip = clip;
@@ -37,8 +46,8 @@ namespace BoundEngine
             efxSource.Play();
         }
 
-        //Second single clip player. Plays another clip
-        public void PlaySingleTwo(AudioClip clip)
+        //Second Clip Player
+        public void AudioPlayerTwo(AudioClip clip)
         {
             //Set clip
             efxSourceTwo.clip = clip;
@@ -49,8 +58,9 @@ namespace BoundEngine
             //Then play this
             efxSourceTwo.Play();
         }
-        //Third single clip player. Plays another clip
-        public void PlaySingleThree(AudioClip clip)
+
+        //Third Clip Player
+        public void AudioPlayerThree(AudioClip clip)
         {
             //Set clip
             efxSourceThree.clip = clip;
@@ -62,12 +72,59 @@ namespace BoundEngine
             efxSourceThree.Play();
         }
 
+        //Fourth Clip Player
+        public void AudioPlayerFour(AudioClip clip)
+        {
+            //Set clip
+            efxSourceFour.clip = clip;
+
+            //If we're playing another, stop
+            if (efxSourceThree.isPlaying)
+                efxSourceThree.Stop();
+            //Then play this
+            efxSourceFour.Play();
+        }
+
+        //Fifth Player
+        public void AudioPlayerFive(AudioClip clip)
+        {
+            //Set clip
+            efxSourceFive.clip = clip;
+
+            //If we're playing another, stop
+            if (efxSourceFive.isPlaying)
+                efxSourceFive.Stop();
+            //Then play this
+            efxSourceFive.Play();
+        }
+
+
+        //PlayerSounds, like death, movement, etc.
+        public void PlayerSounds(AudioClip clip)
+        {
+            //Set clip
+            playerSounds.clip = clip;
+
+            //If we're playing another, stop
+            if (playerSounds.isPlaying)
+                playerSounds.Stop();
+            //Then play this
+            playerSounds.Play();
+        }
+
+
         //play and set music.
-        public void PlayMusic(AudioClip music)
+        public void MusicPlayer(AudioClip music)
         {
             musicSource.clip = music;
             musicSource.loop = true;
             musicSource.Play();
+        }
+
+        //Stop music
+        public void StopMusic()
+        {
+            musicSource.Stop();
         }
     }
 }
