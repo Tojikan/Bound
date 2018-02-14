@@ -10,6 +10,7 @@ namespace BoundEditor
     {
         public GameObject player;                           //drag the player game object to this
         public bool ShowBoxes;                              //Bool to set the Unity Gizmos to draw a red box over our exploder game objects
+        public GameObject start;                            //Start position for player
 
         private PlayerController playercontrols;            //Reference to our player controls from the dragged player game object
         private Transform thisTransform;                    //Reference to this transform
@@ -22,6 +23,7 @@ namespace BoundEditor
             playercontrols = player.GetComponent<PlayerController>();           //Get the player controller of our player object
             GetAllExploderComponents();                                         //Grab our exploder scripts
             StartAllSequences();                                                //Set sequences to start
+            player.transform.position = start.transform.position;               //set player position 
             playercontrols.EnableMovement();                                    //Enable movement
 
         }
