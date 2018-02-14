@@ -102,8 +102,8 @@ MonoBehaviour:
   endText: {fileID: 0}
   livesCounter: {fileID: 0}
   gameArea:
-    m_Position: {x: -11, y: -5, z: 0}
-    m_Size: {x: 22, y: 10, z: 1}
+    m_Position: {x: -16, y: -11, z: 0}
+    m_Size: {x: 32, y: 22, z: 1}
   mapPath: C:/Users/Andrew Qian/Documents/GitHub/Bound/Assets/Maps/TestExplosions.bound
   endLevel: 0
   currentLevel: 0

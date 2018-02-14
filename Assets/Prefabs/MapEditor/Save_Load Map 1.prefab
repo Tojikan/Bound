@@ -91,8 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73b796dad73fe4f4bbc7d22fbad2b602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNumber: 2
-  mapName: Prototype2
+  levelNumber: 1
+  mapName: Prototype4
   tileSet: {fileID: 11400000, guid: 8d7e0a1d2db17f8439d7c938e8b78af8, type: 2}
   explosionSet: {fileID: 11400000, guid: 06e82d4659b841c4fb61013244bd76e3, type: 2}
   animationSet: {fileID: 11400000, guid: 1c06cc859db835f45bf017345afe73bf, type: 2}
@@ -103,7 +103,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   finishPoint: {fileID: 0}
   GameArea:
-    m_Position: {x: -11, y: -5, z: 0}
-    m_Size: {x: 22, y: 10, z: 1}
+    m_Position: {x: -16, y: -10, z: 0}
+    m_Size: {x: 32, y: 20, z: 1}
   containerTransform: {fileID: 0}
   FileToLoad: C:/Users/Andrew Qian/Documents/GitHub/Bound/Assets/Maps/Prototype2.bound
