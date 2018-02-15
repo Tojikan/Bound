@@ -203,8 +203,8 @@ MonoBehaviour:
   explosionType: {fileID: 7400000, guid: 200a04fcd2040a34e99c9bed13171dbe, type: 2}
   timeleft: 0
   showBox: 0
-  audioPlayer: 1
   isTesting: 0
+  SelectSFXPlayer: 1
 --- !u!212 &212794941983916262
 SpriteRenderer:
   m_ObjectHideFlags: 1

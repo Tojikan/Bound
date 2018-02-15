@@ -173,7 +173,7 @@ namespace BoundEditor
                 int type = Array.IndexOf(animationSet.ExplosionAnimations, childData.explosionType);
 
                 //Creates new Explosion Data and initializes it
-                ExplosionData newData = new ExplosionData(child.transform.position, childData.loopLength, childData.countdown, type, childData.audioPlayer);
+                ExplosionData newData = new ExplosionData(child.transform.position, childData.loopLength, childData.countdown, type, (int)childData.SelectSFXPlayer);
 
                 //Adds it to our temp list
                 bombArray.Add(newData);

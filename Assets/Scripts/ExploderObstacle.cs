@@ -12,12 +12,22 @@ public class ExploderObstacle : MonoBehaviour
     public AnimationClip explosionType;                                     //Explosion animation we are using
     public int timeleft;                                                    //The current time on the timer
     public bool showBox;                                                    //Draws a red box to illuminate the collider of the exploder
-    public int audioPlayer;                                                 //Sets which audio player we're going to use
     public bool isTesting;                                                  //Simple Bool for testing our maps when we're in the map editor scene. Remove later. 
     private BoxCollider2D collide;                                          //Reference our collider component
     private Animator animate;                                               //Reference our animator component
     private SpriteRenderer sprite;                                          //Reference our sprite renderer
     private AudioSource audioSource;                                        //Refernce our audio source component
+
+    //Enum to select which Audio player to play from
+    public enum Audioplayers
+    {
+        sFxPlayerOne,
+        sFxPlayerTwo,
+        sFxPlayerThree,
+        sFxPlayerFour,
+        sFxPlayerFive
+    }
+    public Audioplayers SelectSFXPlayer = Audioplayers.sFxPlayerOne;        
 
 
     //Constructor class that lets us initialize the variables for each new created instance of Exploder and then gets references to our components
@@ -33,7 +43,6 @@ public class ExploderObstacle : MonoBehaviour
     {
         this.countdown = countdown;
         this.loopLength = loopLength;
-        audioPlayer = audioPlayerNum;
     }
     
 
@@ -50,7 +59,7 @@ public class ExploderObstacle : MonoBehaviour
     //TO DO: Maybe change from switchcase?
     public void PlayAudio()
     {
-        switch(audioPlayer)
+        switch((int)SelectSFXPlayer)
         {
             case 1:
                 SoundManager.instance.AudioPlayerOne(audioSource.clip);
