@@ -9,14 +9,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 1.0f;                                                  //player move speed
-    public float distanceTo = 0.4f;                                                 //distance to target object. Player stops as soon as we enter this distance
-    public float slideDistance = 1.0f;
-
+    public float distanceTo = Mathf.Epsilon;                                        //distance to target object. Player stops as soon as we enter this distance
+    private float speedFraction = 1.0f;                                             //Reduce move speed by a fraction based on Joystick magnitude        
     private Animator anim;                                                          //Animator variable to control player animations
     private SpriteRenderer spriterender;                                            //Spriterender to flip character on X axis when moving a negative X direction
     private Vector2 newPosition;                                                    //Storage variable for the movement vector towards our target destination
     private Vector2 targetPosition;                                                 //Storage variable for the target position we're going for
     private TopDownCircleCollider2D col;                                            //variable for our Collision detection class
+    private PlayerController playerControl;                                         //Get Player controller component to see which movement style we're using
     private bool isMoving;                                                          //Bool to control if we're moving or not and to stop movement.
    
 
@@ -32,19 +32,64 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         //Get references to our components
         anim = GetComponent<Animator>();
         spriterender = GetComponent<SpriteRenderer>();
         col = transform.GetComponent<TopDownCircleCollider2D>();
+        playerControl = GetComponent<PlayerController>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (playerControl.dragPlay)
+            DragMove();
+        else
+            JoystickMove();
+    }
 
+    void JoystickMove()
+    {
         //Get our next move based on current position versus our target position. Use normalized for constant speed. Recalculate every frame to stop jumps
-        newPosition = (targetPosition - (Vector2)transform.position).normalized * moveSpeed * Time.deltaTime;
+        newPosition = (targetPosition - (Vector2)transform.position).normalized * (speedFraction * moveSpeed) * Time.deltaTime;
+
+        //Calculate the remaining distance between current position and goal
+        float remainingDistance = Vector2.Distance(transform.position, targetPosition);
+
+        //If we're within our distanceTo, stop moving
+        if (remainingDistance <= distanceTo)
+        {
+
+            isMoving = false;
+        }
+
+        //Check if we're moving
+        if (isMoving)
+        {
+
+            //Temp variables to store our next movements
+            Vector3 xMove = new Vector2(newPosition.x, 0);
+            Vector3 yMove = new Vector2(0, newPosition.y);
+
+            //Move on X axis, and then check collision           
+            transform.position += xMove;
+            col.CheckColliders();
+
+
+            //Then move on Y axis and then check collision
+            transform.position += yMove;
+            col.CheckColliders();
+
+        }
+
+        //Set our animation accordingly
+        AnimationHandler();
+    }
+
+    void DragMove()
+    {
+        //Get our next move based on current position versus our target position. Use normalized for constant speed. Recalculate every frame to stop jumps
+        newPosition = (targetPosition - (Vector2) transform.position).normalized* moveSpeed * Time.deltaTime;
 
         //Calculate the remaining distance between current position and goal
         float remainingDistance = Vector2.Distance(transform.position, targetPosition);
@@ -89,6 +134,13 @@ public class PlayerMovement : MonoBehaviour
         isMoving = true;                 //Start moving 
     }
 
+    public void SetSpeed(float magnitude, float range)
+    {
+        float speedRate = magnitude / range;
+        Mathf.Clamp(speedRate, 0, 1);
+        speedFraction = speedRate;
+        Debug.Log(speedRate);
+    }
 
 
     //Sets our player animation. Called every frame after we make our movements
