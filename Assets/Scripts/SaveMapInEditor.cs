@@ -34,8 +34,6 @@ namespace BoundEditor
         public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from
         public Transform containerTransform;                                                //Drag the Game Object to this in the editor window. This sets the transform under which we save all our explosions from
 
-
-
         [HideInInspector]
         public string FileToLoad;                                                           //Path to our a map to load if we're editing a file. 
 

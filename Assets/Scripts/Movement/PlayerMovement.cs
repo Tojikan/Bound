@@ -16,10 +16,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 newPosition;                                                    //Storage variable for the movement vector towards our target destination
     private Vector2 targetPosition;                                                 //Storage variable for the target position we're going for
     private TopDownCircleCollider2D col;                                            //variable for our Collision detection class
-    private PlayerController playerControl;                                         //Get Player controller component to see which movement style we're using
     private bool isMoving;                                                          //Bool to control if we're moving or not and to stop movement.
    
-    //Access our speedFraction if we're not in Joystick movement
+    //Access our speedFraction if we're not in Joystick movement to set it to 1
     public float SpeedFraction
     {
         get { return speedFraction; }
@@ -41,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         spriterender = GetComponent<SpriteRenderer>();
         col = transform.GetComponent<TopDownCircleCollider2D>();
-        playerControl = GetComponent<PlayerController>();
     }
 	
 	// Update is called once per frame
