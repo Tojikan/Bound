@@ -19,20 +19,25 @@ public class PlayerMovement : MonoBehaviour
     private PlayerController playerControl;                                         //Get Player controller component to see which movement style we're using
     private bool isMoving;                                                          //Bool to control if we're moving or not and to stop movement.
    
+    //Access our speedFraction if we're not in Joystick movement
+    public float SpeedFraction
+    {
+        get { return speedFraction; }
+        set { speedFraction = value; }
+    }
 
-    // Use this for initialization
+
+    //Initializes our movement vector and make sure we're not moving
     void Awake ()
     {
-        //Initialize our movement vector and make sure we're not moving
         targetPosition = transform.position;
 		newPosition = Vector2.zero;
         isMoving = false;
 	}
 
-    // Use this for initialization
+    //Get references to our components
     void Start()
     {
-        //Get references to our components
         anim = GetComponent<Animator>();
         spriterender = GetComponent<SpriteRenderer>();
         col = transform.GetComponent<TopDownCircleCollider2D>();
@@ -41,14 +46,6 @@ public class PlayerMovement : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-    {
-        if (playerControl.dragPlay)
-            DragMove();
-        else
-            JoystickMove();
-    }
-
-    void JoystickMove()
     {
         //Get our next move based on current position versus our target position. Use normalized for constant speed. Recalculate every frame to stop jumps
         newPosition = (targetPosition - (Vector2)transform.position).normalized * (speedFraction * moveSpeed) * Time.deltaTime;
@@ -86,60 +83,23 @@ public class PlayerMovement : MonoBehaviour
         AnimationHandler();
     }
 
-    void DragMove()
-    {
-        //Get our next move based on current position versus our target position. Use normalized for constant speed. Recalculate every frame to stop jumps
-        newPosition = (targetPosition - (Vector2) transform.position).normalized* moveSpeed * Time.deltaTime;
+    
 
-        //Calculate the remaining distance between current position and goal
-        float remainingDistance = Vector2.Distance(transform.position, targetPosition);
-
-        //If we're within our distanceTo, stop moving
-        if (remainingDistance <= distanceTo)
-        {
-
-            isMoving = false;
-        }
-
-        //Check if we're moving
-        if (isMoving)
-        {
-           
-            //Temp variables to store our next movements
-            Vector3 xMove = new Vector2(newPosition.x, 0);
-            Vector3 yMove = new Vector2(0, newPosition.y);
-
-            //Move on X axis, and then check collision           
-            transform.position += xMove;
-            col.CheckColliders();
-
-
-            //Then move on Y axis and then check collision
-            transform.position += yMove;
-            col.CheckColliders();
-
-        }
-
-        //Set our animation accordingly
-        AnimationHandler();
-    }
-
-
-    //Called by our controller function, which handles our touch inputs and converts to world position. This is called anytime there is a touch input
-    //Takes in a parameter of the coordinates of our touch. Then sets us to move
+    //Sets the target position. Called in the player controller class
     public void SetMovement(Vector2 end)
     {
         isMoving = false;
-        targetPosition = end;            //Update current target position
-        isMoving = true;                 //Start moving 
+        targetPosition = end;           
+        isMoving = true;                
     }
 
+    //Sets the speed fraction based on Joystick magnitude. Called for Joystick movement
     public void SetSpeed(float magnitude, float range)
     {
         float speedRate = magnitude / range;
+        //So we can't go faster than move speed
         Mathf.Clamp(speedRate, 0, 1);
         speedFraction = speedRate;
-        Debug.Log(speedRate);
     }
 
 

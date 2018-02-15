@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class PlayerController : TouchInput
 {
     public static bool movementEnabled;                                    //bool to check if we're supposed to move and not, such as during pauses and level starts/ends
-    public bool dragPlay;                                                  //Bool to set if Drag Play controls are enabled
     public float restartDelay = 1f;                                        //Delay between restarts;
     public JoystickController joystick;                                    //Drag joystick object here
     public GameObject joystickParent;                                      //Drag joystick parent object here
     private PlayerMovement movePlayer;                                     //reference to our component that moves the player
     private int lives;                                                     //Lives Count
-    
+
+    //Enum type to select the control options
     public enum ControlOptions
     {
         Drag,
@@ -20,7 +20,34 @@ public class PlayerController : TouchInput
         Tap
     }
 
-    public ControlOptions controlOptions = ControlOptions.Joystick;
+    public ControlOptions controlOptions = ControlOptions.Joystick;         //Selects which control option we are using
+    private ControlOptions OldControlOptions;                               //Placeholder to see if we changed control schemes
+    private ControlOptions SetControlOptions                                //Property Get;Set to set our oldcontroloptions but also calls the function that actually changes our controls
+        {
+            get { return OldControlOptions;}
+            set
+            {
+            //This calls the function that will set our controls
+            SetControls(controlOptions);    
+            OldControlOptions = value;
+            }
+        }
+
+    #region Delegates
+    //These 4 different delegates are called in response to different touch events.
+    //Different movement methods are subscribed to each according to the movement scheme
+    public delegate void OnTap();
+    public static event OnTap OnTouchTap;
+
+    public delegate void OnDrag();
+    public static event OnDrag OnTouchDrag;
+
+    public delegate void OnStay();
+    public static event OnStay OnTouchStay;
+
+    public delegate void OnEnd();
+    public static event OnEnd OnTouchEnd;
+    #endregion 
 
 
     // Use this for initialization
@@ -28,7 +55,10 @@ public class PlayerController : TouchInput
     {
         //initialize bools and get reference to component
         movePlayer = GetComponent<PlayerMovement>();
-        dragPlay = false;
+        //Set our initial controls
+        SetControls(controlOptions);
+        //Stores our old control options
+        OldControlOptions = controlOptions;
     }
 
     protected override void Update()
@@ -39,111 +69,152 @@ public class PlayerController : TouchInput
         //Don't forget to remove for builds
         if (movementEnabled)
         {
-            //if (dragPlay == false)
-            //{
-            //    if(Input.GetMouseButtonDown(1))
-            //    {
-            //        Vector2 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //        movePlayer.SetMovement(newPosition);
-            //    }
-            //}
+            if (Input.GetMouseButtonDown(1))
+            {
+                Vector2 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                movePlayer.SetMovement(newPosition);
+            }
+        }
+
+        //Checks to see if we have changed our controls since the last frame. If so, use the get;set to call the function to set controls
+        if (OldControlOptions != controlOptions)
+        {
+            SetControlOptions = controlOptions;
         }
     }
 
-
+    #region TouchEvent
+    //A single tap is registered on the screen
     protected override void OnTouchBeganAnywhere()
     {
         if (movementEnabled)
         {
-            ////checks if we're in tap play
-            //if (dragPlay == false)
-            //{
-            //    //gets a single touch from the touch array - only single touch supported
-            //    Touch myTouch = Input.touches[0];
-
-            //    //converts the position of the touch to a world position
-            //    Vector2 newPosition = Camera.main.ScreenToWorldPoint(myTouch.position);
-
-            //    //Sets us to move by calling movePlayer
-            //    movePlayer.SetMovement(newPosition);
-            //}
-
-            if (dragPlay == false)
-            {
-                Touch myTouch = Input.touches[0];
-                Vector3 touchPosition = myTouch.position;
-                joystickParent.SetActive(true);
-                joystick.transform.position = touchPosition;
-                joystick.SetPos(touchPosition);
-                joystick.OnDrag(touchPosition);
-            }
+            if (OnTouchTap != null)
+                OnTouchTap();
         }
 
     }
 
-    //enabled only for drag gameplay. Sets a new position when we move our finger
+    //When the finger moves around on the screen
     protected override void OnTouchMovedAnywhere()
     {
         if (movementEnabled)
         {
-            //checks if we're in drag play
-            if (dragPlay == true)
-            {
-                //Gets only a single touch
-                Touch myTouch = Input.touches[0];
-
-                //converts the position of the touch to a world position
-                Vector2 newPosition = Camera.main.ScreenToWorldPoint(myTouch.position);
-
-                //Sets us to move by calling movePlayer
-                movePlayer.SetMovement(newPosition);
-            }
-            else
-            {
-                //Gets only a single touch
-                Touch myTouch = Input.touches[0];
-
-                //converts the position of the touch to a world position
-                Vector3 touchPosition = myTouch.position;
-                joystick.OnDrag(touchPosition);
-
-                Vector3 moveTo = joystick.GetMovement() + transform.position;
-                movePlayer.SetSpeed(joystick.GetMagnitude(), (float)joystick.MovementRange);
-                movePlayer.SetMovement(moveTo);
-            }
+            if (OnTouchDrag != null)
+                OnTouchDrag();
         }
     }
 
+    //If the touch stays on the same spot on the screen
     protected override void OnTouchStayedAnywhere()
+    {
+        if (movementEnabled)
+        {
+            if (OnTouchStay != null)
+                OnTouchStay();
+        }
+    }
+
+    //If the touch ends anywhere on the screen
+    protected override void OnTouchEndedAnywhere()
+    {
+        if (movementEnabled)
+        {
+            if (OnTouchEnd != null)
+                OnTouchEnd();
+        }
+    }
+    #endregion
+
+
+    //Method that sets the controls based on our enum choices
+    public void SetControls(ControlOptions controls)
+    {
+        //Clears all events of subscribed methods
+        OnTouchTap = null; OnTouchDrag = null; OnTouchStay = null; OnTouchEnd = null;
+
+        /*Then subscribe methods to our delegates based on the type of movement we want to use*/
+        
+        if (controls == ControlOptions.Drag)
+        {
+            OnTouchDrag += MoveToTouch;
+            OnTouchEnd += StopMovement;
+            movePlayer.SpeedFraction = 1.0f;
+        }
+
+        if (controls == ControlOptions.Joystick)
+        {
+            OnTouchTap += CreateJoystick;
+            OnTouchDrag += JoystickControls;
+            OnTouchStay += JoystickControls;
+            OnTouchEnd += JoystickOnEnd;
+        }
+
+        if (controls == ControlOptions.Tap)
+        {
+            OnTouchTap += MoveToTouch;
+            movePlayer.SpeedFraction = 1.0f;
+        }
+
+    }
+
+    #region Controls
+
+    //Sets our player to move when we start moving the joystick
+    public void JoystickControls()
     {
         //Gets only a single touch
         Touch myTouch = Input.touches[0];
 
         //converts the position of the touch to a world position
         Vector3 touchPosition = myTouch.position;
+        //Moves the Joystick based on touch position
         joystick.OnDrag(touchPosition);
+        //Get a target position based on current
         Vector3 moveTo = joystick.GetMovement() + transform.position;
+        //Sets our movespeed based on the magnitude of joystick from its origin point so our player moves slower if the joystick isn't pushed as far
+        movePlayer.SetSpeed(joystick.GetMagnitude(), (float)joystick.MovementRange);
+        //Move toward target position
         movePlayer.SetMovement(moveTo);
     }
 
-    //enabled only for drag gameplay. Ends any movement if we lift up our finger
-    protected override void OnTouchEndedAnywhere()
+    //Creates a joystick whenever the screen is touched
+    public void CreateJoystick()
     {
-        if (movementEnabled)
-        {
-            //checks if we're in drag play
-            if (dragPlay == true)
-            {
-                //stops any movement if we lift our finger during drag play
-                StopMovement();
-            }
-            else
-            {
-                joystick.EndDrag();
-                StopMovement();
-                joystickParent.SetActive(false);
-            }
-        }
+        //Gets single touch
+        Touch myTouch = Input.touches[0];
+        //Save the position of the touch
+        Vector3 touchPosition = myTouch.position;
+        //Set Joystick active so it'll show up. Default should be inactive
+        joystickParent.SetActive(true);
+        //Moves the Joystick to our touch position. Both touchposition and joysticks work on screen space so we don't need to convert to worldspace
+        joystick.transform.position = touchPosition;
+        //Sets the Joystick center point 
+        joystick.SetPos(touchPosition);
+    }
+
+    //Hides the joystick when the touch is lifted
+    public void JoystickOnEnd()
+    {
+        //Moves joystick back to its center
+        joystick.EndDrag();
+        //Stops player movement
+        StopMovement();
+        //Set joystick inactive
+        joystickParent.SetActive(false);
+    }
+
+    //Simple tap movement that moves our player towards finger position. Used either in Drag or Tap play
+    public void MoveToTouch()
+    {
+        //Gets only a single touch
+        Touch myTouch = Input.touches[0];
+
+        //converts the position of the touch to a world position
+        Vector2 newPosition = Camera.main.ScreenToWorldPoint(myTouch.position);
+
+        //Sets us to move by calling movePlayer
+        movePlayer.SetMovement(newPosition);
     }
 
     //To stop movement for our player.
@@ -162,4 +233,6 @@ public class PlayerController : TouchInput
     {
         movementEnabled = true;
     }
+    #endregion
+
 }
