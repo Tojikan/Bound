@@ -18,7 +18,6 @@ namespace BoundEngine
         public AudioSource efxSourceFive;                                   //fifth SFX player
         public AudioSource playerSounds;                                    //Audio dedicated to player sounds
         public AudioSource musicSource;                                     //Audio dedicated to BGM
-        private AudioSource[] audioPlayerArray;                             //array of audio players
 
 
         private void Awake()
@@ -29,9 +28,6 @@ namespace BoundEngine
             else if (instance != this)
                 Destroy(gameObject);
         }
-
-        
-
 
         //First Clip Player
         public void AudioPlayerOne(AudioClip clip)

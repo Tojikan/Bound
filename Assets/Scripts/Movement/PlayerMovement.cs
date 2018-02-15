@@ -9,9 +9,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 1.0f;                                                  //player move speed
-    public float distanceTo = 0.4f;                                                 //distance to target object. Player stops as soon as we enter this distance
-    public float slideDistance = 1.0f;
-
+    public float distanceTo = Mathf.Epsilon;                                        //distance to target object. Player stops as soon as we enter this distance
+    private float speedFraction = 1.0f;                                             //Reduce move speed by a fraction based on Joystick magnitude        
     private Animator anim;                                                          //Animator variable to control player animations
     private SpriteRenderer spriterender;                                            //Spriterender to flip character on X axis when moving a negative X direction
     private Vector2 newPosition;                                                    //Storage variable for the movement vector towards our target destination
@@ -19,21 +18,25 @@ public class PlayerMovement : MonoBehaviour
     private TopDownCircleCollider2D col;                                            //variable for our Collision detection class
     private bool isMoving;                                                          //Bool to control if we're moving or not and to stop movement.
    
+    //Access our speedFraction if we're not in Joystick movement to set it to 1
+    public float SpeedFraction
+    {
+        get { return speedFraction; }
+        set { speedFraction = value; }
+    }
 
-    // Use this for initialization
+
+    //Initializes our movement vector and make sure we're not moving
     void Awake ()
     {
-        //Initialize our movement vector and make sure we're not moving
         targetPosition = transform.position;
 		newPosition = Vector2.zero;
         isMoving = false;
 	}
 
-    // Use this for initialization
+    //Get references to our components
     void Start()
     {
-
-        //Get references to our components
         anim = GetComponent<Animator>();
         spriterender = GetComponent<SpriteRenderer>();
         col = transform.GetComponent<TopDownCircleCollider2D>();
@@ -42,9 +45,8 @@ public class PlayerMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-
         //Get our next move based on current position versus our target position. Use normalized for constant speed. Recalculate every frame to stop jumps
-        newPosition = (targetPosition - (Vector2)transform.position).normalized * moveSpeed * Time.deltaTime;
+        newPosition = (targetPosition - (Vector2)transform.position).normalized * (speedFraction * moveSpeed) * Time.deltaTime;
 
         //Calculate the remaining distance between current position and goal
         float remainingDistance = Vector2.Distance(transform.position, targetPosition);
@@ -59,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         //Check if we're moving
         if (isMoving)
         {
-           
+
             //Temp variables to store our next movements
             Vector3 xMove = new Vector2(newPosition.x, 0);
             Vector3 yMove = new Vector2(0, newPosition.y);
@@ -79,16 +81,24 @@ public class PlayerMovement : MonoBehaviour
         AnimationHandler();
     }
 
+    
 
-    //Called by our controller function, which handles our touch inputs and converts to world position. This is called anytime there is a touch input
-    //Takes in a parameter of the coordinates of our touch. Then sets us to move
+    //Sets the target position. Called in the player controller class
     public void SetMovement(Vector2 end)
     {
         isMoving = false;
-        targetPosition = end;            //Update current target position
-        isMoving = true;                 //Start moving 
+        targetPosition = end;           
+        isMoving = true;                
     }
 
+    //Sets the speed fraction based on Joystick magnitude. Called for Joystick movement
+    public void SetSpeed(float magnitude, float range)
+    {
+        float speedRate = magnitude / range;
+        //So we can't go faster than move speed
+        Mathf.Clamp(speedRate, 0, 1);
+        speedFraction = speedRate;
+    }
 
 
     //Sets our player animation. Called every frame after we make our movements
