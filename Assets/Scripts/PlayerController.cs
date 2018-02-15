@@ -161,7 +161,7 @@ public class PlayerController : TouchInput
     #region Controls
 
     //Sets our player to move when we start moving the joystick
-    public void JoystickControls()
+    private void JoystickControls()
     {
         //Gets only a single touch
         Touch myTouch = Input.touches[0];
@@ -179,7 +179,7 @@ public class PlayerController : TouchInput
     }
 
     //Creates a joystick whenever the screen is touched
-    public void CreateJoystick()
+    private void CreateJoystick()
     {
         //Gets single touch
         Touch myTouch = Input.touches[0];
@@ -194,7 +194,7 @@ public class PlayerController : TouchInput
     }
 
     //Hides the joystick when the touch is lifted
-    public void JoystickOnEnd()
+    private void JoystickOnEnd()
     {
         //Moves joystick back to its center
         joystick.EndDrag();
@@ -205,7 +205,7 @@ public class PlayerController : TouchInput
     }
 
     //Simple tap movement that moves our player towards finger position. Used either in Drag or Tap play
-    public void MoveToTouch()
+    private void MoveToTouch()
     {
         //Gets only a single touch
         Touch myTouch = Input.touches[0];

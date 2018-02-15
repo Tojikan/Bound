@@ -6,18 +6,23 @@ using BoundEngine;
 //Class to handle all other Player things such as death animation and sounds
 public class Player : MonoBehaviour
 {
-    public GameObject deathAnimation;                                      //reference our deathAnimation prefab
-    public GameObject instance;                                            //Semi-Singleton for our death animation animation object
+    public int flickerLength = 3;                                          //How long the player's sprite flickers after respawning
+    public float flickerTime = 1f;                                      //Time between flickers
     private AudioSource deathAudio;                                        //drag our player death audio here
     private PlayerController playerControl;                                //Player controller component 
     private CircleCollider2D collide;                                      //reference to our collider
-        private Player player;                                                 //reference to player component
+    private SpriteRenderer spriteRender;                                   //reference to sprite render component
+    private Player player;                                                 //reference to player component
+    private Animator animator;                                             //Reference to animator component
+    private bool isHit;
 
     private void Start()
     {
         playerControl = GetComponent<PlayerController>();
         deathAudio = GetComponent<AudioSource>();
         collide = GetComponent<CircleCollider2D>();
+        animator = GetComponent<Animator>();
+        spriteRender = GetComponent<SpriteRenderer>();
     }
 
 
@@ -31,48 +36,68 @@ public class Player : MonoBehaviour
     //Remember to set Rigidbodies on our collision objects
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //If it's tagged with finish, stop and prevent movement. Load next level
-        if (other.tag == "Finish")
         {
-            playerControl.StopMovement();
-            playerControl.DisableMovement();
-            NextLevel();
-        }
+            //If it's tagged with finish, stop and prevent movement. Load next level
+            if (other.tag == "Finish")
+            {
+                playerControl.StopMovement();
+                playerControl.DisableMovement();
+                NextLevel();
+            }
 
-        //If it's tagged with lethal, call death function
-        if (other.tag == "Lethal")
-        {
-            Death();
+            //If it's tagged with lethal, call death function
+            if (other.tag == "Lethal")
+            {
+                if (!isHit)
+                {
+                    isHit = true;
+                    collide.enabled = false;
+                    if (GameManager.GameManagerInstance.CheckGameOver() == false)
+                        PlayerDeath();
+                }
+
+            }
         }
     }
 
-    //Called when player hits a lethal obstacle
-    private void Death()
+ 
+
+
+
+    public void Respawn()
     {
-        //Disabler colliders temporarily
-        collide.enabled = false;
-        //Create our death animation/sound
-        PlayerDeath();
-        //Move player
-        GameManager.GameManagerInstance.PlayerDeath();
-        //Renable colliders
+        animator.SetTrigger("Respawn");
+        GameManager.GameManagerInstance.SpawnPlayer();
         collide.enabled = true;
+        StartCoroutine("FlickerSprite");
     }
 
-    //Creates a player death animation and then plays the death sound
-    public void PlayerDeath()
+
+    private void PlayerDeath()
     {
+        playerControl.StopMovement();
+        playerControl.DisableMovement();
+        SoundManager.instance.PlayerSounds(deathAudio.clip);
+        animator.SetTrigger("Death");
+    }
 
-        //Prevents multiple death animations being spawned if you're hitting multiple colliders
-        //At the same time, created a new bug where if you hit an explosion before an animation finishes, a death animation won't spawn. 
-        //TO DO fix this
-        if (instance == null)
-          {
-             instance = Instantiate(deathAnimation, transform.position, transform.rotation);
-          }
+    IEnumerator FlickerSprite()
+    {
+        spriteRender.enabled = false;
+        yield return new WaitForSeconds(flickerTime);
+        spriteRender.enabled = true;
+        yield return new WaitForSeconds(flickerTime);
+        spriteRender.enabled = false;
+        yield return new WaitForSeconds(flickerTime);
+        spriteRender.enabled = true;
+        yield return new WaitForSeconds(flickerTime);
+        spriteRender.enabled = false;
+        yield return new WaitForSeconds(flickerTime);
+        spriteRender.enabled = true;
+        Debug.Log("Flickered?");
 
-        //Plays the death audio
-        SoundManager.instance.PlayerSounds(deathAudio.clip);     
+        playerControl.EnableMovement();
+        isHit = false;
 
     }
 }
