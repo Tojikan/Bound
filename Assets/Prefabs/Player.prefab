@@ -26,10 +26,10 @@ GameObject:
   - component: {fileID: 114412045116194320}
   - component: {fileID: 114445243169473452}
   - component: {fileID: 82793413079099358}
-  - component: {fileID: 114695743569421166}
+  - component: {fileID: 114771244504100798}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1321057704232642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.37, y: 0.06, z: 0}
+  m_LocalPosition: {x: -11.15, y: -0.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -71,8 +71,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: b7c33fb2b4187f14a902c038aeb77c7e, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  distanceTo: 0.4
+  distanceTo: 0.2
 --- !u!114 &114445243169473452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,8 +201,8 @@ MonoBehaviour:
   restartDelay: 1
   joystick: {fileID: 0}
   joystickParent: {fileID: 0}
-  controlOptions: 1
---- !u!114 &114695743569421166
+  controlOptions: 0
+--- !u!114 &114771244504100798
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -213,8 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdae39965db31743a27daf013c6fe4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flickerLength: 3
-  flickerTime: 0.05
+  flickerLength: 5
+  flickerTime: 1
 --- !u!212 &212932787056645574
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -254,7 +254,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 0.67}
+  m_Size: {x: 1.68, y: 1.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

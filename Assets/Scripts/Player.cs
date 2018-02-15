@@ -7,15 +7,17 @@ using BoundEngine;
 public class Player : MonoBehaviour
 {
     public int flickerLength = 3;                                          //How long the player's sprite flickers after respawning
-    public float flickerTime = 1f;                                      //Time between flickers
+    public float flickerTime = 1f;                                         //Time between flickers
     private AudioSource deathAudio;                                        //drag our player death audio here
     private PlayerController playerControl;                                //Player controller component 
     private CircleCollider2D collide;                                      //reference to our collider
     private SpriteRenderer spriteRender;                                   //reference to sprite render component
     private Player player;                                                 //reference to player component
     private Animator animator;                                             //Reference to animator component
-    private bool isHit;
+    private bool gameOver;                                                 //Checks if the game is over
 
+
+    //Initialize and get comopnenets
     private void Start()
     {
         playerControl = GetComponent<PlayerController>();
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour
         collide = GetComponent<CircleCollider2D>();
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
+        gameOver = false;
     }
 
 
@@ -48,56 +51,53 @@ public class Player : MonoBehaviour
             //If it's tagged with lethal, call death function
             if (other.tag == "Lethal")
             {
-                if (!isHit)
+                if (GameManager.GameManagerInstance.CheckGameOver() == false)
+                    PlayerDeath();
+                else
                 {
-                    isHit = true;
-                    collide.enabled = false;
-                    if (GameManager.GameManagerInstance.CheckGameOver() == false)
-                        PlayerDeath();
+                    gameOver = true;
+                    PlayerDeath();
                 }
-
             }
         }
     }
 
  
-
-
-
+    //If game isn't over, moves player back to start, re-enables collider, and starts the flicker routine
+    //Called at the end of the death animation via animation event
     public void Respawn()
     {
-        animator.SetTrigger("Respawn");
-        GameManager.GameManagerInstance.SpawnPlayer();
-        collide.enabled = true;
-        StartCoroutine("FlickerSprite");
+        if (!gameOver)
+        {
+            animator.SetTrigger("Respawn");
+            GameManager.GameManagerInstance.SpawnPlayer();
+            collide.enabled = true;
+            StartCoroutine("FlickerSprite");
+        }
     }
 
-
+    //Disables collider, stops and disables all movements, plays sounds, and then sets the death animation trigger
     private void PlayerDeath()
     {
+        collide.enabled = false;
         playerControl.StopMovement();
         playerControl.DisableMovement();
         SoundManager.instance.PlayerSounds(deathAudio.clip);
         animator.SetTrigger("Death");
     }
 
+    //Coroutine to flicker our player sprite a few times when respawned. At the end, reenables movement. 
     IEnumerator FlickerSprite()
     {
-        spriteRender.enabled = false;
-        yield return new WaitForSeconds(flickerTime);
-        spriteRender.enabled = true;
-        yield return new WaitForSeconds(flickerTime);
-        spriteRender.enabled = false;
-        yield return new WaitForSeconds(flickerTime);
-        spriteRender.enabled = true;
-        yield return new WaitForSeconds(flickerTime);
-        spriteRender.enabled = false;
-        yield return new WaitForSeconds(flickerTime);
-        spriteRender.enabled = true;
-        Debug.Log("Flickered?");
-
+        int x = 0;
+        while (x < flickerLength)
+        {
+            spriteRender.enabled = false;
+            yield return new WaitForSeconds(flickerTime);
+            spriteRender.enabled = true;
+            yield return new WaitForSeconds(flickerTime);
+            x++;
+        }
         playerControl.EnableMovement();
-        isHit = false;
-
     }
 }

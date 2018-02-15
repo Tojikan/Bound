@@ -203,20 +203,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1958923657}
   m_Script: {fileID: 11500000, guid: 0ed8c7859f3755f409e154770ff446e9, type: 3}
---- !u!114 &306477278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 306477270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cdae39965db31743a27daf013c6fe4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathAnimation: {fileID: 1600982768277770, guid: 8f3c51ce2e95b164788ed305393501d4,
-    type: 2}
-  instance: {fileID: 0}
 --- !u!1001 &906558621
 Prefab:
   m_ObjectHideFlags: 0
@@ -1763,6 +1749,11 @@ Prefab:
       propertyPath: livesCounter
       value: 
       objectReference: {fileID: 1436957829}
+    - target: {fileID: 114989530851204982, guid: 16eaa7ac0f2946546b3e16dbe389a80d,
+        type: 2}
+      propertyPath: playerLives
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16eaa7ac0f2946546b3e16dbe389a80d, type: 2}
   m_IsPrefabParent: 0
@@ -2123,40 +2114,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 212932787056645574, guid: 124f856807044d24cbdb68a32b242e41,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1321057704232642, guid: 124f856807044d24cbdb68a32b242e41, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 114445243169473452, guid: 124f856807044d24cbdb68a32b242e41,
-        type: 2}
-      propertyPath: livesCounter
-      value: 
-      objectReference: {fileID: 1436957829}
-    - target: {fileID: 82793413079099358, guid: 124f856807044d24cbdb68a32b242e41,
-        type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: b7c33fb2b4187f14a902c038aeb77c7e, type: 3}
-    - target: {fileID: 82793413079099358, guid: 124f856807044d24cbdb68a32b242e41,
-        type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114412045116194320, guid: 124f856807044d24cbdb68a32b242e41,
-        type: 2}
-      propertyPath: moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114412045116194320, guid: 124f856807044d24cbdb68a32b242e41,
-        type: 2}
-      propertyPath: distanceTo
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 114445243169473452, guid: 124f856807044d24cbdb68a32b242e41,
         type: 2}
       propertyPath: joystick
@@ -2164,18 +2121,18 @@ Prefab:
       objectReference: {fileID: 1781497436}
     - target: {fileID: 114445243169473452, guid: 124f856807044d24cbdb68a32b242e41,
         type: 2}
-      propertyPath: joystickController
-      value: 
-      objectReference: {fileID: 2016299007}
-    - target: {fileID: 114445243169473452, guid: 124f856807044d24cbdb68a32b242e41,
-        type: 2}
       propertyPath: joystickParent
       value: 
       objectReference: {fileID: 2016299007}
-    - target: {fileID: 114445243169473452, guid: 124f856807044d24cbdb68a32b242e41,
+    - target: {fileID: 114771244504100798, guid: 124f856807044d24cbdb68a32b242e41,
         type: 2}
-      propertyPath: controlOptions
-      value: 0
+      propertyPath: flickerTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114771244504100798, guid: 124f856807044d24cbdb68a32b242e41,
+        type: 2}
+      propertyPath: flickerLength
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 124f856807044d24cbdb68a32b242e41, type: 2}
