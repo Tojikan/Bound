@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
             catch { }
             currentLevel += 1;
             LoadLevel(currentLevel);
-            Respawn();
+            SpawnPlayer();
             playControl.EnableMovement();
         }
     }
@@ -151,34 +151,31 @@ public class GameManager : MonoBehaviour
     public void LevelStartTransition()
     {
         //Moves our player to the start point
-        Respawn();
+        SpawnPlayer();
         //trigger our explosions to start
         obstacleManager.StartExplosions();
         //Allow movement
         playControl.EnableMovement();
     }
 
-    //Called when player runs into an obstacle
-    public void PlayerDeath()
+    //Called when player runs into an obstacle. Sets the game over events or decrements the lives counter
+    public bool CheckGameOver()
     {
         //Checks to see if we have lives, then calls Game Over if not
         if (playerLives <= 0)
         {
-            playControl.StopMovement();
-            playControl.DisableMovement();
             GameOver();
+            return true;
         }
 
         //Decrease lives by one. Stops movement and call Respawn to move our player
         else if (playerLives > 0)
         {
-            playControl.StopMovement();
-            playControl.DisableMovement();
             playerLives -= 1;
             livesCounter.text = "Lives: " + playerLives;
-            Respawn();
-            playControl.EnableMovement();
+            return false;
         }
+        return false;
     }
 
 
@@ -201,7 +198,7 @@ public class GameManager : MonoBehaviour
     }
 
     //Respawns player to the spawn point. 
-    public void Respawn()
+    public void SpawnPlayer()
     {
         Player.transform.position = Spawn.transform.position;
     }
