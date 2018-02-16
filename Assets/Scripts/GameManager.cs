@@ -49,11 +49,6 @@ public class GameManager : MonoBehaviour
         playControl = Player.GetComponent<PlayerController>();
         mapRenderer = GetComponent<RenderMap>();
         obstacleManager = obstacles.GetComponent<ObstacleManager>();
-
-        //livesCounter.text = "Lives: " + playerLives;                              //Set our lives text
-
-        //Initiate game
-        InitGame();
     }
 
 
@@ -87,6 +82,12 @@ public class GameManager : MonoBehaviour
         livesCounter.text = "Lives: " + playerLives;
         //Allow movement after we load our level
         playControl.EnableMovement();
+    }
+
+    private void Start()
+    {
+        //Initiate game
+        InitGame();
     }
 
     //Gets the path to the selected map from the mapPath scriptable object
@@ -149,6 +150,7 @@ public class GameManager : MonoBehaviour
     {
         //Moves our player to the start point
         SpawnPlayer();
+        Timer.instance.StopTimer();
         //trigger our explosions to start
         Timer.instance.StartTimer();
         //Allow movement

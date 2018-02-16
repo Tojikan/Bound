@@ -9,6 +9,7 @@ namespace BoundEngine
         public static Timer instance = null;
         int time;
         const float millisecond = 0.01f;
+        public bool testing;
 
 
         public delegate void TimerEvents(int eventTime);
@@ -26,6 +27,8 @@ namespace BoundEngine
         // Use this for initialization
         void Start()
         {
+            if (testing)
+                StartTimer();
         }
 
         public void StartTimer()

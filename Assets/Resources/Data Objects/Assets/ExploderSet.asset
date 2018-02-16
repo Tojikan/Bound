@@ -14,4 +14,4 @@ MonoBehaviour:
   setName: ExplosionSet
   ExplosionPrefabs:
   - {fileID: 1518858135925724, guid: 50d936348a9a9fe448187f317b75c390, type: 2}
-  - {fileID: 1144104707142808, guid: 4b19f37fc37135842a919a63845f9e9f, type: 2}
+  - {fileID: 1232827500003880, guid: 00ceba8b04bc4e24c8b333834aa1c02e, type: 2}
