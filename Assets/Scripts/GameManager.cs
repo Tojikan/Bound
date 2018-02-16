@@ -40,9 +40,7 @@ public class GameManager : MonoBehaviour
     {
         //Check to make sure this is the only instance of Game Manager
         if (GameManagerInstance == null)
-        {
             GameManagerInstance = this;
-        }
         else if (GameManagerInstance != this)
             Destroy(gameObject);
 
@@ -136,8 +134,7 @@ public class GameManager : MonoBehaviour
         //If not, load the next level, increment the current level, and allow movement again. 
         else if(currentLevel < endLevel)
         {
-            try { obstacleManager.ClearObstacles(); }
-            catch { }
+            obstacleManager.ClearObstacles(); 
             currentLevel += 1;
             LoadLevel(currentLevel);
             SpawnPlayer();
@@ -153,7 +150,7 @@ public class GameManager : MonoBehaviour
         //Moves our player to the start point
         SpawnPlayer();
         //trigger our explosions to start
-        obstacleManager.StartExplosions();
+        Timer.instance.StartTimer();
         //Allow movement
         playControl.EnableMovement();
     }

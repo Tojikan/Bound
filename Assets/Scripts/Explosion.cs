@@ -5,6 +5,7 @@ using BoundEngine;
 
 public class Explosion : Obstacle
 {
+    public int test;
     public bool showBox;
     public AnimationClip explosionType;
     private SpriteRenderer sprite;
@@ -31,20 +32,24 @@ public class Explosion : Obstacle
         sprite = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         EnableObstacle();
+        Timer.TimerEventHandler += TriggerObstacle;
     }
 
     #region Initialize
     //Constructor class that lets us initialize the variables for each new created instance of Exploder and then gets references to our components
     //Should be called when an obstacle is loaded into the game
-    public void InitializeExplosion(int explosionTime)
+    public void InitializeExplosion(int explosionTime, int loop)
     {
         triggerTime = explosionTime;
+        loopLength = loop;
+        SelectSFXPlayer = (Audioplayers)1;
     }
 
     //Overload constructor with parameter for the audio player
-    public void InitializeExplosion(int explosionTime, int audioPlayerNum)
+    public void InitializeExplosion(int explosionTime, int loop, int audioPlayerNum)
     {
         triggerTime = explosionTime;
+        loopLength = loop;
         SelectSFXPlayer = (Audioplayers)audioPlayerNum;
     }
     #endregion
@@ -74,6 +79,17 @@ public class Explosion : Obstacle
                 SoundManager.instance.AudioPlayerOne(audioSource.clip);
                 break;
         }
+    }
+
+    private void OnDisable()
+    {
+        Timer.TimerEventHandler -= TriggerObstacle;
+    }
+
+    public override void DestroyObstacle()
+    {
+        Timer.TimerEventHandler -= TriggerObstacle;
+        base.DestroyObstacle();
     }
 
 
@@ -121,12 +137,15 @@ public class Explosion : Obstacle
 
     public override void TriggerObstacle(int timerTime)
     {
-        if (!isEnabled)
-            return;
-        if (timerTime % triggerTime == 0)
-        {
+        test = timerTime;
+        if (CheckZero() == false)
+            DestroyObstacle();
+
+        int counter = timerTime % loopLength;
+
+        if (counter == triggerTime)
             Explode();
-        }
+        
     }
 
 }

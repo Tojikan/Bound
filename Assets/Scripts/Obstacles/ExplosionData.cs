@@ -14,17 +14,17 @@ namespace BoundMaps
         public int loopLength;                              //Length of each loop
         public int explodeTime;                             //Timing of the explosion
         public int explodeType;                             //Type of Bomb based on our bomb set
-        public int audioPlayer;
+        public int audioPlayer;                             //Which Audio Player to use
 
 
-        //Constructor
+        //Constructor. If no audio player, default to 1
         public ExplosionData(Vector2 point, int loop, int time, int explode)
         {
             position = point;
             loopLength = loop;
             explodeTime = time;
             explodeType = explode;
-            audioPlayer = 0;
+            audioPlayer = 1;
         }
         //Overload
         public ExplosionData(Vector2 point, int loop, int time, int explode, int audio)

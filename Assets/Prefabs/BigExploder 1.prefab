@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 50026237962947200}
   - component: {fileID: 82306163749025734}
   m_Layer: 0
-  m_Name: BigExploderTimerBased
+  m_Name: BigExploder 1
   m_TagString: Lethal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

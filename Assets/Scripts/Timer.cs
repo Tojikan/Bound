@@ -2,50 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+namespace BoundEngine
 {
-    public Timer instance;
-    int time;
-    const float millisecond = 0.01f;
-
-
-    public delegate void TimerEvents(int eventTime);
-    public static event TimerEvents TimerEventHandler;
-
-    private void Awake()
+    public class Timer : MonoBehaviour
     {
-        if (instance == null)
+        public static Timer instance = null;
+        int time;
+        const float millisecond = 0.01f;
+
+
+        public delegate void TimerEvents(int eventTime);
+        public static event TimerEvents TimerEventHandler;
+
+        private void Awake()
         {
-            instance = this;
+            if (instance == null)
+                instance = this;
+            else if (instance != this)
+                Destroy(gameObject);
         }
-        else if (instance != this)
+
+
+        // Use this for initialization
+        void Start()
         {
-            Destroy(gameObject);
         }
-    }
 
-
-    // Use this for initialization
-    void Start ()
-    {
-        StartCoroutine("TimerRoutine");
-	}
-
-    //Timer Coroutine to spawn explosions
-    IEnumerator TimerRoutine()
-    {
-        int time = 0;
-
-        //Continuous loop
-        while (true)
+        public void StartTimer()
         {
-            //Wait for one millisecond
-            yield return new WaitForSeconds(millisecond);
+            StartCoroutine("TimerRoutine");
+        }
 
-            //Increment our timer by 1. This basically has the effect of counting in milliseconds
-            time += 1;
-            if (TimerEventHandler != null)
-                TimerEventHandler(time);
+        public void StopTimer()
+        {
+            StopCoroutine("TimerRoutine");
+        }
+
+        //Timer Coroutine to spawn explosions
+        IEnumerator TimerRoutine()
+        {
+            int time = 0;
+
+            //Continuous loop
+            while (true)
+            {
+                //Wait for one millisecond
+                yield return new WaitForSeconds(millisecond);
+
+                //Increment our timer by 1. This basically has the effect of counting in milliseconds
+                time += 1;
+                if (TimerEventHandler != null)
+                    TimerEventHandler(time);
+            }
         }
     }
 }

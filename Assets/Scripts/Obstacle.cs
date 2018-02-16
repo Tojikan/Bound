@@ -5,6 +5,7 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     public int triggerTime;
+    public int loopLength;
     public bool isEnabled;
 
     public virtual void TriggerObstacle(int timerTime) { }
@@ -16,6 +17,16 @@ public class Obstacle : MonoBehaviour
     public virtual void EnableObstacle()
     {
         isEnabled = true;
+    }
+
+    public virtual bool CheckZero()
+    {
+        if (loopLength == 0)
+        {
+            Debug.Log("Invalid loop length. Obstacle destroyed");
+            return false;
+        }
+        return true;
     }
 
     public virtual void DestroyObstacle()
