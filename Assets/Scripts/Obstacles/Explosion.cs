@@ -5,7 +5,6 @@ using BoundEngine;
 
 public class Explosion : Obstacle
 {
-    public int test;
     public bool showBox;
     public AnimationClip explosionType;
     private SpriteRenderer sprite;
@@ -81,11 +80,13 @@ public class Explosion : Obstacle
         }
     }
 
+    //Remove from event when disabled
     private void OnDisable()
     {
         Timer.TimerEventHandler -= TriggerObstacle;
     }
 
+    //Redundancy to remove from event and then destroy obstacle
     public override void DestroyObstacle()
     {
         Timer.TimerEventHandler -= TriggerObstacle;
@@ -135,17 +136,15 @@ public class Explosion : Obstacle
     }
     #endregion
 
+    //Trigger function. Takes in a time parameter. 
     public override void TriggerObstacle(int timerTime)
     {
-        test = timerTime;
         if (CheckZero() == false)
             DestroyObstacle();
 
         int counter = timerTime % loopLength;
 
         if (counter == triggerTime)
-            Explode();
-        
+            Explode();     
     }
-
 }

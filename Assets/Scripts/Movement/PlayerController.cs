@@ -201,7 +201,7 @@ public class PlayerController : TouchInput
         //Stops player movement
         StopMovement();
         //Set joystick inactive
-        joystickParent.SetActive(false);
+        joystick.HideJoystick();
     }
 
     //Simple tap movement that moves our player towards finger position. Used either in Drag or Tap play

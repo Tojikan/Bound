@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
         playerControl.StopMovement();
         playerControl.DisableMovement();
         SoundManager.instance.PlayerSounds(deathAudio.clip);
+        playerControl.joystick.HideJoystick();
         animator.SetTrigger("Death");
     }
 

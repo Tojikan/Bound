@@ -33,6 +33,12 @@ public class JoystickController : MonoBehaviour
         transform.position = startPos;
     }
 
+    //Hide the joystick
+    public void HideJoystick()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
+
     //Sets the center and then moves the parent object to the center, moving this as well
     public void SetPos(Vector3 newPos)
     {

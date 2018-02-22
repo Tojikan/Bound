@@ -2067,6 +2067,11 @@ Prefab:
       propertyPath: flickerLength
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114445243169473452, guid: 124f856807044d24cbdb68a32b242e41,
+        type: 2}
+      propertyPath: controlOptions
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 124f856807044d24cbdb68a32b242e41, type: 2}
   m_IsPrefabParent: 0
