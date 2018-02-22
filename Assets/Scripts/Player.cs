@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private Player player;                                                 //reference to player component
     private Animator animator;                                             //Reference to animator component
     private bool gameOver;                                                 //Checks if the game is over
-
+    private bool isHit;                                                    //bool to only trigger one hit
 
     //Initialize and get comopnenets
     private void Start()
@@ -48,15 +48,20 @@ public class Player : MonoBehaviour
                 NextLevel();
             }
 
-            //If it's tagged with lethal, call death function
-            if (other.tag == "Lethal")
+            //Only trigger one hit at a time
+            if (!isHit)
             {
-                if (GameManager.GameManagerInstance.CheckGameOver() == false)
-                    PlayerDeath();
-                else
+                isHit = true;
+                //If it's tagged with lethal, call death function
+                if (other.tag == "Lethal")
                 {
-                    gameOver = true;
-                    PlayerDeath();
+                    if (GameManager.GameManagerInstance.CheckGameOver() == false)
+                        PlayerDeath();
+                    else
+                    {
+                        gameOver = true;
+                        PlayerDeath();
+                    }
                 }
             }
         }
@@ -72,6 +77,7 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Respawn");
             GameManager.GameManagerInstance.SpawnPlayer();
             collide.enabled = true;
+            isHit = false;
             StartCoroutine("FlickerSprite");
         }
     }
