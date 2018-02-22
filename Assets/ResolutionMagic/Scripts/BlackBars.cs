@@ -13,7 +13,7 @@ public class BlackBars : MonoBehaviour
     [SerializeField]
     private GameObject bottomBar;
     
-    Transform myTransform; // reference to the transform
+    //Transform myTransform; // reference to the transform                  //AQ
     [SerializeField]
     bool _enabled = true;
 
@@ -34,7 +34,7 @@ public class BlackBars : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-	    myTransform = transform;
+	    //myTransform = transform;                      //AQ
         if(Enabled)
             EnableBlackBars();
     }
