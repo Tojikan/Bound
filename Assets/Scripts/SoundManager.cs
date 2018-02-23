@@ -11,6 +11,7 @@ namespace BoundEngine
     public class SoundManager : MonoBehaviour
     {
         public static SoundManager instance = null;                         //Lets us call our sound manager from other scripts
+        public MusicList musicPlaylist;                                     //List of game songs
         public AudioSource efxSource;                                       //first SFX player
         public AudioSource efxSourceTwo;                                    //second SFX player
         public AudioSource efxSourceThree;                                  //third SFX player
@@ -109,18 +110,23 @@ namespace BoundEngine
         }
 
 
-        //play and set music.
-        public void MusicPlayer(AudioClip music)
+        //set music.
+        public void SetMusic(int index)
         {
-            musicSource.clip = music;
+            musicSource.clip = musicPlaylist.musicPlaylist[index];
             musicSource.loop = true;
-            musicSource.Play();
         }
 
         //Stop music
         public void StopMusic()
         {
             musicSource.Stop();
+        }
+
+        //play music
+        public void PlayMusic()
+        {
+            musicSource.Play();
         }
     }
 }

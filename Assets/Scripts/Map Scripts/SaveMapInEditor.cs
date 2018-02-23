@@ -34,14 +34,23 @@ namespace BoundEditor
         public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from
         public Transform containerTransform;                                                //Drag the Game Object to this in the editor window. This sets the transform under which we save all our explosions from
 
-        [HideInInspector]
-        public string FileToLoad;                                                           //Path to our a map to load if we're editing a file. 
+        [HideInInspector] public string FileToLoad;                                         //Path to our a map to load if we're editing a file. 
 
+
+        private int music;                                                                  //stores which song for the level
         private MapLoader mapLoader;                                                        //mapLoader component so we can load a level/map without having to go into play mode
         private RenderMap renderMap;                                                        //rendermap component to render the map
         private ObstacleManager obstacleManager;                                            //Obstacle Manager component so we can reload obstacles from previous levels
         private List<LevelData> levelList = new List<LevelData>();                          //List variable that holds a list of all of our levels
+   
 
+        //enum to select music
+        public enum LevelMusic
+        {
+            Ending, Level1, Level2, Level3, TitleScreen, NewDayNewDawn, MyWay, NeverBackDown, WeStandTogether, RiseAgain, UnderSiege, InTheNameOfScience 
+        }
+        //Set music
+        public LevelMusic selectMusic;
 
         private void Awake()
         {
@@ -50,7 +59,6 @@ namespace BoundEditor
             renderMap = GetComponent<RenderMap>();
             obstacleManager = GetComponent<ObstacleManager>();
         }
-
 
         //Saves the current level we're working on. Note it doesn't write to the file, only stores the tiles into an array
         public void SaveLevel()
@@ -89,11 +97,14 @@ namespace BoundEditor
             
             //Save our exploders into our level object
             SaveExplosionData();
+            //set music variable
+            music = (int)selectMusic;
 
             //Instantiates a new LevelData class and saves our tiles into the appropriate layers
-            LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end, exploderData.data);
-
+            //Check if we have level music indicated
+            LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end, exploderData.data, music);
             
+
             try
             {
                 //checks if level exists. If not, insert new.

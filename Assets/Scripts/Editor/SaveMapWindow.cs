@@ -81,7 +81,6 @@ public class SaveMapWindow : Editor
         EditorGUILayout.Space();
         EditorGUILayout.Space();
 
-        
         EditorGUILayout.LabelField("Map Name", Path.GetFileName(mySaveScript.FileToLoad));
 
         //Selects a map to load to the editor SaveMap list
