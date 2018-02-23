@@ -116,6 +116,11 @@ public class GameManager : MonoBehaviour
         mapRenderer.SetBeacons(currentMap.levels[level].startPoint, currentMap.levels[level].endPoint);
         //Creates our exploders
         obstacleManager.CreateExploders(currentMap.levels[level].explosions, explosionSet);
+        //Set music from file
+        SoundManager.instance.SetMusic(currentMap.levels[level].music);
+
+
+
         //Starts level transition
         LevelStartTransition();
     }
@@ -129,12 +134,14 @@ public class GameManager : MonoBehaviour
         //Checks to see if we're on the last level
         if (currentLevel >= endLevel)
         {
+            SoundManager.instance.StopMusic();
             MapComplete();
         }
 
         //If not, load the next level, increment the current level, and allow movement again. 
         else if(currentLevel < endLevel)
         {
+            SoundManager.instance.StopMusic();
             obstacleManager.ClearObstacles(); 
             currentLevel += 1;
             LoadLevel(currentLevel);
@@ -153,6 +160,8 @@ public class GameManager : MonoBehaviour
         Timer.instance.StopTimer();
         //trigger our explosions to start
         Timer.instance.StartTimer();
+        //Play music
+        SoundManager.instance.PlayMusic();
         //Allow movement
         playControl.EnableMovement();
     }

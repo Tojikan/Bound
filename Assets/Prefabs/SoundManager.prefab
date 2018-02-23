@@ -296,8 +296,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: eec2deb293318d842be85c4d3e239b99, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 0.7
   Loop: 1
@@ -618,6 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bbe9f7f655c5a04b96cee1bd32e96a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicPlaylist: {fileID: 11400000, guid: 9b3552d5ddb7eed4b8bac546d824ffbd, type: 2}
   efxSource: {fileID: 82131055919345608}
   efxSourceTwo: {fileID: 82046992417303350}
   efxSourceThree: {fileID: 82077655910082282}
