@@ -47,27 +47,26 @@ public class Player : MonoBehaviour
                 playerControl.DisableMovement();
                 NextLevel();
             }
-
+            Debug.Log("Set");
             //Only trigger one hit at a time
-            if (!isHit)
+            if (!isHit && other.tag == "Lethal")
             {
                 isHit = true;
                 //If it's tagged with lethal, call death function
-                if (other.tag == "Lethal")
+                if (GameManager.GameManagerInstance.CheckGameOver() == false)
                 {
-                    if (GameManager.GameManagerInstance.CheckGameOver() == false)
-                        PlayerDeath();
-                    else
-                    {
-                        gameOver = true;
-                        PlayerDeath();
-                    }
+                    Debug.Log("Hit");
+                    PlayerDeath();
+                }
+                else
+                {
+                    gameOver = true;
+                    PlayerDeath();
                 }
             }
         }
     }
 
- 
     //If game isn't over, moves player back to start, re-enables collider, and starts the flicker routine
     //Called at the end of the death animation via animation event
     public void Respawn()
