@@ -39,7 +39,6 @@ public class Player : MonoBehaviour
     //Remember to set Rigidbodies on our collision objects
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Dying?");
         {
             //If it's tagged with finish, stop and prevent movement. Load next level
             if (other.tag == "Finish")
