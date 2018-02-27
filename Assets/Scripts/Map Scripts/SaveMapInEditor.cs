@@ -23,16 +23,17 @@ namespace BoundEditor
         public int levelNumber;                                                             //Current Level we are working on                           
         public string mapName;                                                              //Name of the map to save
         public TileSet tileSet;                                                             //Tileset scriptable object which contains an array holding references to our scriptable tiles. Lets us store the map tiles as ints to save space
-        public ExplosionSet explosionSet;                                                   //Explosion set to store references to our exploder prefabs
+        public ObstacleSet explosionSet;                                                   //Explosion set to store references to our exploder prefabs
         public ExploderAnimationSet animationSet;                                           //Animation set to store references to our various explosion animations. Used to get an index number for each exploder. Match the animations with the explosionSet prefab animations
         public Tilemap groundLayer;                                                         //Ground layer for tiles. Use for ground level tiles
         public Tilemap wallLayer;                                                           //Wall Layer for tiles. Use for any higher level tiles
         public ExploderDataObject exploderData;                                             //Scriptable Object that contains all of our exploder data
-        public GameObject explosionContainer;                                               //Container to save explosions. Saves all the children class of it. 
+        public GameObject explosionContainer;                                               //Container to save obstacles. Saves all the children class of it. 
         public GameObject spawnPoint;                                                       //Drag any game object to this in the editor window to set our spawnpoint
         public GameObject finishPoint;                                                      //Drag any game object to this in the editor window to set our finish point
+        public GameObject dialogueObject;                                                   //Drag the dialogue game object to this 
         public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from
-        public Transform containerTransform;                                                //Drag the Game Object to this in the editor window. This sets the transform under which we save all our explosions from
+        public Transform containerTransform;                                                //Drag the Game Object to this in the editor window. This sets the transform under which we save all our obstacles from
 
         [HideInInspector] public string FileToLoad;                                         //Path to our a map to load if we're editing a file. 
 
@@ -102,7 +103,7 @@ namespace BoundEditor
 
             //Instantiates a new LevelData class and saves our tiles into the appropriate layers
             //Check if we have level music indicated
-            LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end, exploderData.data, music);
+            LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end, exploderData.data, music, SaveDialogue());
             
 
             try
@@ -126,6 +127,12 @@ namespace BoundEditor
             {
                 Debug.Log("Level Save Unsuccessful. Did you skip a level?");
             }
+        }
+
+        public Dialogue SaveDialogue()
+        {
+            DialogueObject component = dialogueObject.GetComponent<DialogueObject>();
+            return component.dialogue;
         }
 
 
@@ -168,7 +175,7 @@ namespace BoundEditor
             containerTransform = explosionContainer.GetComponent<Transform>();
 
             //Temp list to hold our data
-            List<ExplosionData> bombArray = new List<ExplosionData>();
+            List<ObstacleData> bombArray = new List<ObstacleData>();
 
             //Iterates over each child within our container
             foreach (Transform child in containerTransform)
@@ -182,7 +189,7 @@ namespace BoundEditor
                 int type = Array.IndexOf(animationSet.ExplosionAnimations, childData.explosionType);
 
                 //Creates new Explosion Data and initializes it
-                ExplosionData newData = new ExplosionData(child.transform.position, childData.loopLength, childData.triggerTime, type, (int)childData.SelectSFXPlayer);
+                ObstacleData newData = new ObstacleData(child.transform.position, childData.loopLength, childData.triggerTime, type, (int)childData.SelectSFXPlayer);
 
                 //Adds it to our temp list
                 bombArray.Add(newData);

@@ -15,35 +15,49 @@ namespace BoundMaps
         public int[] groundTiles;                                  
         public int[] wallTiles;
 
-        //List of explosions and their data
-        public List<ExplosionData> explosions = new List<ExplosionData>();
+        //List of obstacles and their data
+        public List<ObstacleData> obstacles = new List<ObstacleData>();
 
         //Stores our start and end points. 
         public Vector2 startPoint;
         public Vector2 endPoint;
 
+        public Dialogue levelDialogue;
+
         //level music
         public int music;
 
         //Constructor
-        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ExplosionData> bombs)
+        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs)
         {
             groundTiles = ground;
             wallTiles = wall;
             startPoint = start;
             endPoint = end;
-            explosions = bombs;
+            obstacles = bombs;
         }
 
         //Constructor
-        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ExplosionData> bombs, int song)
+        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song)
         {
             groundTiles = ground;
             wallTiles = wall;
             startPoint = start;
             endPoint = end;
-            explosions = bombs;
+            obstacles = bombs;
             music = song;
+        }
+
+        //Constructor
+        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song, Dialogue dialogue)
+        {
+            groundTiles = ground;
+            wallTiles = wall;
+            startPoint = start;
+            endPoint = end;
+            obstacles = bombs;
+            music = song;
+            levelDialogue = dialogue;
         }
     }
 }

@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
                 playerControl.DisableMovement();
                 NextLevel();
             }
-            Debug.Log("Set");
+
             //Only trigger one hit at a time
             if (!isHit && other.tag == "Lethal")
             {
@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
                 //If it's tagged with lethal, call death function
                 if (GameManager.GameManagerInstance.CheckGameOver() == false)
                 {
-                    Debug.Log("Hit");
                     PlayerDeath();
                 }
                 else
@@ -74,7 +73,14 @@ public class Player : MonoBehaviour
         if (!gameOver)
         {
             animator.SetTrigger("Respawn");
-            GameManager.GameManagerInstance.SpawnPlayer();
+            try
+            {
+                GameManager.GameManagerInstance.SpawnPlayer();
+            }
+            catch
+            {
+                Debug.Log("You got hit");
+            }
             collide.enabled = true;
             isHit = false;
             StartCoroutine("FlickerSprite");

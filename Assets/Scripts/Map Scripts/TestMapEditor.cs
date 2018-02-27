@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using BoundEngine;
 
-//Lets us test the current level we're working on. Basically sets the explosions to start triggering at the start of the game
-//Also lets us draw red boxes over the explosions
+//Lets us test the current level we're working on. Basically sets the obstacles to start triggering at the start of the game
+//Also lets us draw red boxes over the obstacles
 namespace BoundEditor
 {
     public class TestMapEditor : MonoBehaviour

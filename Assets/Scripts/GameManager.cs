@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private MapFile currentMap;                                             //Variable to store our map
     private TileSet tileSet;                                                //reference to our tileset
     private RenderMap mapRenderer;                                          //reference to our renderMap Component
-    private ExplosionSet explosionSet;                                      //reference to our explosion set
+    private ObstacleSet obstacleSet;                                      //reference to our explosion set
     private ObstacleManager obstacleManager;                                //reference to our obstacle manager
 
 
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
         //Load from File
         tileSet = mapLoad.GetTileSet(currentMap.tileset);
-        explosionSet = mapLoad.GetExplosionSet(currentMap.explosionSet);
+        obstacleSet = mapLoad.GetExplosionSet(currentMap.obstacleSet);
 
         //Load level
         LoadLevel(0);
@@ -115,14 +115,13 @@ public class GameManager : MonoBehaviour
         //set our start/endpoints
         mapRenderer.SetBeacons(currentMap.levels[level].startPoint, currentMap.levels[level].endPoint);
         //Creates our exploders
-        obstacleManager.CreateExploders(currentMap.levels[level].explosions, explosionSet);
+        obstacleManager.CreateExploders(currentMap.levels[level].obstacles, obstacleSet);
+        //Moves our player to the start point
+        SpawnPlayer();
         //Set music from file
         SoundManager.instance.SetMusic(currentMap.levels[level].music);
-
-
-
         //Starts level transition
-        LevelStartTransition();
+        StartDialogue();
     }
 
 
@@ -134,6 +133,7 @@ public class GameManager : MonoBehaviour
         //Checks to see if we're on the last level
         if (currentLevel >= endLevel)
         {
+            Timer.instance.StopTimer();
             SoundManager.instance.StopMusic();
             MapComplete();
         }
@@ -142,11 +142,24 @@ public class GameManager : MonoBehaviour
         else if(currentLevel < endLevel)
         {
             SoundManager.instance.StopMusic();
+            Timer.instance.StopTimer();
             obstacleManager.ClearObstacles(); 
             currentLevel += 1;
             LoadLevel(currentLevel);
-            SpawnPlayer();
-            playControl.EnableMovement();
+        }
+    }
+
+    public void StartDialogue()
+    {
+        //DialogueManager.instance.TriggerDialogue();
+        if (currentMap.levels[currentLevel].levelDialogue == null || ((currentMap.levels[currentLevel].levelDialogue.sentences.Length == 0) && (currentMap.levels[currentLevel].levelDialogue.speakerName.Length == 0)))
+        {
+            LevelStartTransition();
+        }
+
+        else
+        {
+            DialogueManager.instance.StartDialogue(currentMap.levels[currentLevel].levelDialogue);
         }
     }
 
@@ -155,10 +168,14 @@ public class GameManager : MonoBehaviour
     //Currently contains methods to start the games, such as telling our exploders to start exploding and enabling movement. 
     public void LevelStartTransition()
     {
-        //Moves our player to the start point
-        SpawnPlayer();
+        StartLevel();
+    }
+
+    public void StartLevel()
+    {
         Timer.instance.StopTimer();
-        //trigger our explosions to start
+        Timer.instance.ResetTimer();
+        //trigger our obstacles to start
         Timer.instance.StartTimer();
         //Play music
         SoundManager.instance.PlayMusic();
@@ -176,7 +193,7 @@ public class GameManager : MonoBehaviour
             return true;
         }
 
-        //Decrease lives by one. Stops movement and call Respawn to move our player
+        //Decrease lives by one. 
         else if (playerLives > 0)
         {
             playerLives -= 1;

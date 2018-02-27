@@ -14,7 +14,7 @@ namespace BoundMaps
     {
         
         public string tileset;                                                  //Store the tileset the map uses as a path to the tileset
-        public string explosionSet;                                             //Store the explosionSet asset as a path 
+        public string obstacleSet;                                             //Store the explosionSet asset as a path 
         public List<LevelData> levels = new List<LevelData>();                  //Stores all levels in a list
         public int numberOfLevels;                                              //Gets us the number of levels there are by counting the list
 
@@ -22,7 +22,7 @@ namespace BoundMaps
         public MapFile(string tiles, string bombs, List<LevelData> list)
         {
             tileset = tiles;
-            explosionSet = bombs;
+            obstacleSet = bombs;
             levels = list;
             numberOfLevels = list.Count;
         }

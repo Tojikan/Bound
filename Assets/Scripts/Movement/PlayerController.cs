@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BoundEngine;
 
 public class PlayerController : TouchInput
 {
@@ -23,15 +24,15 @@ public class PlayerController : TouchInput
     public ControlOptions controlOptions = ControlOptions.Joystick;         //Selects which control option we are using
     private ControlOptions OldControlOptions;                               //Placeholder to see if we changed control schemes
     private ControlOptions SetControlOptions                                //Property Get;Set to set our oldcontroloptions but also calls the function that actually changes our controls
+    {
+        get { return OldControlOptions; }
+        set
         {
-            get { return OldControlOptions;}
-            set
-            {
             //This calls the function that will set our controls
-            SetControls(controlOptions);    
+            SetControls(controlOptions);
             OldControlOptions = value;
-            }
         }
+    }
 
     #region Delegates
     //These 4 different delegates are called in response to different touch events.
@@ -51,7 +52,7 @@ public class PlayerController : TouchInput
 
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         //initialize bools and get reference to component
         movePlayer = GetComponent<PlayerMovement>();
@@ -126,7 +127,6 @@ public class PlayerController : TouchInput
     }
     #endregion
 
-
     //Method that sets the controls based on our enum choices
     public void SetControls(ControlOptions controls)
     {
@@ -163,6 +163,11 @@ public class PlayerController : TouchInput
     //Sets our player to move when we start moving the joystick
     private void JoystickControls()
     {
+        if (joystickParent.activeInHierarchy == false)
+        {
+            CreateJoystick();
+        }
+
         //Gets only a single touch
         Touch myTouch = Input.touches[0];
 
@@ -221,6 +226,8 @@ public class PlayerController : TouchInput
     public void StopMovement()
     {
         movePlayer.StopMove();
+        //Set joystick inactive
+        joystick.HideJoystick();
     }
 
     //These functions need to be called if you're enabling or disabling movement, as it is a static bool

@@ -8,31 +8,31 @@ namespace BoundMaps
 {
 
     [Serializable]
-    public class ExplosionData
+    public class ObstacleData
     {
         public Vector2 position;                            //Position of each bomb
         public int loopLength;                              //Length of each loop
-        public int explodeTime;                             //Timing of the explosion
-        public int explodeType;                             //Type of Bomb based on our bomb set
+        public int triggerTime;                             //Timing of the explosion
+        public int obstacleType;                             //Type of Bomb based on our bomb set
         public int audioPlayer;                             //Which Audio Player to use
 
 
         //Constructor. If no audio player, default to 1
-        public ExplosionData(Vector2 point, int loop, int time, int explode)
+        public ObstacleData(Vector2 point, int loop, int time, int explode)
         {
             position = point;
             loopLength = loop;
-            explodeTime = time;
-            explodeType = explode;
+            triggerTime = time;
+            obstacleType = explode;
             audioPlayer = 1;
         }
         //Overload
-        public ExplosionData(Vector2 point, int loop, int time, int explode, int audio)
+        public ObstacleData(Vector2 point, int loop, int time, int explode, int audio)
         {
             position = point;
             loopLength = loop;
-            explodeTime = time;
-            explodeType = explode;
+            triggerTime = time;
+            obstacleType = explode;
             audioPlayer = audio;
         }
     }
