@@ -11,7 +11,7 @@ namespace BoundEngine
         int time;                                           //The current time of the timer
         const float millisecond = 0.01f;                    //Constant for milliseconds
         public bool DoubleSpeed;                            //For old prototypes and giggles
-        const int maxtime = 6000;                           //The maximum time the timer will go up to before going back to 0. 
+        const int maxtime = 2000000;                        //The maximum time the timer will go up to before going back to 0. 
 
         //Delegate and event that contains all receivers that listen to the timer
         public delegate void TimerEvents(int eventTime);        

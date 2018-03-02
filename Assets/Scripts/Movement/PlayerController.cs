@@ -65,9 +65,10 @@ public class PlayerController : TouchInput
     protected override void Update()
     {
         base.Update();
+   
 
-        //Bit of code to let us do mouseclick for testing purposes in the game so we don't have to keep hooking up a phone. 
-        //Don't forget to remove for builds
+#if UNITY_EDITOR     
+        //Bit of code to let us do mouseclick for testing purposes in the editor so we don't have to keep hooking up a phone. 
         if (movementEnabled)
         {
             if (Input.GetMouseButtonDown(1))
@@ -76,6 +77,7 @@ public class PlayerController : TouchInput
                 movePlayer.SetMovement(newPosition);
             }
         }
+#endif
 
         //Checks to see if we have changed our controls since the last frame. If so, use the get;set to call the function to set controls
         if (OldControlOptions != controlOptions)

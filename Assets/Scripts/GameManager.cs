@@ -74,14 +74,13 @@ public class GameManager : MonoBehaviour
         //Load from File
         tileSet = mapLoad.GetTileSet(currentMap.tileset);
         obstacleSet = mapLoad.GetExplosionSet(currentMap.obstacleSet);
+        //Set Text
+        livesCounter.text = "Lives: " + playerLives;
+
+        playControl.DisableMovement();
 
         //Load level
         LoadLevel(0);
-
-        //Set Text
-        livesCounter.text = "Lives: " + playerLives;
-        //Allow movement after we load our level
-        playControl.EnableMovement();
     }
 
     private void Start()
@@ -151,14 +150,13 @@ public class GameManager : MonoBehaviour
 
     public void StartDialogue()
     {
-        //DialogueManager.instance.TriggerDialogue();
-        if (currentMap.levels[currentLevel].levelDialogue == null || ((currentMap.levels[currentLevel].levelDialogue.sentences.Length == 0) && (currentMap.levels[currentLevel].levelDialogue.speakerName.Length == 0)))
+        if (currentMap.levels[currentLevel].levelDialogue.sentences == null || ((currentMap.levels[currentLevel].levelDialogue.sentences.Length == 0) && (currentMap.levels[currentLevel].levelDialogue.speakerName.Length == 0)))
         {
             LevelStartTransition();
         }
-
-        else
+        else if (currentMap.levels[currentLevel].levelDialogue != null)
         {
+
             DialogueManager.instance.StartDialogue(currentMap.levels[currentLevel].levelDialogue);
         }
     }
@@ -168,6 +166,7 @@ public class GameManager : MonoBehaviour
     //Currently contains methods to start the games, such as telling our exploders to start exploding and enabling movement. 
     public void LevelStartTransition()
     {
+        playControl.EnableMovement();
         StartLevel();
     }
 
