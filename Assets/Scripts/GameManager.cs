@@ -28,11 +28,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int endLevel;                                  //Last level
     [HideInInspector] public int currentLevel;                              //Current Level
 
+    private bool levelStart;                                                //Bool check for start or end of the level for different transitions/dialogue
     private MapLoader mapLoad;                                              //reference to our MapLoader
     private MapFile currentMap;                                             //Variable to store our map
     private TileSet tileSet;                                                //reference to our tileset
     private RenderMap mapRenderer;                                          //reference to our renderMap Component
-    private ObstacleSet obstacleSet;                                      //reference to our explosion set
+    private ObstacleSet obstacleSet;                                        //reference to our explosion set
     private ObstacleManager obstacleManager;                                //reference to our obstacle manager
 
 
@@ -119,7 +120,9 @@ public class GameManager : MonoBehaviour
         SpawnPlayer();
         //Set music from file
         SoundManager.instance.SetMusic(currentMap.levels[level].music);
-        //Starts level transition
+        //Bool to check if we are at the start of a new level
+        levelStart = true;
+        //Starts level Dialogue
         StartDialogue();
     }
 
@@ -132,42 +135,72 @@ public class GameManager : MonoBehaviour
         //Checks to see if we're on the last level
         if (currentLevel >= endLevel)
         {
-            Timer.instance.StopTimer();
-            SoundManager.instance.StopMusic();
             MapComplete();
         }
 
-        //If not, load the next level, increment the current level, and allow movement again. 
+        //If not, cleanup and increment level counter and then load next level
         else if(currentLevel < endLevel)
         {
-            SoundManager.instance.StopMusic();
-            Timer.instance.StopTimer();
-            obstacleManager.ClearObstacles(); 
             currentLevel += 1;
             LoadLevel(currentLevel);
         }
     }
 
-    public void StartDialogue()
-    {
-        if (currentMap.levels[currentLevel].levelDialogue.sentences == null || ((currentMap.levels[currentLevel].levelDialogue.sentences.Length == 0) && (currentMap.levels[currentLevel].levelDialogue.speakerName.Length == 0)))
-        {
-            LevelStartTransition();
-        }
-        else if (currentMap.levels[currentLevel].levelDialogue != null)
-        {
 
-            DialogueManager.instance.StartDialogue(currentMap.levels[currentLevel].levelDialogue);
+    public void LevelFinish()
+    {
+        SoundManager.instance.StopMusic();
+        Timer.instance.StopTimer();
+        obstacleManager.ClearObstacles();
+        levelStart = false;
+        StartDialogue();
+    }
+
+
+
+    //Dialogue at the start of a level
+    private void StartDialogue()
+    {
+        // temp dialogue variable
+        Dialogue dialogue;
+
+        //Check if we are at level start or end and set the dialogue accordingly
+        if (!levelStart)
+        {
+            dialogue = currentMap.levels[currentLevel].endDialogue;
+        }
+        else
+        {
+            dialogue = currentMap.levels[currentLevel].startDialogue;
+        }
+
+        //If the dialogue is non existent or has no text then just start the level transition animation
+        if (dialogue.sentences == null || dialogue.sentences.Length == 0)
+        {
+            LevelTransition();
+            return;
+        }
+        else
+        {
+            //Load the dialogue from the current level
+            DialogueManager.instance.StartDialogue(dialogue);
         }
     }
 
+
     //Function for us to set transitions
     //TO DO: A  transition animation of some sort
-    //Currently contains methods to start the games, such as telling our exploders to start exploding and enabling movement. 
-    public void LevelStartTransition()
+    public void LevelTransition()
     {
-        playControl.EnableMovement();
-        StartLevel();
+        if (levelStart)
+        {
+            StartLevel();
+        }
+
+        else if (!levelStart)
+        {
+            LoadNextLevel();
+        }
     }
 
     public void StartLevel()
@@ -208,7 +241,6 @@ public class GameManager : MonoBehaviour
     {
         endImage.SetActive(true);
         endText.text = "Map Complete";
-        obstacleManager.ClearObstacles();
         Destroy(GameManagerInstance);
     }
 

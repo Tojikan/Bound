@@ -22,7 +22,9 @@ namespace BoundMaps
         public Vector2 startPoint;
         public Vector2 endPoint;
 
-        public Dialogue levelDialogue;
+        //Dialogue for the start and end of levels
+        public Dialogue startDialogue;
+        public Dialogue endDialogue;
 
         //level music
         public int music;
@@ -49,7 +51,7 @@ namespace BoundMaps
         }
 
         //Constructor
-        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song, Dialogue dialogue)
+        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song, Dialogue startDial)
         {
             groundTiles = ground;
             wallTiles = wall;
@@ -57,7 +59,20 @@ namespace BoundMaps
             endPoint = end;
             obstacles = bombs;
             music = song;
-            levelDialogue = dialogue;
+            startDialogue = startDial;
+        }
+
+        //Constructor
+        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song, Dialogue startDial, Dialogue endDial)
+        {
+            groundTiles = ground;
+            wallTiles = wall;
+            startPoint = start;
+            endPoint = end;
+            obstacles = bombs;
+            music = song;
+            startDialogue = startDial;
+            endDialogue = endDial;
         }
     }
 }

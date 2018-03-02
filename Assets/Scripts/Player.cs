@@ -28,13 +28,6 @@ public class Player : MonoBehaviour
         gameOver = false;
     }
 
-
-    //Calls the Load next level function from our Game Manager
-    private void NextLevel()
-    {
-        GameManager.GameManagerInstance.LoadNextLevel();
-    }
-
     //Upon detecting collision from a trigger collider. 
     //Remember to set Rigidbodies on our collision objects
     private void OnTriggerEnter2D(Collider2D other)
@@ -45,7 +38,7 @@ public class Player : MonoBehaviour
             {
                 playerControl.StopMovement();
                 playerControl.DisableMovement();
-                NextLevel();
+                GameManager.GameManagerInstance.LevelFinish();
             }
 
             //Only trigger one hit at a time

@@ -14,7 +14,6 @@ namespace BoundEngine
         public Text nameText;                                                   //Reference to the text element for speaker
         public Text dialogueText;                                               //Reference to the text element for dialogue
         public GameObject dialogueBox;                                          //Reference to the container for the dialogue box to hide/show as needed                                          
-        public Dialogue dialogue;                                               //The dialogue to be saved in the Map Editor. Edit in the window for every level
         public AudioSource textSound;                                           //Play sound when moving to next sentence
         public AudioSource textMusic;                                           //Background Dialogue music
         private bool isTalking;                                                 //Check if we are talking
@@ -55,9 +54,10 @@ namespace BoundEngine
         //Accept touch input to display next sentence
         protected override void OnTouchBeganAnywhere()
         {
-            //If tap, check if talking and then display next sentence if so
+            //On tap. If we're talking, play a sound and load the next sentence
             if (isTalking)
             {
+                textSound.PlayOneShot(textSound.clip);
                 DisplayNextSentence();
             }
         }
@@ -108,20 +108,26 @@ namespace BoundEngine
             StartCoroutine(TypeSentence(sentence));
         }
 
+        //End of Dialogue when we reached the end of the sentence
         void EndDialogue()
         {
+            //Stop music
             textMusic.Stop();
             dialogueBox.SetActive(false);
             isTalking = false;
-            GameManager.GameManagerInstance.LevelStartTransition();
+            //Begin the Level Transition
+            GameManager.GameManagerInstance.LevelTransition();
 
         }
 
 
-
+        //Type out each sentence letter by letter
         IEnumerator TypeSentence(string sentence)
         {
+            //Initialize to blank
             dialogueText.text = "";
+
+            //Type out each letter then wait out each frame
             foreach (char letter in sentence.ToCharArray())
             {
                 dialogueText.text += letter;
