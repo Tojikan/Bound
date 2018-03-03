@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEditor;
+﻿using BoundMaps;
 using System.IO;
-using BoundMaps;
+using UnityEngine;
 
 namespace BoundEngine
 {

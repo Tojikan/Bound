@@ -48,8 +48,9 @@ namespace BoundEngine
                     DisplayNextSentence();
                 }
             }
-        }
 #endif
+        }
+
 
         //Accept touch input to display next sentence
         protected override void OnTouchBeganAnywhere()
