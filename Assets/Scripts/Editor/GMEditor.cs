@@ -40,6 +40,7 @@ public class GMEditor : Editor
 
         if (GUILayout.Button("Skip to"))
         {
+            myGame.LevelSkip();
             myGame.LoadNextLevel();
         }
     }

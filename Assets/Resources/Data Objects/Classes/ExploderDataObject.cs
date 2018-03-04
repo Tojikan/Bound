@@ -7,6 +7,6 @@ namespace BoundMaps
     [CreateAssetMenu(fileName = "New BombTimers", menuName = "Data Objects/Exploder Data Object")]
     public class ExploderDataObject : ScriptableObject
     {
-        public List<ExplosionData> data;
+        public List<ObstacleData> data;
     }
 }

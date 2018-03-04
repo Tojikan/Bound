@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: ExploderSet
   m_EditorClassIdentifier: 
   setName: ExplosionSet
-  ExplosionPrefabs:
+  ObstaclePrefabs:
   - {fileID: 1518858135925724, guid: 50d936348a9a9fe448187f317b75c390, type: 2}
   - {fileID: 1232827500003880, guid: 00ceba8b04bc4e24c8b333834aa1c02e, type: 2}

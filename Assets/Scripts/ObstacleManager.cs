@@ -6,29 +6,29 @@ using BoundMaps;
 namespace BoundEngine
 {
  
-    //Class to handle the creation and controls of all our explosions
+    //Class to handle the creation and controls of all our obstacles
     public class ObstacleManager : MonoBehaviour
     {
         public bool ShowBoxes;                                                       //Draw explosion collision boxes for debugging
-        private List<Explosion> explosionList;                                       //List of all exploders currently in the scene. Use this to control the explosions
+        private List<Explosion> explosionList;                                       //List of all exploders currently in the scene. Use this to control the obstacles
 
-        //Method to create our exploders. Takes in parameters of a list of explosions and the explosion set
-        public void CreateExploders(List<ExplosionData> explosions, ExplosionSet set)
+        //Method to create our exploders. Takes in parameters of a list of obstacles and the explosion set
+        public void CreateExploders(List<ObstacleData> explosions, ObstacleSet set)
         {
             //Create a new list
             explosionList = new List<Explosion>();
 
             //Iterate over each explosiondata in the mapfile explosion list
-            foreach (ExplosionData data in explosions)
+            foreach (ObstacleData data in explosions)
             {
                 //Creates an exploder prefab at the specified position in the file
-                GameObject newBomb = Instantiate(set.ExplosionPrefabs[data.explodeType], data.position, transform.rotation);
+                GameObject newBomb = Instantiate(set.ObstaclePrefabs[data.obstacleType], data.position, transform.rotation);
 
                 //Get a reference to the exploder component of our newly created prefab
                 Explosion exploder = newBomb.GetComponent<Explosion>();    
 
                 //Initialize the prefab data
-                exploder.InitializeExplosion(data.explodeTime, data.loopLength, data.audioPlayer);
+                exploder.InitializeExplosion(data.triggerTime, data.loopLength, data.audioPlayer);
                 //Adds this expoder to our list for controls
                 explosionList.Add(exploder);
             }

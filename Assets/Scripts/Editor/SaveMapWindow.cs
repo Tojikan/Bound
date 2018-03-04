@@ -14,7 +14,7 @@ public class SaveMapWindow : Editor
     public override void OnInspectorGUI()
     {
         //Instructions
-        EditorGUILayout.HelpBox("This component will let you save levels into memories and then combine all levels into a mapfile. Enter the level number into the field to select which level to save/edit. All levels only exist in memory (play mode will clear it). To store it, click the Save Map to save it all to a file. Create a new exploder data object if you wish to store your explosions separately and be sure to update the references in the window ", MessageType.None);
+        EditorGUILayout.HelpBox("This component will let you save levels into memories and then combine all levels into a mapfile. Enter the level number into the field to select which level to save/edit. All levels only exist in memory (play mode will clear it). To store it, click the Save Map to save it all to a file. Create a new exploder data object if you wish to store your obstacles separately and be sure to update the references in the window ", MessageType.None);
 
         //Calls the base so we can set the tiles/layers 
         base.OnInspectorGUI();

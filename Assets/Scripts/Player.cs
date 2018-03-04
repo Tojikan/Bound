@@ -28,13 +28,6 @@ public class Player : MonoBehaviour
         gameOver = false;
     }
 
-
-    //Calls the Load next level function from our Game Manager
-    private void NextLevel()
-    {
-        GameManager.GameManagerInstance.LoadNextLevel();
-    }
-
     //Upon detecting collision from a trigger collider. 
     //Remember to set Rigidbodies on our collision objects
     private void OnTriggerEnter2D(Collider2D other)
@@ -45,9 +38,9 @@ public class Player : MonoBehaviour
             {
                 playerControl.StopMovement();
                 playerControl.DisableMovement();
-                NextLevel();
+                GameManager.GameManagerInstance.LevelFinish();
             }
-            Debug.Log("Set");
+
             //Only trigger one hit at a time
             if (!isHit && other.tag == "Lethal")
             {
@@ -55,7 +48,6 @@ public class Player : MonoBehaviour
                 //If it's tagged with lethal, call death function
                 if (GameManager.GameManagerInstance.CheckGameOver() == false)
                 {
-                    Debug.Log("Hit");
                     PlayerDeath();
                 }
                 else
@@ -64,6 +56,7 @@ public class Player : MonoBehaviour
                     PlayerDeath();
                 }
             }
+
         }
     }
 
@@ -74,7 +67,14 @@ public class Player : MonoBehaviour
         if (!gameOver)
         {
             animator.SetTrigger("Respawn");
-            GameManager.GameManagerInstance.SpawnPlayer();
+            try
+            {
+                GameManager.GameManagerInstance.SpawnPlayer();
+            }
+            catch
+            {
+                Debug.Log("You got hit");
+            }
             collide.enabled = true;
             isHit = false;
             StartCoroutine("FlickerSprite");

@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEditor;
+﻿using BoundMaps;
 using System.IO;
-using BoundMaps;
+using UnityEngine;
 
 namespace BoundEngine
 {
@@ -73,13 +69,13 @@ namespace BoundEngine
 
 
         //Returns a reference to explosion set. Takes in the name of the set
-        public ExplosionSet GetExplosionSet(string path)
+        public ObstacleSet GetExplosionSet(string path)
         {
             //Sets our tileset path by getting the info from the mapfile and setting a path
             Object temp = Resources.Load("Data Objects/Assets/" + path);
             if (!temp)
                 Debug.Log("Explosionset could not be loaded!");
-            return (ExplosionSet)temp;
+            return (ObstacleSet)temp;
         }
 
 
