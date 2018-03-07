@@ -113,6 +113,7 @@ MonoBehaviour:
   pathToMap: {fileID: 11400000, guid: fec6edda9d6ca0a4f86af5dca1ed7276, type: 2}
   playerLives: 10
   levelToLoad: 4
+  dialogueDelay: 0.6
   endText: {fileID: 0}
   livesCounter: {fileID: 0}
   gameArea:

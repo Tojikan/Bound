@@ -21,9 +21,9 @@ public class PlayerController : TouchInput
         Tap
     }
 
-    public ControlOptions controlOptions = ControlOptions.Joystick;         //Selects which control option we are using
-    private ControlOptions OldControlOptions;                               //Placeholder to see if we changed control schemes
-    private ControlOptions SetControlOptions                                //Property Get;Set to set our oldcontroloptions but also calls the function that actually changes our controls
+    public static ControlOptions controlOptions = ControlOptions.Joystick;          //Selects which control option we are using
+    private ControlOptions OldControlOptions;                                       //Placeholder to see if we changed control schemes
+    private ControlOptions SetControlOptions                                        //Property Get;Set to set our oldcontroloptions but also calls the function that actually changes our controls
     {
         get { return OldControlOptions; }
         set
