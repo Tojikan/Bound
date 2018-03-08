@@ -23,8 +23,10 @@ namespace BoundEngine
         private Queue<string> sentences;                                        //Queue for a FIFO format for sentences
         private Queue<string> speakers;                                         //Queue for FIFO for speaker
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             //Set singleton instance
             if (instance == null)
                 instance = this;
@@ -38,8 +40,9 @@ namespace BoundEngine
             textMusic.volume = musicVolume;
         }
 
-        void Update()
+        protected override void Update()
         {
+            base.Update();
 
 #if UNITY_EDITOR
             //Mouse to load next sentence for testing purposes in the editor
