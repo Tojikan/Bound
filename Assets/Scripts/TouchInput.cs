@@ -24,6 +24,7 @@ public class TouchInput : MonoBehaviour
         m_Raycaster = FindObjectOfType<GraphicRaycaster>();
         //Get the EventSystem component in the scene
         m_EventSystem = GetComponent<EventSystem>();
+        Input.multiTouchEnabled = false;
     }
 
 

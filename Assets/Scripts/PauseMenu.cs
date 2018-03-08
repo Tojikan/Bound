@@ -167,7 +167,7 @@ public class PauseMenu : MonoBehaviour
         }
         else if (sfxIsMute == false)
         {
-            muteSFXText.text = "MUTE MUSIC";
+            muteSFXText.text = "MUTE SFX";
         }
     }
 
