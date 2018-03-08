@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour
     public MapPath pathToMap;                                               //reference our map path scriptable object
     public int playerLives = 50;                                            //Int for player lives
     public int levelToLoad = 0;                                             //Set which level we're loading
-    public float dialogueDelay = 0.6f;
+    public float dialogueDelay = 0.6f;                                      //Delay from level load to displaying dialogue
     public Text endText;                                                    //reference to our end screen text
     public Text livesCounter;                                               //Text to display our lives
     public BoundsInt gameArea;                                              //our game area to play in
-
+    public static bool checkInPlay;                                         //static bool to inform other other classes if in play. Such as pausemenu
 
     public string mapPath;                                                  //Path to the map we're trying to load. Set in the Editor Window
     [HideInInspector] public int endLevel;                                  //Last level
@@ -71,6 +71,9 @@ public class GameManager : MonoBehaviour
         playControl = Player.GetComponent<PlayerController>();
         mapRenderer = GetComponent<RenderMap>();
         obstacleManager = obstacles.GetComponent<ObstacleManager>();
+
+        //initialize bool
+        checkInPlay = false;
     }
 
 
@@ -175,8 +178,11 @@ public class GameManager : MonoBehaviour
         Timer.instance.StopTimer();
         obstacleManager.ClearObstacles();
 
-        //Sets bool to end of level and start end dialogue
+        //Tells StartDialogue to play the end dialogue not the start dialogue
         levelStart = false;
+        //For other classes, like pausemenu, to know if we're in play
+        checkInPlay = false;
+        //start end dialogue
         StartDialogue();
     }
 
@@ -253,6 +259,7 @@ public class GameManager : MonoBehaviour
         SoundManager.instance.PlayMusic();
         //Allow movement
         playControl.EnableMovement();
+        checkInPlay = true;
     }
 
     //Called when player runs into an obstacle. Sets the game over events or decrements the lives counter

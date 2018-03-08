@@ -11,5 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74edbb9f3d038114e9d384b12fa31e88, type: 3}
   m_Name: ControlsText
   m_EditorClassIdentifier: 
-  Options: []
-  Explanations: []
+  Options:
+  - Drag
+  - Joystick
+  - Tap
+  Explanations:
+  - Tap and hold anywhere on the screen and your character will follow your finger.
+    Your character will follow your finger as you drag it around the screen. Lifting
+    your finger at anytime will cause your character to stop moving
+  - Move your character with a virtual joystick. Tap and hold anywhere on the screen
+    to create a joystick and then drag your finger to move. Lifting your finger will
+    cause your character to stop moving
+  - Tap once anywhere on the screen and your character will move towards the location
+    of the tap.

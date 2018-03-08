@@ -62,12 +62,9 @@ public class PlayerController : TouchInput
         OldControlOptions = controlOptions;
     }
 
-    protected override void Update()
+    void Update()
     {
-        base.Update();
-   
-
-#if UNITY_EDITOR     
+#if UNITY_EDITOR    
         //Bit of code to let us do mouseclick for testing purposes in the editor so we don't have to keep hooking up a phone. 
         if (movementEnabled)
         {

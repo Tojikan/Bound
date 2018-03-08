@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 //Parent class that handles all of the touch inputs. On receiving a touch, will call a virtual function that is defined in the children class
@@ -10,10 +11,10 @@ using UnityEngine;
 
 //Thanks to Devin Curry at Devination
 
-public class TouchInput : MonoBehaviour
+public class TouchInput : MonoBehaviour, IPointerDownHandler
 {
-    // Update is called once per frame
-    protected virtual void Update ()
+
+    public void OnPointerDown(PointerEventData eventData)
     {
         //Checks for a touch input
         if (Input.touches.Length <= 0)
@@ -21,15 +22,12 @@ public class TouchInput : MonoBehaviour
             //calles NoTouches if no input
             NoTouches();
         }
+
         else
         {
+
             //Stores the first touch only. 
             Touch currTouch = Input.touches[0];
-
-            //TO DO
-            //IMPLEMENT A SYSTEM FOR RECEIVING TOUCHES ON A BUTTON
-            //WILL WORK ON LATER ONCE I HAVE ACTUAL BUTTONS
-
 
             //Switch case for determining the current phase and which function to call
             switch (currTouch.phase)
@@ -55,7 +53,8 @@ public class TouchInput : MonoBehaviour
                     break;
             }
         }
-	}
+    }
+
 
 
     //TO DO
@@ -63,13 +62,8 @@ public class TouchInput : MonoBehaviour
     
 
 
-    protected virtual void NoTouches() { }
-    protected virtual void OnTouchBegan() { print(name + " is not using OnTouchBegan"); }
-    protected virtual void OnTouchEnded() { }
-    protected virtual void OnTouchMoved() { }
-    protected virtual void OnTouchStayed() { }
-
-
+    protected virtual void NoTouches() { return; }
+ 
     //Virtual functions to be overridden in child classes
     protected virtual void OnTouchBeganAnywhere() { }
     protected virtual void OnTouchEndedAnywhere() { }

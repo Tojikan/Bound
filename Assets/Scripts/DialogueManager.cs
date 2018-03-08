@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using BoundMaps;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 //Handles game dialogue box and text, which appear as Unity UI elements
 //Inherits from touch input so we can skip to next sentence
+//Has its own audio source. Volume mute is hardcoded in
 namespace BoundEngine
 {
     public class DialogueManager : TouchInput
@@ -16,6 +18,7 @@ namespace BoundEngine
         public GameObject dialogueBox;                                          //Reference to the container for the dialogue box to hide/show as needed                                          
         public AudioSource textSound;                                           //Play sound when moving to next sentence
         public AudioSource textMusic;                                           //Background Dialogue music
+        public float musicVolume = 0.2f;                                        //Music volume
         private bool isTalking;                                                 //Check if we are talking
         private Queue<string> sentences;                                        //Queue for a FIFO format for sentences
         private Queue<string> speakers;                                         //Queue for FIFO for speaker
@@ -31,16 +34,16 @@ namespace BoundEngine
             //Initiate queues
             sentences = new Queue<string>();
             speakers = new Queue<string>();
+
+            textMusic.volume = musicVolume;
         }
 
-        protected override void Update()
+        void Update()
         {
-            //For touch input 
-            base.Update();
 
 #if UNITY_EDITOR
             //Mouse to load next sentence for testing purposes in the editor
-            if (isTalking)
+            if (isTalking && PauseMenu.isPaused == false)
             {
                 if (Input.GetMouseButtonDown(1))
                 {
@@ -56,7 +59,7 @@ namespace BoundEngine
         protected override void OnTouchBeganAnywhere()
         {
             //On tap. If we're talking, play a sound and load the next sentence
-            if (isTalking)
+            if (isTalking && PauseMenu.isPaused == false)
             {
                 textSound.PlayOneShot(textSound.clip);
                 DisplayNextSentence();
@@ -134,6 +137,20 @@ namespace BoundEngine
                 dialogueText.text += letter;
                 yield return null;
             }
+        }
+
+        //Mutes and unmutes music, used for muting music from pause menu
+        public void MuteDialogueMusic()
+        {
+            if (textMusic.volume == musicVolume)
+            {
+                textMusic.volume = 0;
+            }
+            else
+            {
+                textMusic.volume = musicVolume;
+            }
+
         }
     }
 }
