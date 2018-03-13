@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427fbc9892797cc49a0a43f27d61b7d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 1703133417}
+  pauseMenu: {fileID: 0}
 --- !u!114 &1002476106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3134,7 +3134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427fbc9892797cc49a0a43f27d61b7d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 1703133417}
+  pauseMenu: {fileID: 0}
 --- !u!114 &1402466091
 MonoBehaviour:
   m_ObjectHideFlags: 0
