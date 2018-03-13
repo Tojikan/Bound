@@ -21,9 +21,9 @@ public class PlayerController : TouchInput
         Tap
     }
 
-    public ControlOptions controlOptions = ControlOptions.Joystick;         //Selects which control option we are using
-    private ControlOptions OldControlOptions;                               //Placeholder to see if we changed control schemes
-    private ControlOptions SetControlOptions                                //Property Get;Set to set our oldcontroloptions but also calls the function that actually changes our controls
+    public static ControlOptions controlOptions = ControlOptions.Joystick;          //Selects which control option we are using
+    private ControlOptions OldControlOptions;                                       //Placeholder to see if we changed control schemes
+    private ControlOptions SetControlOptions                                        //Property Get;Set to set our oldcontroloptions but also calls the function that actually changes our controls
     {
         get { return OldControlOptions; }
         set
@@ -43,11 +43,11 @@ public class PlayerController : TouchInput
     public delegate void OnDrag();
     public static event OnDrag OnTouchDrag;
 
-    public delegate void OnStay();
-    public static event OnStay OnTouchStay;
-
     public delegate void OnEnd();
     public static event OnEnd OnTouchEnd;
+
+    public delegate void OnStay();
+    public static event OnStay OnTouchStay;
     #endregion 
 
 
@@ -64,10 +64,9 @@ public class PlayerController : TouchInput
 
     protected override void Update()
     {
-        base.Update();
-   
 
-#if UNITY_EDITOR     
+        base.Update();
+#if UNITY_EDITOR    
         //Bit of code to let us do mouseclick for testing purposes in the editor so we don't have to keep hooking up a phone. 
         if (movementEnabled)
         {
@@ -95,7 +94,6 @@ public class PlayerController : TouchInput
             if (OnTouchTap != null)
                 OnTouchTap();
         }
-
     }
 
     //When the finger moves around on the screen
@@ -108,16 +106,6 @@ public class PlayerController : TouchInput
         }
     }
 
-    //If the touch stays on the same spot on the screen
-    protected override void OnTouchStayedAnywhere()
-    {
-        if (movementEnabled)
-        {
-            if (OnTouchStay != null)
-                OnTouchStay();
-        }
-    }
-
     //If the touch ends anywhere on the screen
     protected override void OnTouchEndedAnywhere()
     {
@@ -127,13 +115,34 @@ public class PlayerController : TouchInput
                 OnTouchEnd();
         }
     }
+
+    protected override void OnTouchStayed()
+    {
+        if (movementEnabled)
+        {
+            if (OnTouchStay != null)
+                OnTouchStay();
+        }
+    }
+
+    //For a bugfix if your finger went over the pause button while the joystick was active.
+    protected override void NoTouches()
+    {
+        if (movementEnabled && controlOptions == ControlOptions.Joystick)
+        {
+            JoystickOnEnd();
+        }
+    }
     #endregion
 
     //Method that sets the controls based on our enum choices
     public void SetControls(ControlOptions controls)
     {
         //Clears all events of subscribed methods
-        OnTouchTap = null; OnTouchDrag = null; OnTouchStay = null; OnTouchEnd = null;
+        OnTouchTap = null; OnTouchDrag = null; OnTouchEnd = null;
+
+        //Hide any joystick, if there is one
+        joystick.HideJoystick();
 
         /*Then subscribe methods to our delegates based on the type of movement we want to use*/
         
@@ -148,13 +157,14 @@ public class PlayerController : TouchInput
         {
             OnTouchTap += CreateJoystick;
             OnTouchDrag += JoystickControls;
-            OnTouchStay += JoystickControls;
             OnTouchEnd += JoystickOnEnd;
         }
 
         if (controls == ControlOptions.Tap)
         {
             OnTouchTap += MoveToTouch;
+            OnTouchStay += DisableMovement;
+            OnTouchEnd += EnableMovement;
             movePlayer.SpeedFraction = 1.0f;
         }
 
@@ -215,7 +225,7 @@ public class PlayerController : TouchInput
     private void MoveToTouch()
     {
         //Gets only a single touch
-        Touch myTouch = Input.touches[0];
+        Touch myTouch = Input.GetTouch(0);
 
         //converts the position of the touch to a world position
         Vector2 newPosition = Camera.main.ScreenToWorldPoint(myTouch.position);

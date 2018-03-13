@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour
     public MapPath pathToMap;                                               //reference our map path scriptable object
     public int playerLives = 50;                                            //Int for player lives
     public int levelToLoad = 0;                                             //Set which level we're loading
-    public float dialogueDelay = 0.6f;
+    public float dialogueDelay = 0.6f;                                      //Delay from level load to displaying dialogue
     public Text endText;                                                    //reference to our end screen text
     public Text livesCounter;                                               //Text to display our lives
     public BoundsInt gameArea;                                              //our game area to play in
-
+    public static bool checkInPlay;                                         //static bool to inform other other classes if in play. Such as pausemenu
 
     public string mapPath;                                                  //Path to the map we're trying to load. Set in the Editor Window
     [HideInInspector] public int endLevel;                                  //Last level
@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
     private ObstacleManager obstacleManager;                                //reference to our obstacle manager
 
 
+
+    #region initial setup
     private void Awake()
     {
         //Check to make sure this is the only instance of Game Manager
@@ -69,6 +71,9 @@ public class GameManager : MonoBehaviour
         playControl = Player.GetComponent<PlayerController>();
         mapRenderer = GetComponent<RenderMap>();
         obstacleManager = obstacles.GetComponent<ObstacleManager>();
+
+        //initialize bool
+        checkInPlay = false;
     }
 
 
@@ -103,23 +108,20 @@ public class GameManager : MonoBehaviour
         LoadLevel(0);
     }
 
+ 
     private void Start()
     {
         //Initiate game
         InitGame();
     }
 
-#if UNITY_EDITOR
-    //For skipping levels when testing in the editor
-    public void LevelSkip()
-    {
-        SoundManager.instance.StopMusic();
-        Timer.instance.StopTimer();
-        obstacleManager.ClearObstacles();
-    }
+    #endregion
 
-#endif
 
+
+
+
+    #region Everything related to loading levels
     //Loads a given level from the current loaded map. Sets up our tiles, places our exploders and then calls our transition
     public void LoadLevel(int level)
     {
@@ -157,6 +159,16 @@ public class GameManager : MonoBehaviour
         LoadLevel(currentLevel);
     }
 
+    //Gets the path to the selected map from the mapPath scriptable object
+    public void SetMapPath()
+    {
+        mapPath = pathToMap.mapfilePath;
+    }
+
+    #endregion
+
+
+    #region Everything related to level transitions
     //called at the end of the level when player collides with a finish object. Remember that movement gets disabled on collision
     //Also recall the dialogue manager will call back to GameManager at the end of the dialogue to go to the next step
     public void LevelFinish()
@@ -166,8 +178,11 @@ public class GameManager : MonoBehaviour
         Timer.instance.StopTimer();
         obstacleManager.ClearObstacles();
 
-        //Sets bool to end of level and start end dialogue
+        //Tells StartDialogue to play the end dialogue not the start dialogue
         levelStart = false;
+        //For other classes, like pausemenu, to know if we're in play
+        checkInPlay = false;
+        //start end dialogue
         StartDialogue();
     }
 
@@ -244,6 +259,7 @@ public class GameManager : MonoBehaviour
         SoundManager.instance.PlayMusic();
         //Allow movement
         playControl.EnableMovement();
+        checkInPlay = true;
     }
 
     //Called when player runs into an obstacle. Sets the game over events or decrements the lives counter
@@ -273,26 +289,6 @@ public class GameManager : MonoBehaviour
         Destroy(GameManagerInstance);
     }
 
-    //Displays text upon defeat. Clears obstacles and ends the game manager
-    public void GameOver()
-    {
-        endImage.SetActive(true);
-        obstacleManager.ClearObstacles();
-        endText.text = "You Lose";
-        Destroy(GameManagerInstance);
-    }
-
-    //Respawns player to the spawn point. 
-    public void SpawnPlayer()
-    {
-        Player.transform.position = Spawn.transform.position;
-    }
-
-    //Gets the path to the selected map from the mapPath scriptable object
-    public void SetMapPath()
-    {
-        mapPath = pathToMap.mapfilePath;
-    }
 
     //Checks if the current level exceeds total levels
     public bool CheckLevelNum()
@@ -304,5 +300,32 @@ public class GameManager : MonoBehaviour
         }
         return true;
     }
+    //Respawns player to the spawn point. 
+    public void SpawnPlayer()
+    {
+        Player.transform.position = Spawn.transform.position;
+    }
+
+
+    //Displays text upon defeat. Clears obstacles and ends the game manager
+    public void GameOver()
+    {
+        endImage.SetActive(true);
+        obstacleManager.ClearObstacles();
+        endText.text = "You Lose";
+        Destroy(GameManagerInstance);
+    }
+    #endregion
+
+#if UNITY_EDITOR
+    //For skipping levels when testing in the editor
+    public void LevelSkip()
+    {
+        SoundManager.instance.StopMusic();
+        Timer.instance.StopTimer();
+        obstacleManager.ClearObstacles();
+    }
+
+#endif
 
 }

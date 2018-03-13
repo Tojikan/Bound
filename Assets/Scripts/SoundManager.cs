@@ -19,7 +19,8 @@ namespace BoundEngine
         public AudioSource efxSourceFive;                                   //fifth SFX player
         public AudioSource playerSounds;                                    //Audio dedicated to player sounds
         public AudioSource musicSource;                                     //Audio dedicated to BGM
-
+        private float musicVolume = 0.6f;                                   //volume to play music at
+        private AudioSource[] sFXSources;                                   //array of SFX sources
 
         private void Awake()
         {
@@ -28,6 +29,24 @@ namespace BoundEngine
                 instance = this;
             else if (instance != this)
                 Destroy(gameObject);
+
+            //Set music volume
+            musicSource.volume = musicVolume;
+
+            //Initialize and fill SFX array to iterate over
+            sFXSources = new AudioSource[5];
+            FillAudioSourceArray(sFXSources);
+        }
+
+        
+        //Lazy bit of hardcoding here. Fix in the future if you come up with a better idea on how to do this.
+        void FillAudioSourceArray(AudioSource[] array)
+        {
+            array[0] = efxSource;
+            array[1] = efxSourceTwo;
+            array[2] = efxSourceThree;
+            array[3] = efxSourceFour;
+            array[4] = efxSourceFive;
         }
 
         //First Clip Player
@@ -109,7 +128,40 @@ namespace BoundEngine
             playerSounds.Play();
         }
 
+        //Mutes and unmutes music
+        public void MuteMusic()
+        {
+            DialogueManager.instance.MuteDialogueMusic();
 
+            if (musicSource.volume != 0)
+            {
+                musicSource.volume = 0;
+            }
+
+            else if (musicSource.volume == 0)
+            {
+                musicSource.volume = musicVolume;
+            }
+        }
+
+        //Mutes and unmutes SFX
+        public void MuteSFX()
+        {
+            foreach (AudioSource source in sFXSources)
+            {
+                if (source.volume != 0)
+                {
+                    source.volume = 0;
+                }
+
+                else if (source.volume == 0)
+                {
+                    source.volume = musicVolume;
+                }
+            }
+        }
+
+        
         //set music.
         public void SetMusic(int index)
         {
