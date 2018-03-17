@@ -9,7 +9,7 @@ namespace BoundEngine
     {
         public static Timer instance = null;                //Makes sure a singleton
         int time;                                           //The current time of the timer
-        const float millisecond = 0.01f;                    //Constant for milliseconds
+        const float millisecond = 0.001f;                    //Constant for milliseconds
         public bool DoubleSpeed;                            //For old prototypes and giggles
         const int maxtime = 2000000;                        //The maximum time the timer will go up to before going back to 0. 
 

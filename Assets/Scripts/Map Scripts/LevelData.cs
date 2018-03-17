@@ -26,6 +26,9 @@ namespace BoundMaps
         public Dialogue startDialogue;
         public Dialogue endDialogue;
 
+        //Title of each level
+        public string levelName;
+
         //level music
         public int music;
 
@@ -73,6 +76,21 @@ namespace BoundMaps
             music = song;
             startDialogue = startDial;
             endDialogue = endDial;
+        }
+
+
+        //Constructor
+        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song, Dialogue startDial, Dialogue endDial, string title)
+        {
+            groundTiles = ground;
+            wallTiles = wall;
+            startPoint = start;
+            endPoint = end;
+            obstacles = bombs;
+            music = song;
+            startDialogue = startDial;
+            endDialogue = endDial;
+            levelName = title;
         }
     }
 }

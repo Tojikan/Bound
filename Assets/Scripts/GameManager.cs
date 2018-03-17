@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
     public int levelToLoad = 0;                                             //Set which level we're loading
     public float dialogueDelay = 0.6f;                                      //Delay from level load to displaying dialogue
     public Text endText;                                                    //reference to our end screen text
-    public Text livesCounter;                                               //Text to display our lives
     public BoundsInt gameArea;                                              //our game area to play in
     public static bool checkInPlay;                                         //static bool to inform other other classes if in play. Such as pausemenu
 
@@ -100,12 +99,12 @@ public class GameManager : MonoBehaviour
         tileSet = mapLoad.GetTileSet(currentMap.tileset);
         obstacleSet = mapLoad.GetExplosionSet(currentMap.obstacleSet);
         //Set Text
-        livesCounter.text = "Lives: " + playerLives;
+        UIManager.instance.SetLifeText(playerLives);
 
         playControl.DisableMovement();
 
         //Load level
-        LoadLevel(0);
+        LoadLevel(currentLevel);
     }
 
  
@@ -138,6 +137,9 @@ public class GameManager : MonoBehaviour
         SoundManager.instance.SetMusic(currentMap.levels[level].music);
         //Bool to check if we are at the start of a new level
         levelStart = true;
+
+        SetLevelTitle();
+
         TransitionManager.instance.Fade(true);
         //Starts level Dialogue
         Invoke("StartDialogue", 1.0f);
@@ -163,6 +165,23 @@ public class GameManager : MonoBehaviour
     public void SetMapPath()
     {
         mapPath = pathToMap.mapfilePath;
+    }
+
+    private void SetLevelTitle()
+    {
+        string levelTitle;
+
+        if (currentMap.levels[currentLevel].levelName == null || currentMap.levels[currentLevel].levelName.Length <= 0)
+        {
+            Debug.Log("No Level Title found, defaulting");
+            levelTitle = "Level " + (currentLevel + 1);
+            UIManager.instance.SetLevelTitle(levelTitle);
+        }
+        else
+        {
+            levelTitle = '"' + currentMap.levels[currentLevel].levelName + '"';
+            UIManager.instance.SetLevelTitle(levelTitle);
+        }
     }
 
     #endregion
@@ -276,7 +295,7 @@ public class GameManager : MonoBehaviour
         else if (playerLives > 0)
         {
             playerLives -= 1;
-            livesCounter.text = "Lives: " + playerLives;
+            UIManager.instance.SetLifeText(playerLives);
             return false;
         }
         return false;
