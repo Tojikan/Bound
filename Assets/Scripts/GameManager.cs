@@ -59,6 +59,10 @@ public class GameManager : MonoBehaviour
         //Set the map path
         SetMapPath();
 
+		// Plug in load all maps here ~ 
+
+		// maps choice here ~ 
+
         //Loads level one and reads from our file
         currentMap = mapLoad.LoadMap(mapPath);
 
