@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: aea77835ae047bc42a21a08cf29f7656
-Explosion-Refactor
-timeCreated: 1518769104
+guid: 3389f7fabc5844ed586b3a6a96f59b18
+timeCreated: 1520895679
 licenseType: Free
-DefaultImporter:
+TextScriptImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
