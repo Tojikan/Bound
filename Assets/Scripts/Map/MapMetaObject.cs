@@ -10,11 +10,16 @@ namespace BoundMaps {
 
 		public string name;
 		public string fileLocation;
+        public string description;
+        public string imagePath;
 
 		// Use this for initialization
-		public MapMetaObject (string name, string fileLocation) {
+		public MapMetaObject (string name, string fileLocation, string description, string imagePath ) {
 			this.name = name;
 			this.fileLocation = fileLocation;
+            this.description = description;
+            this.imagePath = imagePath;
 		}
 	}
 }
+
