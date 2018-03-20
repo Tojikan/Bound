@@ -6,36 +6,49 @@ using System;
 
 namespace BoundMenus
 {
+    //Manages what happens when a map is selected
     public class SelectMap : MonoBehaviour
     {
-        private DisplayMap displayMap;
-        public CurrentMapSelection currentSelection;
+        private DisplayMap displayMap;                                      //reference to the display component
+        public static SelectMap instance;                                   //Singleton instance of this
+        public CurrentMapSelection currentSelection;                        //Drag Scriptable Object selection to this, which stores the current selection and also stores the last map selected
+
+        private void Awake()
+        {
+            //Set singleton instance
+            if (instance == null)
+                instance = this;
+            else if (instance != this)
+                DestroyObject(this);
+        }
 
         private void Start()
         {
+            //Get component reference and set the map display info according to the previous selected map
             displayMap = GetComponent<DisplayMap>();
             UpdateSelection();
         }
 
+        //Public function that is called when a button event is clicked. Takes a parameter of the map to be selected
         public void SetMapOnClick(MapMetaObject map)
         {
             if (CheckMapMeta())
             {
-                SaveSelection(map);
+                SetMapSelection(map);
                 UpdateSelection();
             }
         }
 
+        //TO DO: Set a map for the game to load
         private void SetMapPath(string location)
         {
 
         }
 
+        //Update the map info display
         private void UpdateSelection()
         {
-            SetMapPath(currentSelection.meta.fileLocation);
             displayMap.SetMapDisplay(currentSelection.meta);
-            Debug.Log(currentSelection.meta);
         }
 
 
@@ -45,7 +58,8 @@ namespace BoundMenus
             return true;
         }
 
-        private void SaveSelection(MapMetaObject map)
+        //Sets the current selection object
+        private void SetMapSelection(MapMetaObject map)
         {
             currentSelection.meta = map;
         }

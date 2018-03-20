@@ -9,9 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b1db666d47a9d440bbfde710cd0b1b6, type: 3}
-  m_Name: SelectedMap
+  m_Name: CurrentMap
   m_EditorClassIdentifier: 
-  mapName: 
-  fileLocation: 
-  description: 
-  imagePath: 
+  meta:
+    name: Map A
+    fileLocation: ./Assets/Maps/Prototype6/Prototype6.bound
+    description: This is Map A. There are many other maps like this but this one is
+      mine
+    imagePath: Preview1.png

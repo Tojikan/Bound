@@ -14,8 +14,9 @@ namespace BoundMenus
         public Text mapDescrip;                     //Drag reference to the map description text
         public Image mapImage;                      //Drag reference to the map image
         public Sprite defaultImage;                 //Drag reference to the default image sprite
+        public Sprite something;
 
-        private void Start()
+        private void Awake()
         {
             //Set default
             mapImage.sprite = defaultImage;
@@ -32,14 +33,13 @@ namespace BoundMenus
         //Sets title
         private void SetTitle(string title)
         {
-            //Checks if there is a title
-            if (title != null || title.Length > 0)
-            {
-                mapTitle.text = title;
-            }
-            else
+            if (title == null || title.Length <= 0)
             {
                 mapTitle.text = "Untitled";
+            }       
+            else
+            {
+                mapTitle.text = title;
             }
         }
 
@@ -47,13 +47,13 @@ namespace BoundMenus
         private void SetDescrip(string descrip)
         {
             //Checks if there is a description
-            if (descrip != null || descrip.Length > 0)
+            if (descrip == null || descrip.Length <= 0)
             {
-                mapDescrip.text = descrip;
+                mapDescrip.text = "No Map Description.";
             }
             else
             {
-                mapDescrip.text = "No Description.";
+                mapDescrip.text = descrip;
             }
         }
 
@@ -63,7 +63,12 @@ namespace BoundMenus
             try
             {
                 //Tries to load image
-                Sprite newImage = Resources.Load(path) as Sprite;
+                Sprite newImage = Resources.Load<Sprite>("MapPreviews/" + path);
+                Debug.Log(newImage);
+                if (newImage == null)
+                {
+                    newImage = defaultImage;
+                }
                 mapImage.sprite = newImage;
             }
             catch (Exception e)
