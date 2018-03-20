@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
 
         //Load from File
         tileSet = mapLoad.GetTileSet(currentMap.tileset);
-        obstacleSet = mapLoad.GetExplosionSet(currentMap.obstacleSet);
+        obstacleSet = mapLoad.GetObstacleSet(currentMap.obstacleSet);
         //Set Text
         livesCounter.text = "Lives: " + playerLives;
 
