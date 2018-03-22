@@ -9,4 +9,5 @@ using UnityEngine;
 public class CurrentMapSelection : ScriptableObject
 {
     public MapMetaObject meta;
+    public MapFile mapData;
 }
