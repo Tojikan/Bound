@@ -64,6 +64,7 @@ namespace BoundMenus
             {
                 //Tries to load image
                 Sprite newImage = Resources.Load<Sprite>("MapPreviews/" + path);
+                Debug.Log(newImage);
                 if (newImage == null)
                 {
                     newImage = defaultImage;
