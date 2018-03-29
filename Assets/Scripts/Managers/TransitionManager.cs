@@ -66,15 +66,12 @@ namespace BoundEngine
         //Calls back to Game Manager instance to start the level or load the next level depending on the static bool, which is set in Game Manager
         public void TransitionEnd()
         {
-<<<<<<< HEAD
-=======
+
             //If at the end, exit back to menu
             if (reachedEnd)
             {
                 ExitFade();
             }
-
->>>>>>> parent of 3a0741a... Revert "Bug fixes and scene loading"
             //start the level
             if (start)
             {

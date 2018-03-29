@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using BoundMaps;
 using BoundEngine;
+using System;
+using UnityEngine.SceneManagement;
 
 
 //Game Manager is the controller and handles all of the logic between transitioning levels, calling functions to load maps, checking if game over, etc. 
@@ -84,10 +86,6 @@ public class GameManager : MonoBehaviour
         //Set the map path
         SetMapPath();
 
-		// Plug in load all maps here ~ 
-
-		// maps choice here ~ 
-
         //Loads level one and reads from our file
         currentMap = mapLoad.LoadMap(mapPath);
 
@@ -130,25 +128,6 @@ public class GameManager : MonoBehaviour
     //Loads a given level from the current loaded map. Sets up our tiles, places our exploders and then calls our transition
     public void LoadLevel(int level)
     {
-<<<<<<< HEAD
-        //Renders the tiles of our current map file
-        mapRenderer.LoadTiles(currentMap.levels[level], tileSet, gameArea);
-        //set our start/endpoints
-        mapRenderer.SetBeacons(currentMap.levels[level].startPoint, currentMap.levels[level].endPoint);
-        //Creates our obstacles
-        Timer.instance.StopTimer();
-        obstacleManager.CreateExploders(currentMap.levels[level].obstacles, obstacleSet);
-        //Moves our player to the start point
-        SpawnPlayer();
-        //Set music from file
-        SoundManager.instance.SetMusic(currentMap.levels[level].music);
-        //Bool to check if we are at the start of a new level
-        levelStart = true;
-        TransitionManager.instance.Fade(true);
-        //Starts level Dialogue
-        Invoke("StartDialogue", 1.0f);
-=======
-        Debug.Log("Loading " + level);
         try
         {
             //Renders the tiles of our current map file
@@ -169,14 +148,12 @@ public class GameManager : MonoBehaviour
             //Starts level Dialogue
             Invoke("StartDialogue", 1.0f);
          }
-
         catch (Exception e)
         {
             Debug.LogException(e);
             Debug.Log("Unable to load level. Exiting");
             ExitBackToMenu();
         }
->>>>>>> parent of 3a0741a... Revert "Bug fixes and scene loading"
     }
 
 
@@ -356,15 +333,12 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-<<<<<<< HEAD
-=======
     //Returns to the loadMap screen
     public void ExitBackToMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
->>>>>>> parent of 3a0741a... Revert "Bug fixes and scene loading"
 #if UNITY_EDITOR
     //For skipping levels when testing in the editor
     public void LevelSkip()

@@ -1100,11 +1100,7 @@ RectTransform:
   m_Children:
   - {fileID: 1929674821}
   - {fileID: 1981582832}
-<<<<<<< HEAD
-=======
-  - {fileID: 178146882}
   - {fileID: 1497188260}
->>>>>>> parent of 3a0741a... Revert "Bug fixes and scene loading"
   m_Father: {fileID: 229079594}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1230,7 +1226,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1951174570}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1450,7 +1446,7 @@ RectTransform:
   m_Children:
   - {fileID: 1586466831}
   m_Father: {fileID: 1096500782}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
