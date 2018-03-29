@@ -15,5 +15,12 @@ public class PauseButton : MonoBehaviour
             pauseMenu.SetActive(true);
             PauseMenu.isPaused = true;
         }
+
+        else if (PauseMenu.isPaused == true)
+        {
+            PauseMenu pause = pauseMenu.GetComponent<PauseMenu>();
+            pause.Resume();
+        }
+
     }
 }
