@@ -16,7 +16,6 @@ namespace BoundEngine
         public AudioSource endSound;                                            //Audio source to play at the end of transition
         public static bool start;                                               //Static bool to determine if we are at the start of a level or end
         private Animator animator;                                              //Reference to animator component
-        private bool reachedEnd;                                                //Checks if you reached end of map
 
 
         // Use this for initialization
@@ -29,7 +28,6 @@ namespace BoundEngine
                 Destroy(gameObject);
             //Get animator comopnent
             animator = GetComponent<Animator>();
-            reachedEnd = false;
         }
 
         //Level start transition when a new level begins
@@ -61,13 +59,6 @@ namespace BoundEngine
         //Calls back to Game Manager instance to start the level or load the next level depending on the static bool, which is set in Game Manager
         public void TransitionEnd()
         {
-            //If at the end, exit back to menu
-            if (reachedEnd)
-            {
-                Fade(false);
-                Invoke("ExitBackToMenu", levelDelay);
-            }
-
             //start the level
             if (start)
             {
@@ -105,14 +96,7 @@ namespace BoundEngine
         {
             string text = "Map    Complete!";
             screenText.text = text;
-            reachedEnd = true;
             animator.SetTrigger("LevelTransition");
-        }
-
-        //Calls back to GameManager to exit
-        private void ExitBackToMenu()
-        {
-            GameManager.GameManagerInstance.ExitBackToMenu();
         }
 
         //Calls back to GameManager to start the current level

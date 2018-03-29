@@ -9,10 +9,27 @@ using UnityEditor;
 [CustomEditor(typeof(GameManager))]
 public class GMEditor : Editor
 {
+    public MapPath mapHolder;
+
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
         GameManager myGame = (GameManager)target;
+        mapHolder = myGame.pathToMap;
+
+
+        //Selects a map to load
+        EditorGUILayout.LabelField("Map Name", System.IO.Path.GetFileName(path: mapHolder.mapfilePath));
+        if (GUILayout.Button("Select a file to load from"))
+        {
+            string path = EditorUtility.OpenFilePanel("Open Bound", "/Assets/Maps/", "bound");
+
+            //Make sure we have a path and then set our map to load
+            if (path.Length != 0)
+            {
+                mapHolder.mapfilePath = path;
+            }
+        }
 
         EditorGUILayout.Space();
         EditorGUILayout.Space();
