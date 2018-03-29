@@ -47,6 +47,7 @@ namespace BoundEngine
         //Fades the screen in and out. Takes in a bool and triggers a different animations depending on the bool
         public void Fade(bool fadeIn)
         {
+            Debug.Log("Fading");
             if (fadeIn)
             {
                 animator.SetTrigger("FadeIn");
@@ -57,6 +58,12 @@ namespace BoundEngine
             }
         }
 
+        //Exit animation at the end of the game, which will exit to the main menu
+        public void ExitFade()
+        {
+            animator.SetTrigger("Exit");
+        }
+
         //Called at the end of a transition animation via animation event
         //Calls back to Game Manager instance to start the level or load the next level depending on the static bool, which is set in Game Manager
         public void TransitionEnd()
@@ -64,8 +71,7 @@ namespace BoundEngine
             //If at the end, exit back to menu
             if (reachedEnd)
             {
-                Fade(false);
-                Invoke("ExitBackToMenu", levelDelay);
+                ExitFade();
             }
 
             //start the level

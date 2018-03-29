@@ -25,6 +25,11 @@ namespace BoundMenus
             {
                 //Set the target map data by loading the map from the file using loadmap
                 mapContainer.mapData = mapLoader.LoadMap(mapContainer.meta.fileLocation);
+                if (mapContainer.mapData == null)
+                {
+                    Debug.Log("Error: MapData is null");
+                    return;
+                }
                 StartGame();
             }
             catch (Exception e)

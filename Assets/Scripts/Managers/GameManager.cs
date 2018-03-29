@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
 
         playControl.DisableMovement();
 
+        Debug.Log("Game Initialized");
         //Load level
         LoadLevel(0);
     }
@@ -124,6 +125,7 @@ public class GameManager : MonoBehaviour
     //Loads a given level from the current loaded map. Sets up our tiles, places our exploders and then calls our transition
     private void LoadLevel(int level)
     {
+        Debug.Log("Loading " + level);
         try
         {
             //Renders the tiles of our current map file
@@ -140,9 +142,11 @@ public class GameManager : MonoBehaviour
             //Bool to check if we are at the start of a new level
             levelStart = true;
             TransitionManager.instance.Fade(true);
+            Debug.Log("Load Successful");
             //Starts level Dialogue
             Invoke("StartDialogue", 1.0f);
-        }
+         }
+
         catch (Exception e)
         {
             Debug.LogException(e);
@@ -218,9 +222,11 @@ public class GameManager : MonoBehaviour
     //Dialogue at the start of a level
     private void StartDialogue()
     {
+        Debug.Log("Loading Dialogue");
+
         // temp dialogue variable
         Dialogue dialogue;
-
+        
         //Check if we are at level start or end and set the dialogue accordingly
         if (!levelStart)
         {
@@ -288,6 +294,7 @@ public class GameManager : MonoBehaviour
         //Allow movement
         playControl.EnableMovement();
         checkInPlay = true;
+        Debug.Log("Level Start");
     }
 
     //Called when player runs into an obstacle. Sets the game over events or decrements the lives counter
@@ -330,7 +337,7 @@ public class GameManager : MonoBehaviour
     //Returns to the loadMap screen
     public void ExitBackToMenu()
     {
-        SceneManager.LoadScene("LoadMap");
+        SceneManager.LoadScene("MainMenu");
     }
 
 #if UNITY_EDITOR

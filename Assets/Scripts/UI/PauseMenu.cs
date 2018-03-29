@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 //Handles the in-game menu and pauses the game
@@ -35,6 +36,8 @@ public class PauseMenu : MonoBehaviour
         menuSounds = GetComponent<AudioSource>();
         //So our menusounds don't get muted when the menu pauses. If you make a mute all button, must account for this. 
         menuSounds.ignoreListenerPause = true;
+
+        isPaused = false;
     }
 
     //Called when enabled by the pause button
@@ -90,15 +93,20 @@ public class PauseMenu : MonoBehaviour
 
 
     //TO DO: Open up a confirmation window when touched and then quits back to the main menu
+    //On pressing the quit button
     public void Quit()
     {
         //Play button sound
         MenuSounds(buttonPress);
-
-        Debug.Log("You hit quit!");
+        //Resets Game Time and pause bool
+        Time.timeScale = 1.0f;
+        isPaused = false;
+        //Stops playing all sounds and then unpauses audio
+        SoundManager.instance.StopSounds();
+        ResumeAudio();
+        //Exit fade transition
+        TransitionManager.instance.ExitFade();
     }
-
-
 
     #endregion
 
