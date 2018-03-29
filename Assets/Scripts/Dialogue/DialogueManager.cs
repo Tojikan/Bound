@@ -43,8 +43,6 @@ namespace BoundEngine
         protected override void Update()
         {
             base.Update();
-
-#if UNITY_EDITOR
             //Mouse to load next sentence for testing purposes in the editor
             if (isTalking && PauseMenu.isPaused == false)
             {
@@ -54,7 +52,6 @@ namespace BoundEngine
                     DisplayNextSentence();
                 }
             }
-#endif
         }
 
 

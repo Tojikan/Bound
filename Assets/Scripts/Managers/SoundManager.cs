@@ -161,6 +161,15 @@ namespace BoundEngine
             }
         }
 
+        public void StopSounds()
+        {
+            foreach (AudioSource source in sFXSources)
+            {
+                source.Stop();
+            }
+            musicSource.Stop();
+        }
+
         
         //set music.
         public void SetMusic(int index)
