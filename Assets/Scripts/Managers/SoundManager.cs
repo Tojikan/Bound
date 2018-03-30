@@ -161,7 +161,6 @@ namespace BoundEngine
             }
         }
 
-        //Stops playing all sounds
         public void StopSounds()
         {
             foreach (AudioSource source in sFXSources)

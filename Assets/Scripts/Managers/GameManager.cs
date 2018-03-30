@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 /** GENERAL GUIDE TO HOW THE GAME PLAYS AND WHICH CLASS HANDLES WHAT 
  * Game Manager will pass back and forth between the Dialogue Manager instance, Transition Manager instance, and player to handle timing at the end of dialogues/transitions. So the game executes through these 4 classes
  * To help you review later, the order of events is as follows
- * Game initializes and loads a mapfile from the map path. This is loaded into a mapfile variable. At the end of initialize, LoadLevel is called
+ * Game initializes and loads a map from the currentmap scriptable object located in the Resources/MapData folder. This is loaded into a mapfile variable. At the end of initialize, LoadLevel is called
  * LoadLevel is called which loads the tiles, sets the music (doesn't play it yet), Creates the obstacles using the obstacle manager, starts a level fade, and then tries to start a dialogue
  * If we have a dialogue, then goes to DialogueManager, which will call GameManager LevelTransition at the end of the Dialogue. If no dialogue, skip straight to LevelTransition
  * LevelTransition will go to the transitionmanager instance to play a transition based on if we're at the start or end of a level. If we're at the start, plays the start transition
@@ -43,12 +43,12 @@ public class GameManager : MonoBehaviour
     public Text livesCounter;                                               //Text to display our lives
     public BoundsInt gameArea;                                              //our game area to play in
     public static bool checkInPlay;                                         //static bool to inform other other classes if in play. Such as pausemenu
+    public CurrentMapSelection selectedMap;                                 //Drag reference to the map scriptable object here
 
     [HideInInspector] public int endLevel;                                  //Last level
     [HideInInspector] public int currentLevel;                              //Current Level
 
     private bool levelStart;                                                //Bool check for start or end of the level for different transitions/dialogue
-    private MapLoader mapLoad;                                              //reference to our MapLoader
     private MapFile currentMap;                                             //Variable to store our map
     private TileSet tileSet;                                                //reference to our tileset
     private RenderMap mapRenderer;                                          //reference to our renderMap Component
@@ -66,8 +66,7 @@ public class GameManager : MonoBehaviour
         else if (GameManagerInstance != this)
             Destroy(gameObject);
 
-        //Get our load and player controller components
-        mapLoad = GetComponent<MapLoader>();
+        //Get our components
         playControl = Player.GetComponent<PlayerController>();
         mapRenderer = GetComponent<RenderMap>();
         obstacleManager = obstacles.GetComponent<ObstacleManager>();
@@ -81,14 +80,8 @@ public class GameManager : MonoBehaviour
     //Initial setup of the game
     void InitGame()
     {
-        //Set the map path
-        SetMapPath();
-
-        //Loads level one and reads from our file
-        currentMap = mapLoad.LoadMap(mapPath);
-
-
-        Debug.Log("Loading " + mapPath);
+        //Set the map
+        currentMap = SetMap(selectedMap);
 
         //gets the number of the last level
         endLevel = (currentMap.numberOfLevels) - 1;
@@ -97,8 +90,18 @@ public class GameManager : MonoBehaviour
         currentLevel = 0;
 
         //Load from File
-        tileSet = mapLoad.GetTileSet(currentMap.tileset);
-        obstacleSet = mapLoad.GetObstacleSet(currentMap.obstacleSet);
+        try
+        {
+            tileSet = GetTileSet(currentMap.tileset);
+            obstacleSet = GetObstacleSet(currentMap.obstacleSet);
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+            Debug.Log("Unable to load map data");
+            ExitBackToMenu();
+        }
+
         //Set Text
         livesCounter.text = "Lives: " + playerLives;
 
@@ -118,14 +121,11 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-
-
-
-
     #region Everything related to loading levels
     //Loads a given level from the current loaded map. Sets up our tiles, places our exploders and then calls our transition
-    public void LoadLevel(int level)
+    private void LoadLevel(int level)
     {
+        Debug.Log("Loading " + level);
         try
         {
             //Renders the tiles of our current map file
@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour
             //Starts level Dialogue
             Invoke("StartDialogue", 1.0f);
          }
+
         catch (Exception e)
         {
             Debug.LogException(e);
@@ -161,7 +162,6 @@ public class GameManager : MonoBehaviour
         //Checks to see if we're on the last level
         if (currentLevel >= endLevel)
         {
-            MapComplete();
             return;
         }
 
@@ -170,14 +170,35 @@ public class GameManager : MonoBehaviour
         LoadLevel(currentLevel);
     }
 
-    //Gets the path to the selected map from the mapPath scriptable object
-    public void SetMapPath()
+
+    //Returns a reference to a tileset. Takes in the name of a tileset.
+    public TileSet GetTileSet(string path)
     {
-        mapPath = pathToMap.mapfilePath;
+        //Sets our tileset path by getting the info from the mapfile and setting a path
+        UnityEngine.Object temp = Resources.Load("Tiles/Assets/" + path);
+        if (!temp)
+            Debug.Log("Tileset could not be loaded");
+        return (TileSet)temp;
+    }
+
+
+    //Returns a reference to explosion set. Takes in the name of the set
+    public ObstacleSet GetObstacleSet(string path)
+    {
+        //Sets our tileset path by getting the info from the mapfile and setting a path
+        UnityEngine.Object temp = Resources.Load("Obstacles/" + path);
+        if (!temp)
+            Debug.Log("Explosionset could not be loaded!");
+        return (ObstacleSet)temp;
+    }
+
+    //Returns the map data from the map scriptable object
+    private MapFile SetMap(CurrentMapSelection selection)
+    {
+        return selection.mapData;
     }
 
     #endregion
-
 
     #region Everything related to level transitions
     //called at the end of the level when player collides with a finish object. Remember that movement gets disabled on collision
@@ -296,25 +317,7 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-
-    //Displays text upon successful completion. Clears our obstacles and ends the game manager
-    void MapComplete()
-    {
-        Destroy(GameManagerInstance);
-    }
-
-
-    //Checks if the current level exceeds total levels
-    public bool CheckLevelNum()
-    {
-
-        if (currentLevel > endLevel)
-        {
-            return false;
-        }
-        return true;
-    }
-    //Respawns player to the spawn point. 
+    //Moves player to the spawn point
     public void SpawnPlayer()
     {
         Player.transform.position = Spawn.transform.position;

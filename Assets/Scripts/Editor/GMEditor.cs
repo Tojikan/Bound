@@ -9,12 +9,13 @@ using UnityEditor;
 [CustomEditor(typeof(GameManager))]
 public class GMEditor : Editor
 {
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
         GameManager myGame = (GameManager)target;
 
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
 
         //Lets us skip levels for testing purposes
         EditorGUILayout.HelpBox("Lets us skip levels for testing purposes. Enter the level you want to skip around and then press to move to the level after that.", MessageType.None);

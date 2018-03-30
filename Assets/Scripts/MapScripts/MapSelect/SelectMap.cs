@@ -39,18 +39,11 @@ namespace BoundMenus
             }
         }
 
-        //TO DO: Set a map for the game to load
-        private void SetMapPath(string location)
-        {
-
-        }
-
         //Update the map info display
         private void UpdateSelection()
         {
             displayMap.SetMapDisplay(currentSelection.meta);
         }
-
 
         //TO DO: implement a way to check if the meta file is valid
         private bool CheckMapMeta()

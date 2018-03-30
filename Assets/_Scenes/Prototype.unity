@@ -3509,7 +3509,14 @@ Prefab:
       propertyPath: finishPoint
       value: 
       objectReference: {fileID: 1253667947}
-    m_RemovedComponents: []
+    - target: {fileID: 114989530851204982, guid: 16eaa7ac0f2946546b3e16dbe389a80d,
+        type: 2}
+      propertyPath: selectedMap
+      value: 
+      objectReference: {fileID: 11400000, guid: 3e3b1c57bcc0e464ea15ffdd37b398f0,
+        type: 2}
+    m_RemovedComponents:
+    - {fileID: 114388524224233746, guid: 16eaa7ac0f2946546b3e16dbe389a80d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 16eaa7ac0f2946546b3e16dbe389a80d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1493539575

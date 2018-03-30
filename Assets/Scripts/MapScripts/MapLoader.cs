@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BoundEngine
 {
-    //Class to load our map from the file
+    //Class to load our map from a file
     public class MapLoader : MonoBehaviour
     {
         //main method to load a map from a given file. Takes in the path to the file, reads and deserializes it, and returns a MapFile. 
@@ -44,7 +44,7 @@ namespace BoundEngine
         }
 
         //Checks the file extension to make sure we're loading a map file
-        public bool CheckFileExtension(string file)
+        private bool CheckFileExtension(string file)
         {
             if(Path.GetExtension(file) != ".bound")
             {
@@ -54,32 +54,8 @@ namespace BoundEngine
             return true;
         }
 
-
-        //Returns a reference to a tileset. Takes in the name of a tileset.
-        public TileSet GetTileSet(string path)
-        {
-            //Sets our tileset path by getting the info from the mapfile and setting a path
-            Object temp = Resources.Load("Tiles/Assets/" + path);
-            if (!temp)
-                Debug.Log("Tileset could not be loaded");
-            return (TileSet)temp;
-        }
-
-
-        //Returns a reference to explosion set. Takes in the name of the set
-        public ObstacleSet GetObstacleSet(string path)
-        {
-            //Sets our tileset path by getting the info from the mapfile and setting a path
-            Object temp = Resources.Load("Obstacles/" + path);
-            if (!temp)
-                Debug.Log("Explosionset could not be loaded!");
-            return (ObstacleSet)temp;
-        }
-
-
-
         //Method to read from a file. Returns a string
-        public string ReadString(string file)
+        private string ReadString(string file)
         {
             //Open up a stream to the file
             StreamReader reader = new StreamReader(file);
