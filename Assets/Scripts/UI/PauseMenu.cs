@@ -66,20 +66,21 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
     }
 
+    //When disabled, unpauses game and reset time and audio
+    //Is also used when you exit a game
+    private void OnDisable()
+    {
+        isPaused = false;
+        Time.timeScale = GameManager.gameSpeed;
+        ResumeAudio();
+    }
+
     #region Resume and Quit
     //Called by the resume button when touched
     public void Resume()
     {
         //Play button sound
         MenuSounds(buttonPress);
-
-        isPaused = false;
-        
-        //Set time back to normal
-        Time.timeScale = 1f;
-
-        //Resume audio
-        ResumeAudio();
 
         //Enable movement only if we're in play
         if (GameManager.checkInPlay == true)
@@ -98,17 +99,16 @@ public class PauseMenu : MonoBehaviour
     {
         //Play button sound
         MenuSounds(buttonPress);
-        //Resets Game Time and pause bool
+        //Resets Game Time so we can actually exit the game
         Time.timeScale = 1.0f;
-        isPaused = false;
         //Stops playing all sounds and then unpauses audio
         SoundManager.instance.StopSounds();
-        ResumeAudio();
         //Exit fade transition
         TransitionManager.instance.ExitFade();
     }
 
     #endregion
+
 
     #region Audio Settings
     //Mutes the music

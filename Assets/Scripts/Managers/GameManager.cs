@@ -39,10 +39,9 @@ public class GameManager : MonoBehaviour
     public int playerLives = 50;                                            //Int for player lives
     public int levelToLoad = 0;                                             //Set which level we're loading
     public float dialogueDelay = 0.6f;                                      //Delay from level load to displaying dialogue
-    public Text endText;                                                    //reference to our end screen text
-    public Text livesCounter;                                               //Text to display our lives
     public BoundsInt gameArea;                                              //our game area to play in
     public static bool checkInPlay;                                         //static bool to inform other other classes if in play. Such as pausemenu
+    public static float gameSpeed = 1.0f;                                   //Game speed
     public CurrentMapSelection selectedMap;                                 //Drag reference to the map scriptable object here
 
     [HideInInspector] public int endLevel;                                  //Last level
@@ -103,13 +102,13 @@ public class GameManager : MonoBehaviour
         }
 
         //Set Text
-        livesCounter.text = "Lives: " + playerLives;
+        UIManager.instance.SetLifeText(playerLives);
 
         playControl.DisableMovement();
 
         Debug.Log("Game Initialized");
         //Load level
-        LoadLevel(0);
+        LoadLevel(currentLevel);
     }
 
  
@@ -141,6 +140,9 @@ public class GameManager : MonoBehaviour
             SoundManager.instance.SetMusic(currentMap.levels[level].music);
             //Bool to check if we are at the start of a new level
             levelStart = true;
+
+            SetLevelTitle();
+
             TransitionManager.instance.Fade(true);
             Debug.Log("Load Successful");
             //Starts level Dialogue
@@ -181,6 +183,22 @@ public class GameManager : MonoBehaviour
         return (TileSet)temp;
     }
 
+    private void SetLevelTitle()
+    {
+        string levelTitle;
+
+        if (currentMap.levels[currentLevel].levelName == null || currentMap.levels[currentLevel].levelName.Length <= 0)
+        {
+            Debug.Log("No Level Title found, defaulting");
+            levelTitle = "Level " + (currentLevel + 1);
+            UIManager.instance.SetLevelTitle(levelTitle);
+        }
+        else
+        {
+            levelTitle = '"' + currentMap.levels[currentLevel].levelName + '"';
+            UIManager.instance.SetLevelTitle(levelTitle);
+        }
+    }
 
     //Returns a reference to explosion set. Takes in the name of the set
     public ObstacleSet GetObstacleSet(string path)
@@ -311,7 +329,7 @@ public class GameManager : MonoBehaviour
         else if (playerLives > 0)
         {
             playerLives -= 1;
-            livesCounter.text = "Lives: " + playerLives;
+            UIManager.instance.SetLifeText(playerLives);
             return false;
         }
         return false;
@@ -329,7 +347,6 @@ public class GameManager : MonoBehaviour
     {
         endImage.SetActive(true);
         obstacleManager.ClearObstacles();
-        endText.text = "You Lose";
         Destroy(GameManagerInstance);
     }
     #endregion

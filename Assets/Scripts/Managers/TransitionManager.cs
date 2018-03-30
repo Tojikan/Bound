@@ -47,7 +47,6 @@ namespace BoundEngine
         //Fades the screen in and out. Takes in a bool and triggers a different animations depending on the bool
         public void Fade(bool fadeIn)
         {
-            Debug.Log("Fading");
             if (fadeIn)
             {
                 animator.SetTrigger("FadeIn");
