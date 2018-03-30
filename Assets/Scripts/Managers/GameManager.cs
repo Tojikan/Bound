@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     public GameObject Player;                                               //Player Game Object
     public GameObject Spawn;                                                //Spawn point
     public GameObject endImage;                                             //reference to our end screen
-    public MapPath pathToMap;                                               //reference our map path scriptable object
     public int playerLives = 50;                                            //Int for player lives
     public int levelToLoad = 0;                                             //Set which level we're loading
     public float dialogueDelay = 0.6f;                                      //Delay from level load to displaying dialogue
@@ -45,7 +44,6 @@ public class GameManager : MonoBehaviour
     public BoundsInt gameArea;                                              //our game area to play in
     public static bool checkInPlay;                                         //static bool to inform other other classes if in play. Such as pausemenu
 
-    public string mapPath;                                                  //Path to the map we're trying to load. Set in the Editor Window
     [HideInInspector] public int endLevel;                                  //Last level
     [HideInInspector] public int currentLevel;                              //Current Level
 

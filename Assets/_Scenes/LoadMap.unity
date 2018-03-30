@@ -649,9 +649,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Map B
-
-'
+  m_Text: Prototype 6
 --- !u!222 &637752052
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -801,9 +799,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Map A
-
-'
+  m_Text: Prototype 5
 --- !u!222 &793524986
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1465,9 +1461,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapMeta:
-    name: Should be nothing
-    fileLocation: 
-    description: Test what happens when the map does not exist
+    name: Prototype 7
+    fileLocation: ./Assets/Maps/Prototype6/Prototype6.bound
+    description: Prototype 7 adds the Dialogue feature in the game at the start and
+      end of the map. Good dialogue is still a work in progress
     imagePath: Preview1
 --- !u!114 &1497188262
 MonoBehaviour:
@@ -1744,7 +1741,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Null Test
+  m_Text: 'Prototype 7
 
 '
 --- !u!222 &1586466833
@@ -2004,10 +2001,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapMeta:
-    name: Map A
-    fileLocation: ./Assets/Maps/Prototype6/Prototype6.bound
-    description: This is Map A. There are many other maps like this but this one is
-      mine
+    name: Prototype 5
+    fileLocation: ./Assets/Maps/Prototype5/Prototype5.bound
+    description: Prototype 5 was made when there was still a timing glitch in the
+      old maps and before music was added. It's pretty difficult
     imagePath: Preview1
 --- !u!1 &1951174569
 GameObject:
@@ -2128,10 +2125,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapMeta:
-    name: Map B
-    fileLocation: ./Assets/Maps/Prototype5/Prototype5.bound
-    description: This is Map B. There are many other maps like this but this one is
-      mine and it's also map b and not A
+    name: Prototype 6
+    fileLocation: ./Assets/Maps/Prototype6/Prototype6.bound
+    description: Prototype 6 incorporates music but the timing is a bit off again
+      because of a timing glitch
     imagePath: Preview2
 --- !u!114 &1981582834
 MonoBehaviour:
