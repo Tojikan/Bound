@@ -72,6 +72,7 @@ namespace BoundEngine
             if (reachedEnd)
             {
                 ExitFade();
+                return;
             }
 
             //start the level
