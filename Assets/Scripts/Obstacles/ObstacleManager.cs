@@ -10,13 +10,13 @@ namespace BoundEngine
     public class ObstacleManager : MonoBehaviour
     {
         public bool ShowBoxes;                                                       //Draw explosion collision boxes for debugging
-        private List<Explosion> explosionList;                                       //List of all exploders currently in the scene. Use this to control the obstacles
+        private List<Obstacle> obstacleList;                                       //List of all exploders currently in the scene. Use this to control the obstacles
 
         //Method to create our exploders. Takes in parameters of a list of obstacles and the explosion set
         public void CreateExploders(List<ObstacleData> explosions, ObstacleSet set)
         {
             //Create a new list
-            explosionList = new List<Explosion>();
+            obstacleList = new List<Obstacle>();
 
             //Iterate over each explosiondata in the mapfile explosion list
             foreach (ObstacleData data in explosions)
@@ -25,19 +25,19 @@ namespace BoundEngine
                 GameObject newBomb = Instantiate(set.ObstaclePrefabs[data.obstacleType], data.position, transform.rotation);
 
                 //Get a reference to the exploder component of our newly created prefab
-                Explosion exploder = newBomb.GetComponent<Explosion>();    
+                Obstacle obstacle = newBomb.GetComponent<Obstacle>();    
 
                 //Initialize the prefab data
-                exploder.InitializeExplosion(data.triggerTime, data.loopLength, data.audioPlayer);
+                obstacle.ConstructObstacle(data.triggerTime, data.loopLength, data.audioPlayer);
                 //Adds this expoder to our list for controls
-                explosionList.Add(exploder);
+                obstacleList.Add(obstacle);
             }
         }
 
         //Iterates over each exploder in the list and destroys their GameObject, clearing all Obstacles. 
         public void ClearObstacles()
         {
-            foreach (Explosion child in explosionList)
+            foreach (Obstacle child in obstacleList)
             {
                 child.DestroyObstacle();
             }
@@ -49,17 +49,17 @@ namespace BoundEngine
             //Check if bool is enabled
             if (ShowBoxes)
             {
-                foreach (Explosion bomb in explosionList)
+                foreach (Obstacle obstacle in obstacleList)
                 {
-                    bomb.showBox = true;
+                    obstacle.showBox = true;
                 }
             }
             //Make sure the box doesn't show if it's not true
             else
             {
-                foreach (Explosion bomb in explosionList)
+                foreach (Obstacle obstacle in obstacleList)
                 {
-                    bomb.showBox = false;
+                    obstacle.showBox = false;
                 }
             }
         }

@@ -13,7 +13,7 @@ namespace BoundMaps
         public Vector2 position;                            //Position of each bomb
         public int loopLength;                              //Length of each loop
         public int triggerTime;                             //Timing of the explosion
-        public int obstacleType;                             //Type of Bomb based on our bomb set
+        public int obstacleType;                            //Type of Bomb based on our bomb set
         public int audioPlayer;                             //Which Audio Player to use
 
 
@@ -26,6 +26,7 @@ namespace BoundMaps
             obstacleType = explode;
             audioPlayer = 1;
         }
+
         //Overload
         public ObstacleData(Vector2 point, int loop, int time, int explode, int audio)
         {

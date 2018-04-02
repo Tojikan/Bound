@@ -5,7 +5,6 @@ using BoundEngine;
 
 public class Explosion : Obstacle
 {
-    public bool showBox;
     public AnimationClip explosionType;
     private SpriteRenderer sprite;
     private BoxCollider2D collide;
@@ -34,10 +33,10 @@ public class Explosion : Obstacle
         Timer.TimerEventHandler += TriggerObstacle;
     }
 
-    #region Initialize
-    //Constructor class that lets us initialize the variables for each new created instance of Exploder and then gets references to our components
-    //Should be called when an obstacle is loaded into the game
-    public void InitializeExplosion(int explosionTime, int loop)
+    #region Constructor classes
+    //Constructor classes that overrides obstacle parent class to initialize obstacle data. Should be called when an obstacle is loaded into the game
+    //Defaulted audio player constructor
+    public override void ConstructObstacle(int explosionTime, int loop)
     {
         triggerTime = explosionTime;
         loopLength = loop;
@@ -45,7 +44,7 @@ public class Explosion : Obstacle
     }
 
     //Overload constructor with parameter for the audio player
-    public void InitializeExplosion(int explosionTime, int loop, int audioPlayerNum)
+    public override void ConstructObstacle(int explosionTime, int loop, int audioPlayerNum)
     {
         triggerTime = explosionTime;
         loopLength = loop;
@@ -91,18 +90,6 @@ public class Explosion : Obstacle
     {
         Timer.TimerEventHandler -= TriggerObstacle;
         base.DestroyObstacle();
-    }
-
-
-    //Used to draw big red boxes over the area of the collider, useful for editing/creating maps. Simply set to true/false in the editor window or in the explosion container editor
-    private void OnDrawGizmos()
-    {
-        if (showBox == true)
-        {
-            Gizmos.color = Color.red;
-            BoxCollider2D boundary = GetComponent<BoxCollider2D>();
-            Gizmos.DrawCube(transform.position, boundary.size);
-        }
     }
 
     #region Explosion Actions
