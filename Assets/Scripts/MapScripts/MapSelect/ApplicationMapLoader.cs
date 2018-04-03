@@ -11,7 +11,6 @@ public class ApplicationMapLoader : MonoBehaviour
     void Start()
     {
         LinkedList<MapMetaObject> metas = GetMapMeta("./Assets/Maps");
-        Debug.Log(metas.ElementAt(1).fileLocation);
     }
 
     //Returns a list of all map metas

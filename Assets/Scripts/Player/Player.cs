@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BoundEngine;
+using System;
 
-//Class to handle all other Player things such as death animation and sounds
+//Class to handle all other Player Events such as respawning, death, etc
 public class Player : MonoBehaviour
 {
     public int flickerLength = 3;                                          //How long the player's sprite flickers after respawning
@@ -16,6 +17,13 @@ public class Player : MonoBehaviour
     private Animator animator;                                             //Reference to animator component
     private bool gameOver;                                                 //Checks if the game is over
     private bool isHit;                                                    //bool to only trigger one hit
+    private GameObject spawnPoint;                                         //reference to startpoint object
+
+
+    private void Awake()
+    {
+        spawnPoint = GetStart();
+    }
 
     //Initialize and get comopnenets
     private void Start()
@@ -38,21 +46,29 @@ public class Player : MonoBehaviour
             {
                 playerControl.StopMovement();
                 playerControl.DisableMovement();
-                GameManager.GameManagerInstance.LevelFinish();
+                GameManager.instance.LevelFinish();
             }
 
             //Only trigger one hit at a time
             if (!isHit && other.tag == "Lethal")
             {
                 isHit = true;
-                //If it's tagged with lethal, call death function
-                if (GameManager.GameManagerInstance.CheckGameOver() == false)
+
+                if (GameManager.instance != null)
                 {
-                    PlayerDeath();
+                    //If it's tagged with lethal, call death function
+                    if (GameManager.instance.CheckGameOver() == false)
+                    {
+                        PlayerDeath();
+                    }
+                    else
+                    {
+                        gameOver = true;
+                        PlayerDeath();
+                    }
                 }
                 else
                 {
-                    gameOver = true;
                     PlayerDeath();
                 }
             }
@@ -69,11 +85,12 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Respawn");
             try
             {
-                GameManager.GameManagerInstance.SpawnPlayer();
+                SpawnPlayer();
             }
-            catch
+            catch (System.Exception e)
             {
-                Debug.Log("You got hit");
+                Debug.LogException(e);
+                Debug.Log("Error: Could not respawn character");
             }
             collide.enabled = true;
             isHit = false;
@@ -90,6 +107,29 @@ public class Player : MonoBehaviour
         SoundManager.instance.PlayerSounds(deathAudio.clip);
         playerControl.joystick.HideJoystick();
         animator.SetTrigger("Death");
+    }
+
+    //Spawns player
+    public void SpawnPlayer()
+    {
+        transform.position = spawnPoint.transform.position;
+    }
+
+    //returns a reference to the spawnpoint object
+    GameObject GetStart()
+    {
+        GameObject spawn;
+        try
+        {
+            spawn = GameManager.instance.Spawn;
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+            Debug.Log("Unable to get spawn point from Game Manager. Attempting a search");
+            spawn = GameObject.FindGameObjectWithTag("SpawnPoint");
+        }
+        return spawn;
     }
 
     //Coroutine to flicker our player sprite a few times when respawned. At the end, reenables movement. 

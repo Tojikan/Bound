@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18395424768104342a91335ea0452ff1, type: 3}
+  m_Name: ExploderSet
+  m_EditorClassIdentifier: 
+  setName: ExplosionSet
+  obstaclePrefabs:
+  - {fileID: 114157098643722358, guid: 50d936348a9a9fe448187f317b75c390, type: 2}
+  - {fileID: 114455248443694342, guid: 00ceba8b04bc4e24c8b333834aa1c02e, type: 2}
+  animations:
+  - {fileID: 7400000, guid: eba082072d60ec642a36a8effc833b1f, type: 2}
+  - {fileID: 7400000, guid: 08c1001113704d84bb0cee227ca3e6e7, type: 2}

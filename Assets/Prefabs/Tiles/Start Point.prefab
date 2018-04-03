@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212616992074743346}
   m_Layer: 0
   m_Name: Start Point
-  m_TagString: Untagged
+  m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,9 +33,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1976319549312418}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.74, y: 1.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.18, y: -0.92, z: 0}
+  m_LocalScale: {x: 1.0177305, y: 1.0177305, z: 1.0177305}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

@@ -14,7 +14,7 @@ public class TopDownCircleCollider2D : MonoBehaviour
 {
     public LayerMask targetLayer;                                                   //Select the layer we are checking colissions on
     public float overlapRadius = 10f;                                               //Sets the distance at which we are detecting other colliders from
-    public GameObject player;                                                       //Drag player parent object
+    public GameObject player;                                                       //Drag player parent object here so we can stop it if collision detected.
 
     private Collider2D[] neighbors;                                                 //Array to store colliders that we detect
     private int maxNeighbors = 16;                                                  //initialize array value
@@ -49,10 +49,7 @@ public class TopDownCircleCollider2D : MonoBehaviour
                 //if so, calculate the displacement and then change our position
                 Vector3 displace = colDist.normal * colDist.distance;
                 player.transform.position += displace;
-            }
-           
+            }  
         }
-
-        //returns false if no collision detected
     }
 }

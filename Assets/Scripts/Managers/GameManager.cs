@@ -30,10 +30,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager GameManagerInstance = null;                   //Make the game manager a singleton
-    public PlayerController playControl;                                    //reference to our player controller to set movement 
-    public GameObject obstacles;                                            //reference to our obstacle container object;
-    public GameObject Player;                                               //Player Game Object
+    public static GameManager instance = null;                              //Make the game manager a singleton 
+    public Player player;                                                   //Player Game Object
     public GameObject Spawn;                                                //Spawn point
     public GameObject endImage;                                             //reference to our end screen
     public int playerLives = 50;                                            //Int for player lives
@@ -42,33 +40,34 @@ public class GameManager : MonoBehaviour
     public BoundsInt gameArea;                                              //our game area to play in
     public static bool checkInPlay;                                         //static bool to inform other other classes if in play. Such as pausemenu
     public static float gameSpeed = 1.0f;                                   //Game speed
-    public CurrentMapSelection selectedMap;                                 //Drag reference to the map scriptable object here
+    public CurrentMapSelection selectedMap;                                 //Drag reference to the map scriptable object here. This is loaded with a full map in the load map sector
 
     [HideInInspector] public int endLevel;                                  //Last level
     [HideInInspector] public int currentLevel;                              //Current Level
 
     private bool levelStart;                                                //Bool check for start or end of the level for different transitions/dialogue
     private MapFile currentMap;                                             //Variable to store our map
-    private TileSet tileSet;                                                //reference to our tileset
-    private RenderMap mapRenderer;                                          //reference to our renderMap Component
-    private ObstacleSet obstacleSet;                                        //reference to our explosion set
-    private ObstacleManager obstacleManager;                                //reference to our obstacle manager
-
+    private TileSet tileSet;                                                //Set by the loadmap methods and tells us which tiles to load when interpretting a map file
+    private RenderMap mapRenderer;                                          //reference to our renderMap Component to actually build the map
+    private ObstacleSet obstacleSet;                                        //Read from map file to tell us which obstacles to load 
+    private EventTriggerSet triggerSet;                                     //Read from map file to get us a set to interpret the map data
+    private MapObjectManager objectManager;                                 //Get the objectManager component on the game object
+    private PlayerController playControl;                                   //Variable to store the reference to Player's PlayerController
 
 
     #region initial setup
     private void Awake()
     {
         //Check to make sure this is the only instance of Game Manager
-        if (GameManagerInstance == null)
-            GameManagerInstance = this;
-        else if (GameManagerInstance != this)
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
             Destroy(gameObject);
 
         //Get our components
-        playControl = Player.GetComponent<PlayerController>();
+        playControl = player.GetComponent<PlayerController>();
         mapRenderer = GetComponent<RenderMap>();
-        obstacleManager = obstacles.GetComponent<ObstacleManager>();
+        objectManager = GetComponent<MapObjectManager>();
 
         //initialize bool
         checkInPlay = false;
@@ -88,16 +87,15 @@ public class GameManager : MonoBehaviour
         //initial level set to 0
         currentLevel = 0;
 
-        //Load from File
-        try
+        //Load the tile and map object sets to interpret the map data 
+        tileSet = GetTileSet(currentMap.tileset);
+        obstacleSet = GetObstacleSet(currentMap.obstacleSet);
+        triggerSet = GetTriggerSet(currentMap.eventTriggerSet);
+
+        //Check if tileset exists. If not, exit.
+        if (tileSet == null)
         {
-            tileSet = GetTileSet(currentMap.tileset);
-            obstacleSet = GetObstacleSet(currentMap.obstacleSet);
-        }
-        catch (Exception e)
-        {
-            Debug.LogException(e);
-            Debug.Log("Unable to load map data");
+            Debug.LogError("Error: No tileset detected. Exiting...");
             ExitBackToMenu();
         }
 
@@ -133,16 +131,18 @@ public class GameManager : MonoBehaviour
             mapRenderer.SetBeacons(currentMap.levels[level].startPoint, currentMap.levels[level].endPoint);
             //Creates our obstacles
             Timer.instance.StopTimer();
-            obstacleManager.CreateExploders(currentMap.levels[level].obstacles, obstacleSet);
+            //Creates the obstacles and event Triggers
+            objectManager.CreateObstacles(currentMap.levels[level].obstacles, obstacleSet);
+            objectManager.CreateEventTriggers(currentMap.levels[level].objects, triggerSet);
             //Moves our player to the start point
             SpawnPlayer();
             //Set music from file
             SoundManager.instance.SetMusic(currentMap.levels[level].music);
             //Bool to check if we are at the start of a new level
             levelStart = true;
-
+            //Update the level name
             SetLevelTitle();
-
+            //Begins the fade-in
             TransitionManager.instance.Fade(true);
             Debug.Log("Load Successful");
             //Starts level Dialogue
@@ -172,17 +172,7 @@ public class GameManager : MonoBehaviour
         LoadLevel(currentLevel);
     }
 
-
-    //Returns a reference to a tileset. Takes in the name of a tileset.
-    public TileSet GetTileSet(string path)
-    {
-        //Sets our tileset path by getting the info from the mapfile and setting a path
-        UnityEngine.Object temp = Resources.Load("Tiles/Assets/" + path);
-        if (!temp)
-            Debug.Log("Tileset could not be loaded");
-        return (TileSet)temp;
-    }
-
+    //Sets the title of the level in the UI Bar
     private void SetLevelTitle()
     {
         string levelTitle;
@@ -195,19 +185,40 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Level Title found");
             levelTitle = '"' + currentMap.levels[currentLevel].levelName + '"';
             UIManager.instance.SetLevelTitle(levelTitle);
         }
     }
 
-    //Returns a reference to explosion set. Takes in the name of the set
-    public ObstacleSet GetObstacleSet(string path)
+    //Returns a reference to obstacle set. Takes in the name of the set
+    private ObstacleSet GetObstacleSet(string path)
     {
         //Sets our tileset path by getting the info from the mapfile and setting a path
-        UnityEngine.Object temp = Resources.Load("Obstacles/" + path);
+        UnityEngine.Object temp = Resources.Load("MapObjects/" + path);
         if (!temp)
-            Debug.Log("Explosionset could not be loaded!");
+            Debug.LogError("Obstacle Set could not be loaded!");
         return (ObstacleSet)temp;
+    }
+
+    //Returns a reference to a tileset. Takes in the name of a tileset.
+    private TileSet GetTileSet(string path)
+    {
+        //Sets our tileset path by getting the info from the mapfile and setting a path
+        UnityEngine.Object temp = Resources.Load("Tiles/" + path);
+        if (!temp)
+            Debug.LogError("Tileset could not be loaded");
+        return (TileSet)temp;
+    }
+
+    //Returns a reference to a trigger set. Takes in the name of a set.
+    private EventTriggerSet GetTriggerSet(string path)
+    {
+        //Sets our tileset path by getting the info from the mapfile and setting a path
+        UnityEngine.Object temp = Resources.Load("MapObjects/" + path);
+        if (!temp)
+            Debug.LogError("Trigger could not be loaded!");
+        return (EventTriggerSet)temp;
     }
 
     //Returns the map data from the map scriptable object
@@ -226,7 +237,7 @@ public class GameManager : MonoBehaviour
         //Stops music and timer and clears the obstacles
         SoundManager.instance.StopMusic();
         Timer.instance.StopTimer();
-        obstacleManager.ClearObstacles();
+        objectManager.ClearObstacles();
 
         //Tells StartDialogue to play the end dialogue not the start dialogue
         levelStart = false;
@@ -338,7 +349,7 @@ public class GameManager : MonoBehaviour
     //Moves player to the spawn point
     public void SpawnPlayer()
     {
-        Player.transform.position = Spawn.transform.position;
+        player.SpawnPlayer();
     }
 
 
@@ -346,8 +357,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         endImage.SetActive(true);
-        obstacleManager.ClearObstacles();
-        Destroy(GameManagerInstance);
+        objectManager.ClearObstacles();
+        Destroy(instance);
     }
     #endregion
 
@@ -363,7 +374,7 @@ public class GameManager : MonoBehaviour
     {
         SoundManager.instance.StopMusic();
         Timer.instance.StopTimer();
-        obstacleManager.ClearObstacles();
+        objectManager.ClearObstacles();
     }
 
 #endif

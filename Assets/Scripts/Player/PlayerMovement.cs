@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//Class that handles movement for the player object
-
-
+//Class that handles movement for the player object. Responsible for actually moving the character
 public class PlayerMovement : MonoBehaviour
 {
     public GameObject colliderChild;                                                //Drag reference to the child object that contains the collider for wall detection
@@ -13,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float distanceTo = Mathf.Epsilon;                                        //distance to target object. Player stops as soon as we enter this distance
     private float speedFraction = 1.0f;                                             //Reduce move speed by a fraction based on Joystick magnitude        
     private Animator anim;                                                          //Animator variable to control player animations
-    private SpriteRenderer spriterender;                                            //Spriterender to flip character on X axis when moving a negative X direction
+   //private SpriteRenderer spriterender;                                           //Spriterender to flip character on X axis when moving a negative X direction
     private Vector2 newPosition;                                                    //Storage variable for the movement vector towards our target destination
     private Vector2 targetPosition;                                                 //Storage variable for the target position we're going for
     private TopDownCircleCollider2D col;                                            //variable for our Collision detection class
@@ -32,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake ()
     {
         anim = GetComponent<Animator>();
-        spriterender = GetComponent<SpriteRenderer>();
+        //spriterender = GetComponent<SpriteRenderer>();
         col = colliderChild.GetComponent<TopDownCircleCollider2D>();
 
 	}
@@ -113,12 +111,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //Sets our player animation. Called every frame after we make our movements
-    //Relies on getting a normalized vector. Change animation every change of 0.25 of the y direction of our movement
+    //Sets our player animation. Called every frame after we make our movement.
+    //Unity Blendtree handles animation changes. Just pass in the x/y normalized coordinates to the BlendTree
     private void SetAnimation(float x, float y)
     {
         anim.SetFloat("normalX", x);
         anim.SetFloat("normalY", y);
+
+        //Below tells us whether to go into idle animation or walking animation
         if (!isMoving)
         {
             anim.SetBool("Moving", false);

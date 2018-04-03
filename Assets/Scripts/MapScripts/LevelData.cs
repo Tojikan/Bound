@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//Public struct to hold tile information for each level
+//Struct that holds all tiles and map object data for each level. A mapfile contains a list of this
 namespace BoundMaps
 {
 
@@ -18,7 +18,8 @@ namespace BoundMaps
         //List of obstacles and their data
         public List<ObstacleData> obstacles = new List<ObstacleData>();
 
-        public List<MapObjectData> objects = new List<MapObjectData>();
+        //List of EventTrigger Data
+        public List<EventTriggerData> objects = new List<EventTriggerData>();
 
         //Stores our start and end points. 
         public Vector2 startPoint;
@@ -43,6 +44,7 @@ namespace BoundMaps
             startPoint = start;
             endPoint = end;
             obstacles = bombs;
+            objects = null;
         }
 
         //Constructor with audiplayer select
@@ -54,6 +56,7 @@ namespace BoundMaps
             endPoint = end;
             obstacles = bombs;
             music = song;
+            objects = null;
         }
 
         //Constructor with start dial
@@ -66,6 +69,7 @@ namespace BoundMaps
             obstacles = bombs;
             music = song;
             startDialogue = startDial;
+            objects = null;
         }
 
         //Constructor with end dial
@@ -79,6 +83,7 @@ namespace BoundMaps
             music = song;
             startDialogue = startDial;
             endDialogue = endDial;
+            objects = null;
         }
 
 
@@ -94,10 +99,11 @@ namespace BoundMaps
             startDialogue = startDial;
             endDialogue = endDial;
             levelName = title;
+            objects = null;
         }
 
         //Constructor with map objects
-        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song, Dialogue startDial, Dialogue endDial, string title, List<MapObjectData> objects)
+        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song, Dialogue startDial, Dialogue endDial, string title, List<EventTriggerData> objects)
         {
             groundTiles = ground;
             wallTiles = wall;

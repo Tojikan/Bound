@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1096225449971644}
+  m_IsPrefabParent: 1
+--- !u!1 &1096225449971644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4828399223530448}
+  - component: {fileID: 114904459932761924}
+  - component: {fileID: 114521831646013438}
+  - component: {fileID: 114791563358521736}
+  - component: {fileID: 114295939449331362}
+  m_Layer: 0
+  m_Name: Save_Load Map 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4828399223530448
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096225449971644}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.17389582, y: -0.6718742, z: 0.13671875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114295939449331362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096225449971644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eedd54fe70b7224f9f720a2a3beda72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowBoxes: 0
+--- !u!114 &114521831646013438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096225449971644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd87d9988f1a39429364ec878d0e964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114791563358521736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096225449971644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae7fd0d144eb7744690918d49c833c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer: {fileID: 0}
+  wallLayer: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  finishPoint: {fileID: 0}
+--- !u!114 &114904459932761924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096225449971644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b796dad73fe4f4bbc7d22fbad2b602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelNumber: 0
+  mapName: SpawnPoint3
+  levelName: SpawnPoint
+  tileSet: {fileID: 11400000, guid: 8d7e0a1d2db17f8439d7c938e8b78af8, type: 2}
+  explosionSet: {fileID: 11400000, guid: 06e82d4659b841c4fb61013244bd76e3, type: 2}
+  animationSet: {fileID: 11400000, guid: 1c06cc859db835f45bf017345afe73bf, type: 2}
+  eventSet: {fileID: 0}
+  groundLayer: {fileID: 0}
+  wallLayer: {fileID: 0}
+  mapObjectsData: {fileID: 0}
+  explosionContainer: {fileID: 0}
+  objectContainer: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  finishPoint: {fileID: 0}
+  dialogueObject: {fileID: 0}
+  GameArea:
+    m_Position: {x: -16, y: -11, z: 0}
+    m_Size: {x: 32, y: 22, z: 1}
+  containerTransform: {fileID: 0}
+  FileToLoad: C:/Users/Andrew Qian/Documents/GitHub/Bound/Assets/Maps/Prototype7.bound
+  selectMusic: 1

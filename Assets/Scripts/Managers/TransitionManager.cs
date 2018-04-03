@@ -39,7 +39,7 @@ namespace BoundEngine
             string text = "Level" + '$' + level;
             text = text.Replace('$', '\n');
             screenText.text = text;
-            //Trigger animation
+            //EventTrigger animation
             animator.SetTrigger("LevelTransition");
         }
 
@@ -118,19 +118,19 @@ namespace BoundEngine
         //Calls back to GameManager to exit
         private void ExitBackToMenu()
         {
-            GameManager.GameManagerInstance.ExitBackToMenu();
+            GameManager.instance.ExitBackToMenu();
         }
 
         //Calls back to GameManager to start the current level
         public void StartPlaying()
         {
-            GameManager.GameManagerInstance.StartLevel();
+            GameManager.instance.StartLevel();
         }
 
         //Calls back to GameManager to load the next level
         public void NextLevel()
         {
-            GameManager.GameManagerInstance.LoadNextLevel();
+            GameManager.instance.LoadNextLevel();
         }
 
         //Play the start sound for the animation at a random pitch. Called in an animation event
