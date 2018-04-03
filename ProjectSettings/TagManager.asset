@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Lethal
+  - RM_Canvas
+  - RM_Background
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

@@ -3,9 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BoundMaps;
+using System.Linq;
 
 //Reads from map directory
-public class ApplicationMapLoader : MonoBehaviour {
+public class ApplicationMapLoader : MonoBehaviour
+{
+    void Start()
+    {
+        LinkedList<MapMetaObject> metas = GetMapMeta("./Assets/Maps");
+        Debug.Log(metas.ElementAt(1).fileLocation);
+    }
 
     //Returns a list of all map metas
 	public LinkedList<MapMetaObject> GetMapMeta (string directory) {

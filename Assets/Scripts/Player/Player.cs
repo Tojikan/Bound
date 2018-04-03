@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float flickerTime = 1f;                                         //Time between flickers
     private AudioSource deathAudio;                                        //drag our player death audio here
     private PlayerController playerControl;                                //Player controller component 
-    private CircleCollider2D collide;                                      //reference to our collider
+    private Collider2D collide;                                            //reference to the collider that detects for obstacle collisions
     private SpriteRenderer spriteRender;                                   //reference to sprite render component
     private Player player;                                                 //reference to player component
     private Animator animator;                                             //Reference to animator component
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     {
         playerControl = GetComponent<PlayerController>();
         deathAudio = GetComponent<AudioSource>();
-        collide = GetComponent<CircleCollider2D>();
+        collide = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
         gameOver = false;
