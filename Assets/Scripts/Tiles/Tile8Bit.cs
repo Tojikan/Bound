@@ -7,13 +7,13 @@ using UnityEngine.Tilemaps;
 //8bit bitmasking scheme. Need at least 48 sprites mapped out to 256 values (some duplicating, use the array to match sprites)
 
 //Create a new asset via AssetMenu. Former code to create a new asset is unnecessary and Unity handles new asset creation under the hood
-[CreateAssetMenu(fileName = "NewWaterTile", menuName = "Tiles/TestTileSet/WaterTile", order = 1)]
-public class WaterTile : Tile
+[CreateAssetMenu(fileName = "NewTile8", menuName = "Tiles/Bitmasked Tiles/Tile8Bit", order = 1)]
+public class Tile8Bit : Tile
 {
 
     //Adds a field to the watertile asset
     [SerializeField]
-    private Sprite[] waterSprites;
+    private Sprite[] tileSprites;
 
 
     //Sets the size of our tile array
@@ -88,7 +88,7 @@ public class WaterTile : Tile
                 result = 46;
             if (randomVal >= 75)
                 result = 48;
-            tileData.sprite = waterSprites[result];
+            tileData.sprite = tileSprites[result];
             return;
         }
 
@@ -101,7 +101,7 @@ public class WaterTile : Tile
             tileNum = tempNum;
         }
 
-        tileData.sprite = waterSprites[tileNum];
+        tileData.sprite = tileSprites[tileNum];
     }
 
     //Array to store bitmask values. Match the index number to the index in the sprite array. Make sure new tilesets are ordered in the same way

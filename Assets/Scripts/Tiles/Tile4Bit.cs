@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-//GrassTile ScriptableObject to create new Grass Tiles and set the sprite accordingly
+//Tile4Bit ScriptableObject to create new Grass Tiles and set the sprite accordingly
 //Based on a 4bit Bitmapping scheme - minimum 15 tiles needed (2 more for extra decorations)
 //Careful not to mess up the loops. This directlty modifies the Unity Editor, so you can freeze up the Editor if you don't do the loops right
 
 
 //Create a new asset via AssetMenu. Former code to create a new asset is unnecessary and Unity handles new asset creation under the hood
-[CreateAssetMenu(fileName = "NewGrassTile", menuName = "Tiles/TestTileSet/GrassTile", order = 1)]
-public class GrassTile : Tile
+[CreateAssetMenu(fileName = "NewTile4", menuName = "Tiles/Bitmasked Tiles/Tile4Bit", order = 1)]
+public class Tile4Bit : Tile
 {
 
     //Adds an array field for us to store all our sprites
     [SerializeField]
-    private Sprite[] grassSprites;
+    private Sprite[] tileSprites;
 
     //Function to check surrounding tiles. Checks to see if they are grass tiles and if so, refreshes the tile
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
@@ -68,12 +68,12 @@ public class GrassTile : Tile
         if (bitmask == 15)
         {
             int randomVal = Random.Range(15, 18);
-            tileData.sprite = grassSprites[randomVal];
+            tileData.sprite = tileSprites[randomVal];
             return;
         }
 
         //Set the sprite of our tile according to the bitmask value
-        tileData.sprite = grassSprites[bitmask];
+        tileData.sprite = tileSprites[bitmask];
 
     }
 

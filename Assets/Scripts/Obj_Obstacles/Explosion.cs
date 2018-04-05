@@ -3,34 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using BoundEngine;
 
+//Basic obstacle that triggers an explosion at its location. Colliders and actions are set via animation events 
 public class Explosion : Obstacle
 {
     public AnimationClip explosionType;
     private SpriteRenderer sprite;
     private BoxCollider2D collide;
-    private AudioSource audioSource;                                        //Reference to audiosource for explosion sFx
     private Animator animate;                                               //Reference our animator component
 
     //Enum to select which Audio player to play from
-    public enum Audioplayers
-    {
-        sFxPlayerOne,
-        sFxPlayerTwo,
-        sFxPlayerThree,
-        sFxPlayerFour,
-        sFxPlayerFive
-    }
-    public Audioplayers SelectSFXPlayer = Audioplayers.sFxPlayerOne;
 
     //Gets our references and sets our audio player
-    private void Awake()
+    protected override void Awake()
     {
         collide = GetComponent<BoxCollider2D>();
         animate = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-        audioSource = GetComponent<AudioSource>();
-        EnableObstacle();
-        Timer.TimerEventHandler += TriggerObstacle;
+        base.Awake();
     }
 
     #region Constructor classes
@@ -51,46 +40,6 @@ public class Explosion : Obstacle
         SelectSFXPlayer = (Audioplayers)audioPlayerNum;
     }
     #endregion
-
-
-    //Switches audio players based on which Audio player is selected. Defaults to AudioPlayer one. 
-    public void PlayAudio()
-    {
-        switch ((int)SelectSFXPlayer)
-        {
-            case 1:
-                SoundManager.instance.AudioPlayerOne(audioSource.clip);
-                break;
-            case 2:
-                SoundManager.instance.AudioPlayerTwo(audioSource.clip);
-                break;
-            case 3:
-                SoundManager.instance.AudioPlayerThree(audioSource.clip);
-                break;
-            case 4:
-                SoundManager.instance.AudioPlayerFour(audioSource.clip);
-                break;
-            case 5:
-                SoundManager.instance.AudioPlayerFive(audioSource.clip);
-                break;
-            default:
-                SoundManager.instance.AudioPlayerOne(audioSource.clip);
-                break;
-        }
-    }
-
-    //Remove from event when disabled
-    private void OnDisable()
-    {
-        Timer.TimerEventHandler -= TriggerObstacle;
-    }
-
-    //Redundancy to remove from event and then destroy obstacle
-    public override void DestroyObstacle()
-    {
-        Timer.TimerEventHandler -= TriggerObstacle;
-        base.DestroyObstacle();
-    }
 
     #region Explosion Actions
     //Triggers our exploder to explode
