@@ -15,11 +15,11 @@ namespace BoundEditor
 
         private PlayerController playercontrols;            //Reference to our player controls from the dragged player game object
         private Transform thisTransform;                    //Reference to this transform
-        private List<Explosion> exploders;                  //List of all explodderobstacles that are a child of the game object of this script
+        private List<Obstacle> obstacles;                  //List of all explodderobstacles that are a child of the game object of this script
 
         void Start()
         {
-            exploders = new List<Explosion>();                                  //new exploder list 
+            obstacles = new List<Obstacle>();                                  //new exploder list 
             thisTransform = GetComponent<Transform>();                          //Get this transform
             playercontrols = player.GetComponent<PlayerController>();           //Get the player controller of our player object
             GetAllExploderComponents();                                         //Grab our exploder scripts
@@ -42,8 +42,8 @@ namespace BoundEditor
             foreach (Transform child in thisTransform)
             {
                 //Get the script and add it to our list
-                Explosion exploder = child.GetComponent<Explosion>();
-                exploders.Add(exploder);
+                Obstacle obstacle = child.GetComponent<Obstacle>();
+                obstacles.Add(obstacle);
             }
         }
 
@@ -53,17 +53,17 @@ namespace BoundEditor
             //Check if bool is enabled
             if (ShowBoxes)
             {
-                foreach (Explosion bomb in exploders)
+                foreach (Obstacle obstacle in obstacles)
                 {
-                    bomb.showBox = true;
+                    obstacle.showBox = true;
                 }
             }
             //Make sure the box doesn't show if it's not true
             else
             {
-                foreach (Explosion bomb in exploders)
+                foreach (Obstacle obstacle in obstacles)
                 {
-                    bomb.showBox = false;
+                    obstacle.showBox = false;
                 }
             }
         }

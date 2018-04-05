@@ -76,7 +76,11 @@ namespace BoundEngine
         }
 
         //virtual function for each obstacle. Triggers obstacle at the time. Takes in a parameter of current time
-        public virtual void TriggerObstacle(int timerTime) { }
+        public virtual void TriggerObstacle(int timerTime)
+        {
+            if (CheckZero() == false)
+                DestroyObstacle();
+        }
 
         //Set the bool and subscribe to the timer event
         public virtual void EnableObstacle()

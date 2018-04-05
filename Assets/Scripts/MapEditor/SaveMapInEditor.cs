@@ -267,9 +267,9 @@ namespace BoundEditor
                 Explosion childData = child.GetComponent<Explosion>();
 
 
-                //Matches the explosion animation to the explosion animation array and gets the index
-                //Explosion animation array should be in the same order as our explosion set array
-                int type = Array.IndexOf(explosionSet.animations, childData.explosionType);
+                //Matches the sprite to the sprite array and gets the index
+                //make sure the sprite matches the sprite in the obstacleset sprite array
+                int type = Array.IndexOf(explosionSet.obstacleSprites, childData.GetComponent<SpriteRenderer>().sprite);
 
                 //Creates new Explosion Data and initializes it
                 ObstacleData newData = new ObstacleData(child.transform.position, childData.loopLength, childData.triggerTime, type, (int)childData.SelectSFXPlayer);

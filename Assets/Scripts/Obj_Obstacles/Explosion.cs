@@ -6,9 +6,8 @@ using BoundEngine;
 //Basic obstacle that triggers an explosion at its location. Colliders and actions are set via animation events 
 public class Explosion : Obstacle
 {
-    public AnimationClip explosionType;
-    private SpriteRenderer sprite;
-    private BoxCollider2D collide;
+    private SpriteRenderer sprite;                                          //sprite renderer component
+    private BoxCollider2D collide;                                          //box collider component
     private Animator animate;                                               //Reference our animator component
 
     //Enum to select which Audio player to play from
@@ -43,12 +42,12 @@ public class Explosion : Obstacle
 
     #region Explosion Actions
     //Triggers our exploder to explode
-    public void Explode()
+    private void Explode()
     {
         //Re-enable the sprite renderer
         sprite.enabled = true;
         //Sets the animator to replay the animation from the beginning
-        animate.Play(explosionType.name, -1, 0);
+        animate.Play(animate.name, -1, 0);
         //Plays our explosion sound based on which audio player is selected
         PlayAudio();
     }
@@ -75,8 +74,7 @@ public class Explosion : Obstacle
     //EventTrigger function. Takes in a time parameter. 
     public override void TriggerObstacle(int timerTime)
     {
-        if (CheckZero() == false)
-            DestroyObstacle();
+        base.TriggerObstacle(timerTime);
 
         int counter = timerTime % loopLength;
 

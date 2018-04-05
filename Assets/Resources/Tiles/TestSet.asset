@@ -15,3 +15,5 @@ MonoBehaviour:
   tilesArray:
   - {fileID: 11400000, guid: 9f92ab52fe630e64797b77d166a7e7c1, type: 2}
   - {fileID: 11400000, guid: 37cec72dc510f274dbf0bd6f5167ed69, type: 2}
+  - {fileID: 11400000, guid: e1ea64d202fa5344998c2f75eb3be05a, type: 2}
+  - {fileID: 11400000, guid: e3676b2b192ea0c44baa83a32c31a48e, type: 2}

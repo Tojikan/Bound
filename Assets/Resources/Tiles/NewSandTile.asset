@@ -33,4 +33,22 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  grassSprites: []
+  tileSprites:
+  - {fileID: 21300000, guid: e76bd8efc7e19e04098e9d84f06d90cf, type: 3}
+  - {fileID: 21300000, guid: edd8e1f1235cd674abe4d89e2de61e38, type: 3}
+  - {fileID: 21300000, guid: 6f3f03c80e965b9449957b9a7875323e, type: 3}
+  - {fileID: 21300000, guid: 8147972a57762644d956d0775bf0d793, type: 3}
+  - {fileID: 21300000, guid: aaf841c6ff200cf4e9d16d0b00d8ee8c, type: 3}
+  - {fileID: 21300000, guid: 049ee65db2b40aa4ab50c5a90d4fb0d8, type: 3}
+  - {fileID: 21300000, guid: 1355733ce602bcb448c575024fffab96, type: 3}
+  - {fileID: 21300000, guid: 826d76d18dc02b049aa5ff3ed5ceda6c, type: 3}
+  - {fileID: 21300000, guid: 7b8deda732fb5984eb59a32da2119e5a, type: 3}
+  - {fileID: 21300000, guid: c5db72f65512eb94bb144371b1e0ce76, type: 3}
+  - {fileID: 21300000, guid: b658ab03931fa574386c75d2e0f99d63, type: 3}
+  - {fileID: 21300000, guid: 905d0ebfb13984542957988056a9bb28, type: 3}
+  - {fileID: 21300000, guid: 3ea31545a8b983844bd7934263ec7e39, type: 3}
+  - {fileID: 21300000, guid: 7ee4dbd27a612a4439a264d9488b8aed, type: 3}
+  - {fileID: 21300000, guid: e7a967872c5e5f74d8154103a18f3399, type: 3}
+  - {fileID: 21300000, guid: f97c3353d922b97448941b429af4b57a, type: 3}
+  - {fileID: 21300000, guid: 2ac22933b1eb02844bf2616d03f3e910, type: 3}
+  - {fileID: 21300000, guid: 19aa1ae85365f3a488668f36db21aae2, type: 3}

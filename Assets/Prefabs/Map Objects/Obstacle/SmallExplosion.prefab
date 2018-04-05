@@ -202,7 +202,6 @@ MonoBehaviour:
   triggerTime: 50
   loopLength: 100
   isEnabled: 0
-  explosionType: {fileID: 7400000, guid: 08c1001113704d84bb0cee227ca3e6e7, type: 2}
   SelectSFXPlayer: 1
 --- !u!212 &212438439587022422
 SpriteRenderer:
@@ -238,7 +237,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300008, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

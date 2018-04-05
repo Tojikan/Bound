@@ -33,7 +33,7 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  grassSprites:
+  tileSprites:
   - {fileID: 21300000, guid: 88cb27465d15c994a8c966f8cadd75e4, type: 3}
   - {fileID: 21300000, guid: 451283c49699aac46bf5520b7f1249bf, type: 3}
   - {fileID: 21300000, guid: 45ff7eb6c303e914bb0f726590ce6780, type: 3}

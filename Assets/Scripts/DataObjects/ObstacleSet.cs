@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New ObstacleSet", menuName = "Data Objects/Sets/ObstacleSet")]
 public class ObstacleSet : ScriptableObject
 {
-    public string setName = "New ObstacleSet";
-    public Obstacle[] obstaclePrefabs;
-    public AnimationClip[] animations;
+    public string setName = "New ObstacleSet";                      //Set name string. Currently unused
+    public Obstacle[] obstaclePrefabs;                              //Stores the prefab
+    public Sprite[] obstacleSprites;                                //Stores the sprites of the obstacle in order to match sprites to get array index later for loading/saving
 }
