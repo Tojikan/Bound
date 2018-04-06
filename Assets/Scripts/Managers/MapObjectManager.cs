@@ -27,6 +27,9 @@ namespace BoundEngine
                 //Creates an exploder prefab at the specified position in the file
                 GameObject newObstacle = Instantiate(set.obstaclePrefabs[data.obstacleType].gameObject, data.position, transform.rotation);
 
+                //Replace the clone part so we don't have problems with triggering the animator state
+                newObstacle.name = newObstacle.name.Replace("(Clone)", "");
+
                 //Get a reference to the exploder component of our newly created prefab
                 Obstacle obstacle = newObstacle.GetComponent<Obstacle>();    
 
@@ -111,6 +114,7 @@ namespace BoundEngine
             }
         }
 
+        //Remove all obstacles and triggers
         public void ClearAll()
         {
             ClearObstacles();

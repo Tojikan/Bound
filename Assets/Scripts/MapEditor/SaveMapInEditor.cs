@@ -207,7 +207,7 @@ namespace BoundEditor
             {
                 EventTrigger childData = child.gameObject.GetComponent<EventTrigger>();
                 //Get an int by referencing child's sprite with the eventset
-                int type = Array.IndexOf(eventSet.sprites, childData.eventSprite);
+                int type = Array.IndexOf(eventSet.sprites, child.GetComponent<SpriteRenderer>().sprite);
                 //get the start state
                 bool state = childData.startsEnabled;
                 //Create new event trigger data and add it to the list
@@ -263,13 +263,12 @@ namespace BoundEditor
             //Iterates over each child within our container
             foreach (Transform child in containerTransform)
             {
-                //Get a reference to the exploder script
-                Explosion childData = child.GetComponent<Explosion>();
-
+                //Get a reference to the obstacle
+                Obstacle childData = child.GetComponent<Obstacle>();
 
                 //Matches the sprite to the sprite array and gets the index
                 //make sure the sprite matches the sprite in the obstacleset sprite array
-                int type = Array.IndexOf(explosionSet.obstacleSprites, childData.GetComponent<SpriteRenderer>().sprite);
+                int type = Array.IndexOf(explosionSet.obstacleSprites, child.GetComponent<SpriteRenderer>().sprite);
 
                 //Creates new Explosion Data and initializes it
                 ObstacleData newData = new ObstacleData(child.transform.position, childData.loopLength, childData.triggerTime, type, (int)childData.SelectSFXPlayer);

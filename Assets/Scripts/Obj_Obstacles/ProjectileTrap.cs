@@ -4,23 +4,25 @@ using UnityEngine;
 using BoundEngine;
 using System;
 
+//Projectile obstacle type. Fires a projectile from this position. The actual projectile is a child object attached to this. This just controls the shooting aspect
 public class ProjectileTrap : Obstacle
 {
-    private Projectile c_projectile;
-    public enum ProjectileDirection
+    private Projectile c_projectile;                                        //Reference to the projectile child object
+    public enum ProjectileDirection                                         //This Enum controls which direction the projectile flies towards
     {
         Down,
         Left,
         Up,
         Right,
     }
-    public ProjectileDirection direction = ProjectileDirection.Down;
+    public ProjectileDirection direction = ProjectileDirection.Down;       //Default is down
 
 
     private void Start()
     {
         Transform trapTransform = GetComponent<Transform>();
 
+        //Get the reference to the child's projectile component
         foreach (Transform child in trapTransform)
         {
             try
@@ -29,11 +31,13 @@ public class ProjectileTrap : Obstacle
             }
             catch (Exception e)
             {
+                //If we can't get the projectile, destroy this instead. 
                 Debug.LogError(e);
                 Debug.LogError("Unable to get projectile component");
                 DestroyObstacle();
                 return;
             }
+            //Set the original startposition and rotation of the projectile accordingly
             c_projectile.StartPosition = transform.position;
             c_projectile.Rotation = ((int)direction);
         }
@@ -63,14 +67,14 @@ public class ProjectileTrap : Obstacle
 
     #region Trap Actions
 
+    //Fires a projectile and plays a sound
     private void FireProjectile()
     {
-        if (!c_projectile.IsFiring)
-            c_projectile.IsFiring = true;
-        c_projectile.ResetPosition();
+        c_projectile.IsFiring = true;
         PlayAudio();
     }
 
+    //Plays the fire projectile action when the triggertime is hit. 
     public override void TriggerObstacle(int timerTime)
     {
         base.TriggerObstacle(timerTime);

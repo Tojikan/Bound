@@ -11,7 +11,6 @@ namespace BoundEngine
         private Vector2 position;                       //Store position
         public bool startsEnabled;                      //Lets us know if enabled by default
         public bool showBox;                            //Allows us to draw a blue box in Editor and scene views
-        public Sprite eventSprite;                      //Drag a reference to this sprite when setting up a new EventTrigger prefab. Needed for referencing an array index for saving/loading
         private BoxCollider2D collide;                  //Collider component
 
 
