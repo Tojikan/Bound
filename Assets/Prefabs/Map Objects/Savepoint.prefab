@@ -101,7 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startsEnabled: 1
   showBox: 0
-  eventSprite: {fileID: 0}
   soundEffect: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
 --- !u!212 &212674148619866896
 SpriteRenderer:

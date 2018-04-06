@@ -32,9 +32,13 @@ namespace BoundEditor
     [ExecuteInEditMode]
     public class SaveMapInEditor : MonoBehaviour
     {
-        public int levelNumber;                                                             //Current Level we are working on                           
-        public string mapName;                                                              //Name of the map to save
+        public string mapName;                                                              //Name of map to save
+        [TextArea(2,5)]
+        public string mapDescrip;                                                           //Map description text box
+        public Sprite mapImage;                                                             //Map Image. Make sure you only drag from the resources folder or else it won't work
+        public int levelNumber;                                                             //Current Level we are working on
         public string levelName;                                                            //name of the level
+        private string savePath = "./Assets/Maps/";                                         //string to the maps folder
         public TileSet tileSet;                                                             //Tileset scriptable object which contains an array holding references to our scriptable tiles. Lets us store the map tiles as ints to save space
         public ObstacleSet explosionSet;                                                    //Explosion set to store references to our exploder prefabs
         public ExploderAnimationSet animationSet;                                           //Animation set to store references to our various explosion animations. Used to get an index number for each exploder. Match the animations with the explosionSet prefab animations
@@ -46,7 +50,7 @@ namespace BoundEditor
         public GameObject objectContainer;                                                  //Container to save map objects. Saves all children objects.
         public GameObject spawnPoint;                                                       //Drag any game object to this in the editor window to set our spawnpoint
         public GameObject finishPoint;                                                      //Drag any game object to this in the editor window to set our finish point
-        public GameObject dialogueObject;                                                   //Drag the dialogue game object to this 
+        public GameObject mapInfo;                                                          //Drag reference to the game object that contains mapmetainfo and dialogue object here
         public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from
         public Transform containerTransform;                                                //Drag the Game Object to this in the editor window. This sets the transform under which we save all our obstacles from
 
@@ -56,7 +60,7 @@ namespace BoundEditor
         private int music;                                                                  //stores which song for the level
         private MapLoader mapLoader;                                                        //mapLoader component so we can load a level/map without having to go into play mode
         private RenderMap renderMap;                                                        //rendermap component to render the map
-        private MapObjectManager obstacleManager;                                            //Obstacle Manager component so we can reload obstacles from previous levels
+        private MapObjectManager obstacleManager;                                           //Obstacle Manager component so we can reload obstacles from previous levels
         private List<LevelData> levelList = new List<LevelData>();                          //List variable that holds a list of all of our levels
    
 
@@ -115,6 +119,11 @@ namespace BoundEditor
             //Save our exploders into our level object
             SaveExplosionData();
             SaveEventTriggers();
+
+            //Get the start and end dialogues
+            Dialogue startDialogue = SaveDialogue(true);
+            Dialogue endDialogue = SaveDialogue(false);
+
             //set music variable
             music = (int)selectMusic;
 
@@ -122,7 +131,7 @@ namespace BoundEditor
             //Check if we have level music indicated
 
             LevelData currLevel = new LevelData(SaveLevelTiles(groundLayer), SaveLevelTiles(wallLayer), start, end, mapObjectsData.obstacleData, 
-                                                music, SaveDialogue(true), SaveDialogue(false), levelName, mapObjectsData.eventData);
+                                                music, startDialogue, endDialogue, levelName, mapObjectsData.eventData);
             
             try
             {
@@ -161,8 +170,14 @@ namespace BoundEditor
             //Must cast the tileSet name into a string. We call the tileSet by path because JsonUtility only gives us an instance ID which may not work
             MapFile newMap = new MapFile(tileSet.name.ToString(), explosionSet.name.ToString(), levelList, eventSet.name.ToString());
 
+            //Gets and creates a new map directory
+            string newDirectory = GetNewDirectory(mapName);
+
             //Gets a path to save our map to
-            string path = "Assets/Maps/" + mapName + ".bound";
+            string mapPath = newDirectory + mapName + ".bound";
+
+            //Save the map meta
+            SaveMapMeta(newDirectory, mapPath);
 
             //Serializes the mapfile into a string
             string mapData = EditorJsonUtility.ToJson(newMap);
@@ -170,16 +185,46 @@ namespace BoundEditor
             //Tries to write our data into the path. If unable to write for whatever reason, we just get a debug
             try
             {
-                StreamWriter writer = new StreamWriter(path, false);
-                writer.WriteLine(mapData);
-                writer.Close();
+                FileWriter(mapPath, mapData);
                 Debug.Log("SaveMap successful!");
             }
-            catch
+            catch (Exception e)
             {
-                Debug.Log("Unable to save map");
+                Debug.LogError(e);
+                Debug.LogError("Unable to save map");
             }
 
+        }
+
+        //Generates a map meta file from the info set in the editor window. Accepts a parameter of the subdirectory the map will be located and the path of the .bound file itself
+        private void SaveMapMeta(string directory, string path)
+        {
+            //Sets the data
+            MapMetaObject newMeta = new MapMetaObject(mapName, path, mapDescrip, mapImage.name);
+
+            //Converts to string
+            string metaInfo = EditorJsonUtility.ToJson(newMeta);
+
+            //Appends the meta.json at the end for saving
+            directory = directory + "meta.json";
+            try
+            {
+                FileWriter(directory, metaInfo);
+                Debug.Log("Successfully saved meta to " + directory);
+            }
+            catch(Exception e)
+            {
+                Debug.LogError(e);
+                Debug.LogError("Unable to save meta information");
+            }         
+        }
+
+        //Creates a new folder given a map name and returns the path of that folder
+        private string GetNewDirectory(string mapName)
+        {
+            string path = savePath + mapName + "/";
+            Directory.CreateDirectory(path);
+            return path;
         }
         #endregion
 
@@ -188,7 +233,7 @@ namespace BoundEditor
         //Saves the dialogue from the dialogueobject component. Accepts bool parameter - true to return the start dialogue or false to return the end dialogue.
         private Dialogue SaveDialogue(bool startDial)
         {
-            DialogueObject component = dialogueObject.GetComponent<DialogueObject>();
+            DialogueObject component = mapInfo.GetComponent<DialogueObject>();
             if (startDial)
                 return component.startDialogue;
             else
@@ -286,6 +331,15 @@ namespace BoundEditor
 
 
         #region Other functionalities
+
+        //Writes info to a given path
+        private void FileWriter(string path, string info)
+        {
+            StreamWriter writer = new StreamWriter(path, false);
+            writer.WriteLine(info);
+            writer.Close();
+        }            
+        
         //Method to clear the current level list. 
         public void ClearLevels()
         {

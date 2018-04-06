@@ -25,11 +25,8 @@ public class SaveMapWindow : Editor
         //A label for nonwriteable information purposes
         EditorGUILayout.LabelField("Map Name", mySaveScript.mapName);
         EditorGUILayout.LabelField("Level", mySaveScript.levelNumber.ToString());
-
         EditorGUILayout.Space();
         EditorGUILayout.Space();
-
-
 
         //Button to save our level. Clicking a button returns true
         if (GUILayout.Button("Save Current Level"))

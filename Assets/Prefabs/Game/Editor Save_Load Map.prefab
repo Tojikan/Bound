@@ -78,7 +78,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNumber: 0
-  mapName: SpawnPoint3
   levelName: SpawnPoint
   tileSet: {fileID: 11400000, guid: 8d7e0a1d2db17f8439d7c938e8b78af8, type: 2}
   explosionSet: {fileID: 11400000, guid: 06e82d4659b841c4fb61013244bd76e3, type: 2}
@@ -91,7 +90,7 @@ MonoBehaviour:
   objectContainer: {fileID: 0}
   spawnPoint: {fileID: 0}
   finishPoint: {fileID: 0}
-  dialogueObject: {fileID: 0}
+  mapInfo: {fileID: 0}
   GameArea:
     m_Position: {x: -16, y: -11, z: 0}
     m_Size: {x: 32, y: 22, z: 1}
