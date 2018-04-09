@@ -100,7 +100,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0.9166667
-    functionName: Respawn
+    functionName: OnDeathAnimationEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

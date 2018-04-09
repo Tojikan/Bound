@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114157098643722358}
   m_Layer: 0
   m_Name: BigExplosion
-  m_TagString: Lethal
+  m_TagString: LethalFeet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,12 +198,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47481cf76951fd64a9f3353444f6c522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showBox: 0
   triggerTime: 100
   loopLength: 150
   isEnabled: 1
-  test: 0
-  showBox: 0
-  explosionType: {fileID: 7400000, guid: eba082072d60ec642a36a8effc833b1f, type: 2}
   SelectSFXPlayer: 0
 --- !u!212 &212281504542372846
 SpriteRenderer:

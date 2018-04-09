@@ -8,9 +8,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject colliderChild;                                                //Drag reference to the child object that contains the collider for wall detection
     public float moveSpeed = 1.0f;                                                  //player move speed
-    public float distanceTo = Mathf.Epsilon;                                        //distance to target object. Player stops as soon as we enter this distance
+    public float stopDistance = Mathf.Epsilon;                                        //distance to target object. Player stops as soon as we enter this distance
     private float speedFraction = 1.0f;                                             //Reduce move speed by a fraction based on Joystick magnitude        
-    private Animator anim;                                                          //Animator variable to control player animations
+    public Animator anim;                                                          //Animator variable to control player animations
    //private SpriteRenderer spriterender;                                           //Spriterender to flip character on X axis when moving a negative X direction
     private Vector2 newPosition;                                                    //Storage variable for the movement vector towards our target destination
     private Vector2 targetPosition;                                                 //Storage variable for the target position we're going for
@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     //Initializes our movement vector and make sure we're not moving
     void Awake ()
     {
-        anim = GetComponent<Animator>();
         //spriterender = GetComponent<SpriteRenderer>();
         col = colliderChild.GetComponent<TopDownCircleCollider2D>();
 
@@ -54,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         float remainingDistance = Vector2.Distance(transform.position, targetPosition);
 
         //If we're within our distanceTo, stop moving
-        if (remainingDistance <= distanceTo)
+        if (remainingDistance <= stopDistance)
         {
 
             isMoving = false;
@@ -71,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
             //Move on X axis, and then check collision           
             transform.position += xMove;
             col.CheckColliders();
+
 
 
             //Then move on Y axis and then check collision

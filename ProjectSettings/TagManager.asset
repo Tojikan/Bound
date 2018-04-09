@@ -8,6 +8,8 @@ TagManager:
   - RM_Canvas
   - RM_Background
   - SpawnPoint
+  - LethalFeet
+  - LethalBody
   layers:
   - Default
   - TransparentFX

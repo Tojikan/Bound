@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;                              //Make the game manager a singleton 
     public Player player;                                                   //Player Game Object
     public GameObject Spawn;                                                //Spawn point
-    public GameObject endImage;                                             //reference to our end screen
     public int playerLives = 50;                                            //Int for player lives
     public int levelToLoad = 0;                                             //Set which level we're loading
     public float dialogueDelay = 0.6f;                                      //Delay from level load to displaying dialogue
@@ -53,7 +52,6 @@ public class GameManager : MonoBehaviour
     private EventTriggerSet triggerSet;                                     //Read from map file to get us a set to interpret the map data
     private MapObjectManager objectManager;                                 //Get the objectManager component on the game object
     private PlayerController playControl;                                   //Variable to store the reference to Player's PlayerController
-
 
     #region initial setup
     private void Awake()
@@ -103,6 +101,13 @@ public class GameManager : MonoBehaviour
         UIManager.instance.SetLifeText(playerLives);
 
         playControl.DisableMovement();
+
+        //Set for double speed
+        if (currentMap.doubleSpeed == true)
+        {
+            Debug.Log("Doubletiming it!");
+            Timer.instance.DoubleSpeed = true;
+        }
 
         Debug.Log("Game Initialized");
         //Load level
@@ -237,7 +242,7 @@ public class GameManager : MonoBehaviour
         //Stops music and timer and clears the obstacles
         SoundManager.instance.StopMusic();
         Timer.instance.StopTimer();
-        objectManager.ClearObstacles();
+        objectManager.ClearAll();
 
         //Tells StartDialogue to play the end dialogue not the start dialogue
         levelStart = false;
@@ -356,9 +361,16 @@ public class GameManager : MonoBehaviour
     //Displays text upon defeat. Clears obstacles and ends the game manager
     public void GameOver()
     {
-        endImage.SetActive(true);
-        objectManager.ClearObstacles();
-        Destroy(instance);
+        SoundManager.instance.StopMusic();
+        Timer.instance.StopTimer();
+        Invoke("InvokeGameOver", 2f);
+        Debug.Log("Game Over");
+    }
+
+    //for invoking
+    private void InvokeGameOver()
+    {
+        TransitionManager.instance.GameOver();
     }
     #endregion
 
@@ -374,7 +386,7 @@ public class GameManager : MonoBehaviour
     {
         SoundManager.instance.StopMusic();
         Timer.instance.StopTimer();
-        objectManager.ClearObstacles();
+        objectManager.ClearAll();
     }
 
 #endif

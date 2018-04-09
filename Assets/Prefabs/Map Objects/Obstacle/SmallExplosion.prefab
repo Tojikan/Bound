@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 82955077163013062}
   m_Layer: 0
   m_Name: SmallExplosion
-  m_TagString: Lethal
+  m_TagString: LethalFeet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

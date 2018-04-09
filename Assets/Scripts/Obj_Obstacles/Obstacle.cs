@@ -40,19 +40,19 @@ namespace BoundEngine
         {
             switch ((int)SelectSFXPlayer)
             {
-                case 1:
+                case 0:
                     SoundManager.instance.AudioPlayerOne(audioSource.clip);
                     break;
-                case 2:
+                case 1:
                     SoundManager.instance.AudioPlayerTwo(audioSource.clip);
                     break;
-                case 3:
+                case 2:
                     SoundManager.instance.AudioPlayerThree(audioSource.clip);
                     break;
-                case 4:
+                case 3:
                     SoundManager.instance.AudioPlayerFour(audioSource.clip);
                     break;
-                case 5:
+                case 4:
                     SoundManager.instance.AudioPlayerFive(audioSource.clip);
                     break;
                 default:

@@ -44,12 +44,24 @@ public class Explosion : Obstacle
     //Triggers our exploder to explode
     private void Explode()
     {
+        string explosionName = RemoveCharacters(animate.name);
         //Re-enable the sprite renderer
         sprite.enabled = true;
         //Sets the animator to replay the animation from the beginning
-        animate.Play(animate.name, -1, 0);
+        animate.Play(explosionName, -1, 0);
         //Plays our explosion sound based on which audio player is selected
         PlayAudio();
+    }
+
+    private string RemoveCharacters(string name)
+    {
+        string stripped;
+        int index = name.IndexOf(" ");
+        if (index > 0)
+            stripped = name.Substring(0, index);
+        else
+            stripped = name;
+        return stripped;
     }
 
     //Disables the sprite renderer to make the explosion animation stop being rendered. Called by an animation event
