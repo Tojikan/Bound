@@ -15,11 +15,11 @@ namespace BoundEditor
 
         private PlayerController playercontrols;            //Reference to our player controls from the dragged player game object
         private Transform thisTransform;                    //Reference to this transform
-        private List<Obstacle> obstacles;                  //List of all explodderobstacles that are a child of the game object of this script
+        private List<Obstacle> obstacles;                    //List of all explodderobstacles that are a child of the game object of this script
 
         void Start()
         {
-            obstacles = new List<Obstacle>();                                  //new exploder list 
+            obstacles = new List<Obstacle>();                                   //new exploder list 
             thisTransform = GetComponent<Transform>();                          //Get this transform
             playercontrols = player.GetComponent<PlayerController>();           //Get the player controller of our player object
             GetAllExploderComponents();                                         //Grab our exploder scripts

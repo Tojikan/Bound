@@ -83,7 +83,7 @@ public class SaveMapWindow : Editor
         //Selects a map to load to the editor SaveMap list
         if (GUILayout.Button("Select a file to load from"))
         {
-            string path = EditorUtility.OpenFilePanel("Open Bound", "/Assets/Maps/", "bound");
+            string path = EditorUtility.OpenFilePanel("Open Bound", "./Assets/Maps/", "bound");
 
             //Make sure we have a path and then set our map to load
             if (path.Length != 0)

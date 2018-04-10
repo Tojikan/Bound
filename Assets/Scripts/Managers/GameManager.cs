@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     private RenderMap mapRenderer;                                          //reference to our renderMap Component to actually build the map
     private ObstacleSet obstacleSet;                                        //Read from map file to tell us which obstacles to load 
     private EventTriggerSet triggerSet;                                     //Read from map file to get us a set to interpret the map data
-    private MapObjectManager objectManager;                                 //Get the objectManager component on the game object
+    private ObjectManager objectManager;                                 //Get the objectManager component on the game object
     private PlayerController playControl;                                   //Variable to store the reference to Player's PlayerController
 
     #region initial setup
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         //Get our components
         playControl = player.GetComponent<PlayerController>();
         mapRenderer = GetComponent<RenderMap>();
-        objectManager = GetComponent<MapObjectManager>();
+        objectManager = GetComponent<ObjectManager>();
 
         //initialize bool
         checkInPlay = false;
@@ -242,7 +242,7 @@ public class GameManager : MonoBehaviour
         //Stops music and timer and clears the obstacles
         SoundManager.instance.StopMusic();
         Timer.instance.StopTimer();
-        objectManager.ClearAll();
+        objectManager.ClearList();
 
         //Tells StartDialogue to play the end dialogue not the start dialogue
         levelStart = false;
@@ -386,7 +386,7 @@ public class GameManager : MonoBehaviour
     {
         SoundManager.instance.StopMusic();
         Timer.instance.StopTimer();
-        objectManager.ClearAll();
+        objectManager.ClearList();
     }
 
 #endif

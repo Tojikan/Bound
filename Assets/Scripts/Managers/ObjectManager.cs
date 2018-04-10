@@ -7,7 +7,7 @@ namespace BoundEngine
 {
  
     //Class to handle the creation and controls of all our obstacles
-    public class MapObjectManager : MonoBehaviour
+    public class ObjectManager : MonoBehaviour
     {
         public bool ShowBoxes;                                                     //Draw explosion collision boxes for debugging
         private List<Obstacle> obstacleList;                                       //List of all exploders currently in the level. Use this to control the obstacles
@@ -115,11 +115,30 @@ namespace BoundEngine
         }
 
         //Remove all obstacles and triggers
-        public void ClearAll()
+        public void ClearList()
         {
             ClearObstacles();
             ClearTriggers();
         }
+
+        //For scenarios where there might not be lists of obstacles and objects
+        public void SearchAndDestroy()
+        {
+            Obstacle[] allObstacles = FindObjectsOfType<Obstacle>();
+            foreach (Obstacle obstacle in allObstacles)
+            {
+                DestroyImmediate(obstacle.gameObject);
+            }
+
+            EventTrigger[] allEvents = FindObjectsOfType<EventTrigger>();
+            foreach (EventTrigger trigger in allEvents)
+            {
+                DestroyImmediate(trigger.gameObject);
+            }
+        }
+
+
+
 
     }
 }

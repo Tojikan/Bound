@@ -59,7 +59,7 @@ namespace BoundEditor
         private int music;                                                                  //stores which song for the level
         private MapLoader mapLoader;                                                        //mapLoader component so we can load a level/map without having to go into play mode
         private RenderMap renderMap;                                                        //rendermap component to render the map
-        private MapObjectManager obstacleManager;                                           //Obstacle Manager component so we can reload obstacles from previous levels
+        private ObjectManager obstacleManager;                                           //Obstacle Manager component so we can reload obstacles from previous levels
         private List<LevelData> levelList = new List<LevelData>();                          //List variable that holds a list of all of our levels
    
 
@@ -76,7 +76,7 @@ namespace BoundEditor
             //Get the reference to all of our components
             mapLoader = GetComponent<MapLoader>();
             renderMap = GetComponent<RenderMap>();
-            obstacleManager = GetComponent<MapObjectManager>();
+            obstacleManager = GetComponent<ObjectManager>();
         }
 
         #region Level/Map save

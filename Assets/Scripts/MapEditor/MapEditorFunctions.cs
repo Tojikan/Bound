@@ -25,24 +25,25 @@ namespace BoundEditor
         public GameObject spawnPoint;                                                       //Drag any game object to this in the editor window to set our spawnpoint
         public GameObject finishPoint;                                                      //Drag any game object to this in the editor window to set our finish point
         public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from
-        private string savePath = "./Assets/Maps/";                                         //string to the maps folder
+        public string mainDirectory = "./Assets/Maps/";                                     //main directory to save maps to
+        public string fileExtension = ".bound";                                             //The file extension to save the map under
 
         private MapLoader mapLoader;                                                        //mapLoader component so we can load a level/map without having to go into play mode
         private RenderMap renderMap;                                                        //rendermap component to render the map
-        private MapObjectManager obstacleManager;                                           //Obstacle Manager component so we can reload obstacles from previous levels
+        private ObjectManager objectManager;                                                //Obstacle Manager component so we can reload obstacles from previous levels
         private MapEditorControl editorWindow;                                              //The interface window to handle method calls and map string inputs
 
         void Awake()
         {
             mapLoader = GetComponent<MapLoader>();
             renderMap = GetComponent<RenderMap>();
-            obstacleManager = GetComponent<MapObjectManager>();
+            objectManager = GetComponent<ObjectManager>();
             editorWindow = GetComponent<MapEditorControl>();
 
         }
 
         //Saves map information such as map meta and data sets
-        #region Map Saving
+        #region Map Data Saving
         //Saves all the maps data set names and other map data
         public void SaveMapInfo()
         {
@@ -62,13 +63,21 @@ namespace BoundEditor
         private void SaveMapMeta(string directory)
         {
             //String that goes to the .bound file with the map data in it
-            string fileLoc = directory + editorWindow.mapName + ".bound";
+            string fileLoc = directory + editorWindow.mapName + fileExtension;
 
             mapDataObject.meta.name = editorWindow.mapName;
             mapDataObject.meta.fileLocation = fileLoc; 
             mapDataObject.meta.description = editorWindow.mapDescrip;
             mapDataObject.meta.imagePath = editorWindow.mapImage.name;
             Debug.Log("Saving map meta information to Map Data Object");
+        }
+
+        //Clears the map data container object
+        public void ClearContainerData()
+        {
+            mapDataObject.ClearMeta();
+            mapDataObject.ClearMapData();
+            Debug.Log("Cleared all map data");
         }
 
 
@@ -115,9 +124,20 @@ namespace BoundEditor
                                                 SaveObstacles(), GetSongNumber() , SaveDialogue(true), SaveDialogue(false), GetLevelTitle(), SaveEventTriggers());
 
             return newLevel;
-
         }
 
+        //Remove a specific level from map data container
+        public void RemoveLevel(int level)
+        {
+            mapDataObject.mapData.levels.Remove(mapDataObject.mapData.levels[level]);
+            Debug.Log("Removed Level " + level);
+        }
+
+        //Clears all level data 
+        public void ClearLevels()
+        {
+            mapDataObject.mapData.levels.Clear();
+        }
 
         #endregion
 
@@ -251,7 +271,7 @@ namespace BoundEditor
             Debug.Log("Map was successfully created!");
         }
 
-        //Attempts to write the map data into a .bound file
+        //Attempts to write the map data into a file
         private void MapWriter()
         {
             MapFile newMap;
@@ -268,7 +288,7 @@ namespace BoundEditor
 
             //Get directory and append map names and filetypes
             string mapPath = GetNewDirectory(editorWindow.mapName);
-            mapPath = mapPath + editorWindow.mapName + ".bound";
+            mapPath = mapPath + editorWindow.mapName + fileExtension;
 
             //Serializes the mapfile into a string
             string mapData = EditorJsonUtility.ToJson(newMap);
@@ -346,26 +366,69 @@ namespace BoundEditor
         //Creates a new folder given a map name and returns the path of that folder. Based on the standard of creating new folders for each new map
         private string GetNewDirectory(string mapName)
         {
-            string path = savePath + mapName + "/";
+            string path = mainDirectory + mapName + "/";
             Directory.CreateDirectory(path);
             return path;
         }
         #endregion
 
-        //Clears the map data container object
-        public void ClearContainerData()
+
+        #region Opening map files back into the Editor
+
+        //Lets us load a map file into the editor. 
+        public void LoadMapInEditor(string filePath)
         {
-            mapDataObject.ClearMeta();
-            mapDataObject.ClearMapData();
-            Debug.Log("Cleared all map data");
+            //Get the map data
+            MapFile loadedMap = mapLoader.LoadMap(filePath);
+            Debug.Log("Loading Map Data with level count: " + loadedMap.levels.Count);
+
+            //Get the meta 
+            string metaLocation = RemoveMapName(filePath);
+            metaLocation = metaLocation + "meta.json";
+            MapMetaObject loadedMeta = mapLoader.LoadMeta(metaLocation);
+            Debug.Log("Getting map meta of map name: " + loadedMeta.name);
+
+            //Set the scriptable object container
+            mapDataObject.mapData = loadedMap;
+            mapDataObject.meta = loadedMeta;
+            Debug.Log("Map Successfully Loaded");
         }
 
-        public void RemoveLevel(int level)
+        //Removes the .fileExtension at the end of path so we can get the directory
+        private string RemoveMapName(string path)
         {
-            mapDataObject.mapData.levels.Remove(mapDataObject.mapData.levels[level]);
-            Debug.Log("Removed Level " + level);
+            int index = path.LastIndexOf("/");
+            string metaPath = path.Substring(0, index + 1);
+            Debug.Log(metaPath);
+            return metaPath;
         }
 
+        //Renders a given level number
+        public void RenderLevelInEditor(int levelnum)
+        {
+            //TO DO: figure out why we have to get component and cant do it in awake. Probably because it's in awake
+            renderMap = GetComponent<RenderMap>();
+            objectManager = GetComponent<ObjectManager>();
+            if (levelnum + 1 > mapDataObject.mapData.numberOfLevels)
+            {
+                Debug.Log("Attempting to load level but level does not exist!");
+                return;
+            }
+            objectManager.SearchAndDestroy();
+            renderMap.LoadTiles(mapDataObject.mapData.levels[levelnum], tileSet, GameArea);
+            objectManager.CreateObstacles(mapDataObject.mapData.levels[levelnum].obstacles, obstacleSet);
+            objectManager.CreateEventTriggers(mapDataObject.mapData.levels[levelnum].objects, eventSet);
+            SetPoints(levelnum);
 
+        }
+
+        //Set the start and end points
+        private void SetPoints(int level)
+        {
+            spawnPoint.transform.position = mapDataObject.mapData.levels[level].startPoint;
+            finishPoint.transform.position = mapDataObject.mapData.levels[level].endPoint;
+        }
+
+        #endregion
     }
 }

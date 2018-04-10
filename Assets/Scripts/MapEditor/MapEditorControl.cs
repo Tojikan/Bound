@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using BoundEngine;
 
 namespace BoundEditor
 {
@@ -10,10 +11,10 @@ namespace BoundEditor
     public class MapEditorControl : MonoBehaviour
     {
         public MapEditorFunctions editorFunctions;
-        public string mapName;                                                              //Name of map to save
-        public string mapDescrip;                                                           //Map description text box
-        public Sprite mapImage;                                                             //Map Image. Make sure you only drag from the resources folder or else it won't work
-        public bool doubleSpeed;                                                            //Set if we're going double timer on this map
+        [HideInInspector] public string mapName;                                            //Name of map to save
+        [HideInInspector] public string mapDescrip;                                         //Map description text box
+        [HideInInspector] public Object mapImage;                                           //Map Image. Make sure you only drag from the resources folder or else it won't work
+        [HideInInspector] public bool doubleSpeed;                                          //Set if we're going double timer on this map
         public string levelTitle;                                                           //Type in the title of the level
         public enum LevelMusic
         {
@@ -22,10 +23,10 @@ namespace BoundEditor
         public LevelMusic selectMusic;                                                      //Set music for current level
         public Dialogue startDialogue;                                                      //Type in level Start Dialogue in window
         public Dialogue endDialogue;                                                        //Type in level end dialogue in window
-        public int levelSelect;
+        public int levelSelect;                                                             //Type in the level you would like to select for overwriting/clearing    
 
         //Calls into our editor functions script to call methods
-        #region Button Commands
+        #region Level Button Commands
 
         public void OverwriteLevel(int level)
         {
@@ -34,10 +35,21 @@ namespace BoundEditor
 
         public void AddLevel()
         {
-            Debug.Log(editorFunctions);
             editorFunctions.AddLevel();
         }
+        public void RemoveLevel()
+        {
+            editorFunctions.RemoveLevel(levelSelect);
+        }
 
+        public void ClearAllLevels()
+        {
+            editorFunctions.ClearLevels();
+        }
+
+        #endregion
+
+        #region Map Button Commands
         public void SaveMapInfo()
         {
             editorFunctions.SaveMapInfo();
@@ -47,7 +59,7 @@ namespace BoundEditor
         {
             if (mapName.Length <= 0)
             {
-                Debug.Log("Blank map name. Please enter a map name");
+                Debug.LogError("Blank map name. Please enter a map name");
                 return;
             }
             editorFunctions.WriteToFile();
@@ -58,11 +70,21 @@ namespace BoundEditor
             editorFunctions.ClearContainerData();
         }
 
-        public void RemoveLevel()
-        {
-            editorFunctions.RemoveLevel(levelSelect);
-        }
+
         #endregion
 
+        #region Loading Button Commands
+        public void LoadMapIntoEditor(string path)
+        {
+            editorFunctions.LoadMapInEditor(path);
+            Debug.Log("Loaded map at: " + path);
+        }
+
+        public void LoadSelectedLevel(int level)
+        {
+            editorFunctions.RenderLevelInEditor(level);
+            Debug.Log("Loaded level: " + level);
+        }
+        #endregion
     }
 }
