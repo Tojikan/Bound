@@ -38,10 +38,9 @@ namespace BoundEditor
         public Sprite mapImage;                                                             //Map Image. Make sure you only drag from the resources folder or else it won't work
         public int levelNumber;                                                             //Current Level we are working on
         public string levelName;                                                            //name of the level
-        private string savePath = "./Assets/Maps/";                                         //string to the maps folder
+
         public TileSet tileSet;                                                             //Tileset scriptable object which contains an array holding references to our scriptable tiles. Lets us store the map tiles as ints to save space
         public ObstacleSet explosionSet;                                                    //Explosion set to store references to our exploder prefabs
-        public ExploderAnimationSet animationSet;                                           //Animation set to store references to our various explosion animations. Used to get an index number for each exploder. Match the animations with the explosionSet prefab animations
         public EventTriggerSet eventSet;                                                    //Drag desired eventtrigger set here
         public Tilemap groundLayer;                                                         //Ground layer for tiles. Use for ground level tiles
         public Tilemap wallLayer;                                                           //Wall Layer for tiles. Use for any higher level tiles
@@ -56,7 +55,7 @@ namespace BoundEditor
 
         [HideInInspector] public string FileToLoad;                                         //Path to our a map to load if we're editing a file. 
 
-
+        private string savePath;
         private int music;                                                                  //stores which song for the level
         private MapLoader mapLoader;                                                        //mapLoader component so we can load a level/map without having to go into play mode
         private RenderMap renderMap;                                                        //rendermap component to render the map
@@ -291,9 +290,7 @@ namespace BoundEditor
                     index++;
                 }
             }
-
             return tileArray;
-
         }
 
         //Saves all of our Explosion Prefabs that are under our obstacle container into our scriptable object

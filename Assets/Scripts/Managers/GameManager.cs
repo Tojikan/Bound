@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public BoundsInt gameArea;                                              //our game area to play in
     public static bool checkInPlay;                                         //static bool to inform other other classes if in play. Such as pausemenu
     public static float gameSpeed = 1.0f;                                   //Game speed
-    public CurrentMapSelection selectedMap;                                 //Drag reference to the map scriptable object here. This is loaded with a full map in the load map sector
+    public MapDataContainer selectedMap;                                 //Drag reference to the map scriptable object here. This is loaded with a full map in the load map sector
 
     [HideInInspector] public int endLevel;                                  //Last level
     [HideInInspector] public int currentLevel;                              //Current Level
@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour
     }
 
     //Returns the map data from the map scriptable object
-    private MapFile SetMap(CurrentMapSelection selection)
+    private MapFile SetMap(MapDataContainer selection)
     {
         return selection.mapData;
     }

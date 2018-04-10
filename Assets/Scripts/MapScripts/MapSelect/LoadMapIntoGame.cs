@@ -10,7 +10,7 @@ namespace BoundMenus
     //Button event to load map
     public class LoadMapIntoGame : MonoBehaviour
     {
-        public CurrentMapSelection mapContainer;                            //Drag reference to map selection object
+        public MapDataContainer mapContainer;                            //Drag reference to map selection object
         private MapLoader mapLoader;                                        //MapLoader component
 
         private void Awake()

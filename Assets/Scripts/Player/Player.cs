@@ -195,7 +195,6 @@ public class Player : MonoBehaviour
             Debug.Log("Unable to get spawn point from Game Manager. Attempting a search");
         }
         spawn = GameObject.FindGameObjectWithTag("SpawnPoint");
-        Debug.Log(spawn);
         return spawn;
     }
 
