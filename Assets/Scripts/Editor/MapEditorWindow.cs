@@ -6,7 +6,6 @@ using BoundEditor;
 using System;
 
 //Custom Inspector for Map Editor
-
 [CustomEditor(typeof(MapEditorControl))]
 public class MapEditorWindow : Editor
 {
@@ -16,10 +15,11 @@ public class MapEditorWindow : Editor
         MapEditorControl controller = (MapEditorControl)target;
 
 
-        EditorGUILayout.HelpBox("Use this window to input map info and call Map Editor Functions from the various components. All Map Data is saved into a scriptable object container, which can be overwritten. When the Write Map function is called, the data in the object container will be written into a file", MessageType.Info);
+        EditorGUILayout.HelpBox("All Map Data is first saved into a scriptable object container. While saved, it is not permanent and scriptable object can be overwritten.  Use the Write Map function to write the data currently in the scriptable object into a file", MessageType.Info);
         GUILayout.Label("Level Saving");
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-
+        EditorGUILayout.HelpBox("This section handles all level saving and loading. Input the level data as needed into the public fields. You can select a level" +
+                            " for overwriting, loading, or clearing by typing in the level index number. Remember that levels are zero indexed.", MessageType.Info);
         EditorGUILayout.Space();
         base.OnInspectorGUI();
 
@@ -59,20 +59,29 @@ public class MapEditorWindow : Editor
                 }
             }
         }
+
+        //Renders a level from the scriptable object based on selected level
+        if (GUILayout.Button("Load Target Level", GUILayout.MinHeight(25)))
+        {
+            if (EditorUtility.DisplayDialog("Warning!", "You will lose any unsaved progress on the current level in the scene. Continue?", "Ok", "Cancel"))
+            {
+                controller.LoadSelectedLevel(controller.levelSelect);
+            }
+        }
         #endregion
         EditorGUILayout.Space();
         EditorGUILayout.Space();
         EditorGUILayout.Space();
         GUILayout.Label("Map Saving");
-        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);  
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        EditorGUILayout.HelpBox("This section will handle map saving. You can input the map meta information in the public fields. " +
+            "REMEMBER to save Map Info and Meta before writing a file or else  your data sets and meta information will not be saved into the map file", MessageType.Info);
 
         #region Map Save section
         controller.mapName = EditorGUILayout.TextField("Map Name", controller.mapName);
         controller.mapDescrip = EditorGUILayout.TextField("Map Description", controller.mapDescrip, GUILayout.Height(50));
         controller.mapImage = EditorGUILayout.ObjectField("Preview Image", controller.mapImage, typeof(object), allowSceneObjects: false);
         controller.doubleSpeed = EditorGUILayout.Toggle("Double Speed", controller.doubleSpeed);
-
-        EditorGUILayout.HelpBox("Be sure to save Map Info and Meta before writing a file. This will save your selected tile/obstacle sets and the map meta information. ", MessageType.Warning);
         //Save map meta information and data set names
         if (GUILayout.Button("Save Map Info and Meta", GUILayout.MinHeight(25)))
             controller.SaveMapInfo();
@@ -87,31 +96,11 @@ public class MapEditorWindow : Editor
                 controller.ClearMapData();
             }
         }
-        #endregion
-
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        GUILayout.Label("Map and Level Loading");
-        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-        EditorGUILayout.Space();
-
-        #region Loading
-        EditorGUILayout.HelpBox("You may load levels from the map data container by typing in your desired level number in the int field and selecting load map ", MessageType.Warning);
-
-        //Renders a level from the scriptable object based on selected level
-        if (GUILayout.Button("Load Target Level", GUILayout.MinHeight(25)))
-        {
-            if (EditorUtility.DisplayDialog("Warning!", "This will overwrite the existing map in the scene. Please save before proceeding", "Ok", "Cancel"))
-            {
-                controller.LoadSelectedLevel(controller.levelSelect);
-            }
-        }
 
         //Load a map and overwrite into the scriptable object
         if (GUILayout.Button("Load a Map", GUILayout.MinHeight(25)))
         {
-            string path = EditorUtility.OpenFilePanel("Open Map", "./Assets/Maps/", ".bound");
+            string path = EditorUtility.OpenFilePanel("Open Map", "./Assets/Maps/", "bound");
             Debug.Log(path);
             if (path == "")
             {

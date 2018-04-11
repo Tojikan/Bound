@@ -7,7 +7,6 @@ using System.IO;
 using BoundEditor;
 
 //Editor script to create a custom editor for our SaveMap class
-
 [CustomEditor(typeof(SaveMapInEditor))]
 public class SaveMapWindow : Editor
 {

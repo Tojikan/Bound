@@ -137,8 +137,20 @@ namespace BoundEngine
             }
         }
 
+        //For use in the map editor - set all as a child of the appropriate parent container
+        public void SetParents(Transform obstacleParent, Transform objectParent)
+        {
+            foreach (Obstacle obstacle in obstacleList)
+            {
+                obstacle.transform.parent = obstacleParent;
+            }
 
+            foreach (EventTrigger trigger in triggerList)
+            {
+                trigger.transform.parent = objectParent;
+            }
 
+        }
 
     }
 }

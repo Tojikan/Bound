@@ -11,6 +11,7 @@ using BoundEngine;
 
 namespace BoundEditor
 {
+    //Class that handles all the logic and functionalities for saving and loading maps into the Map Editor. We set the references all in this class so the controller class is cleaner.
     [ExecuteInEditMode]
     public class MapEditorFunctions : MonoBehaviour
     {
@@ -20,11 +21,11 @@ namespace BoundEditor
         public Tilemap wallLayer;                                                           //Wall Layer for tiles. Use for any higher level tiles
         public ObstacleSet obstacleSet;                                                     //Explosion set to store references to our exploder prefabs
         public EventTriggerSet eventSet;                                                    //Drag desired eventtrigger set here
-        public GameObject explosionContainer;                                               //Container to save obstacles. Saves all the children objects of it. 
+        public GameObject obstacleContainer;                                                //Container to save obstacles. Saves all the children objects of it. 
         public GameObject objectContainer;                                                  //Container to save map objects. Saves all children objects.
         public GameObject spawnPoint;                                                       //Drag any game object to this in the editor window to set our spawnpoint
         public GameObject finishPoint;                                                      //Drag any game object to this in the editor window to set our finish point
-        public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from
+        public BoundsInt GameArea;                                                          //Sets the bounds for our game area and where we save from  
         public string mainDirectory = "./Assets/Maps/";                                     //main directory to save maps to
         public string fileExtension = ".bound";                                             //The file extension to save the map under
 
@@ -175,7 +176,7 @@ namespace BoundEditor
         //Saves all of our Explosion Prefabs that are under our obstacle container into our scriptable object
         private List<ObstacleData> SaveObstacles()
         {
-            Transform obstacleParent = explosionContainer.GetComponent<Transform>();
+            Transform obstacleParent = obstacleContainer.GetComponent<Transform>();
             List<ObstacleData> obstacleList = new List<ObstacleData>();
 
             foreach (Transform child in obstacleParent)
@@ -414,10 +415,15 @@ namespace BoundEditor
                 Debug.Log("Attempting to load level but level does not exist!");
                 return;
             }
+            //Clear current obstacles
             objectManager.SearchAndDestroy();
+            //Load tiles and obstacles
             renderMap.LoadTiles(mapDataObject.mapData.levels[levelnum], tileSet, GameArea);
             objectManager.CreateObstacles(mapDataObject.mapData.levels[levelnum].obstacles, obstacleSet);
             objectManager.CreateEventTriggers(mapDataObject.mapData.levels[levelnum].objects, eventSet);
+            //Set obstacles and objects as children of their respective containers
+            objectManager.SetParents(obstacleContainer.GetComponent<Transform>(), objectContainer.GetComponent<Transform>());
+            //Set our start and end points
             SetPoints(levelnum);
 
         }
