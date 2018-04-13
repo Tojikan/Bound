@@ -88,27 +88,31 @@ public class Player : MonoBehaviour
     //Called by children colliders when they detect a collision with their associated body part
     public void OnObstacleHit()
     {
-        //Set bool
-        isHit = true;
-
-        //If we're playing the main game, do a check
-        if (GameManager.instance != null)
+        if (isHit == false)
         {
-            //If it's tagged with lethal, call death function
-            if (GameManager.instance.CheckGameOver() == false)
+            //Set bool
+            isHit = true;
+            //If we're playing the main game, do a check
+            if (GameManager.instance != null)
             {
-                PlayerDeath();
+         
+
+                //If it's tagged with lethal, call death function
+                if (GameManager.instance.CheckGameOver() == false)
+                {
+                    PlayerDeath();
+                }
+                else
+                {
+                    gameOver = true;
+                    PlayerDeath();
+                }
             }
+            //If not, just respawn
             else
             {
-                gameOver = true;
                 PlayerDeath();
             }
-        }
-        //If not, just respawn
-        else
-        {
-            PlayerDeath();
         }
     }
 
