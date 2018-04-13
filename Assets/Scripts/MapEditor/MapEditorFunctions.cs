@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR
+using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.IO;
@@ -425,6 +426,23 @@ namespace BoundEditor
             objectManager.SetParents(obstacleContainer.GetComponent<Transform>(), objectContainer.GetComponent<Transform>());
             //Set our start and end points
             SetPoints(levelnum);
+            //Set Text
+            SetLevelText(levelnum);
+        }
+
+        //Reset window text
+        private void SetLevelText(int level)
+        {
+            LevelData tempLevel = mapDataObject.mapData.levels[level];
+            editorWindow.levelTitle = tempLevel.levelName;
+            editorWindow.selectMusic = (MapEditorControl.LevelMusic)tempLevel.music;
+            editorWindow.startDialogue = tempLevel.startDialogue;
+            editorWindow.endDialogue = tempLevel.endDialogue;
+
+            editorWindow.mapDescrip = mapDataObject.meta.description;
+            editorWindow.mapName = mapDataObject.meta.name;
+            //editorWindow.mapImage = Resources.Load(".  mapDataObject.meta.imagePath;
+            editorWindow.doubleSpeed = mapDataObject.mapData.doubleSpeed;
 
         }
 
@@ -438,3 +456,4 @@ namespace BoundEditor
         #endregion
     }
 }
+#endif

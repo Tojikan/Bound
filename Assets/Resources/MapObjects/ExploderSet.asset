@@ -16,7 +16,13 @@ MonoBehaviour:
   - {fileID: 114157098643722358, guid: 50d936348a9a9fe448187f317b75c390, type: 2}
   - {fileID: 114455248443694342, guid: 00ceba8b04bc4e24c8b333834aa1c02e, type: 2}
   - {fileID: 114961280030766316, guid: 54a20b2a86c230e47b5d4ba0fe513925, type: 2}
+  - {fileID: 114015014929709638, guid: d6f4dbbe96b057d4781dfd484e439ad0, type: 2}
+  - {fileID: 114220296370889602, guid: c75bf685b6d228641b21b27fe6a22c35, type: 2}
+  - {fileID: 114784069952702528, guid: 12eb9780382ac55459616fcbc7b30797, type: 2}
   obstacleSprites:
   - {fileID: 21300000, guid: 02caf2529e444a14ab5eae5fafab7fd4, type: 3}
   - {fileID: 21300000, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
   - {fileID: 21300000, guid: 2633fb07d85c3284698b86fb8734b09e, type: 3}
+  - {fileID: 21300000, guid: 20d72bf528e9bc34b8346efae4e4f85c, type: 3}
+  - {fileID: 21300000, guid: 9faddd7da1a82834f8c1c39ed309504e, type: 3}
+  - {fileID: 21300000, guid: 6bd8b12c14ccbe74bbd58157f2303788, type: 3}

@@ -1,4 +1,5 @@
 ﻿
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -12,7 +13,6 @@ using BoundMaps;
 using BoundEngine;
 
 
-#if UNITY_EDITOR
 /**Prototype Map Editor
  * 
  * Class to save current tiles and map objects within a game area on screen to a map. Currently only works in the editor 

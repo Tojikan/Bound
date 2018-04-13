@@ -1,4 +1,5 @@
-﻿using BoundMaps;
+﻿#if UNITY_EDITOR
+using BoundMaps;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -98,3 +99,4 @@ namespace BoundEditor
         #endregion
     }
 }
+#endif

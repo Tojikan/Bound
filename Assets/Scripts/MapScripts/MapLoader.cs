@@ -1,4 +1,5 @@
 ﻿using BoundMaps;
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -35,8 +36,9 @@ namespace BoundEngine
                 //Deserialize the mapfile string into a mapfile class
                 map = JsonUtility.FromJson<MapFile>(loadMap);
             }
-            catch
+            catch (Exception e)
             {
+                Debug.LogError(e);
                 Debug.Log("Invalid map");
                 return null;
             }
