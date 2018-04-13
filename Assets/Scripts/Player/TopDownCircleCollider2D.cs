@@ -8,11 +8,13 @@ using UnityEngine;
 //Recommended to check collisions twice - on the X and Y axis separately. 
 //Remember to add a circle collider to the object
 
+//As of Build 4.02.18, this collider works on a game object that is a child of the player object, so that we can have two different colliders for obstacle detection
+//Remember to get the reference to the player object in order for this to work. Size it to the feet area
 public class TopDownCircleCollider2D : MonoBehaviour
 {
     public LayerMask targetLayer;                                                   //Select the layer we are checking colissions on
     public float overlapRadius = 10f;                                               //Sets the distance at which we are detecting other colliders from
-    
+    public GameObject player;                                                       //Drag player parent object here so we can stop it if collision detected.
 
     private Collider2D[] neighbors;                                                 //Array to store colliders that we detect
     private int maxNeighbors = 16;                                                  //initialize array value
@@ -46,11 +48,8 @@ public class TopDownCircleCollider2D : MonoBehaviour
             {
                 //if so, calculate the displacement and then change our position
                 Vector3 displace = colDist.normal * colDist.distance;
-                transform.position += displace;
-            }
-           
+                player.transform.position += displace;
+            }  
         }
-
-        //returns false if no collision detected
     }
 }

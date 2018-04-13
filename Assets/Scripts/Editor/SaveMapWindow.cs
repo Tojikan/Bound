@@ -7,7 +7,6 @@ using System.IO;
 using BoundEditor;
 
 //Editor script to create a custom editor for our SaveMap class
-
 [CustomEditor(typeof(SaveMapInEditor))]
 public class SaveMapWindow : Editor
 {
@@ -25,11 +24,8 @@ public class SaveMapWindow : Editor
         //A label for nonwriteable information purposes
         EditorGUILayout.LabelField("Map Name", mySaveScript.mapName);
         EditorGUILayout.LabelField("Level", mySaveScript.levelNumber.ToString());
-
         EditorGUILayout.Space();
         EditorGUILayout.Space();
-
-
 
         //Button to save our level. Clicking a button returns true
         if (GUILayout.Button("Save Current Level"))
@@ -86,7 +82,7 @@ public class SaveMapWindow : Editor
         //Selects a map to load to the editor SaveMap list
         if (GUILayout.Button("Select a file to load from"))
         {
-            string path = EditorUtility.OpenFilePanel("Open Bound", "/Assets/Maps/", "bound");
+            string path = EditorUtility.OpenFilePanel("Open Bound", "./Assets/Maps/", "bound");
 
             //Make sure we have a path and then set our map to load
             if (path.Length != 0)

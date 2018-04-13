@@ -11,7 +11,7 @@ namespace BoundMenus
     {
         private DisplayMap displayMap;                                      //reference to the display component
         public static SelectMap instance;                                   //Singleton instance of this
-        public CurrentMapSelection currentSelection;                        //Drag Scriptable Object selection to this, which stores the current selection and also stores the last map selected
+        public MapDataContainer currentSelection;                        //Drag Scriptable Object selection to this, which stores the current selection and also stores the last map selected
 
         private void Awake()
         {

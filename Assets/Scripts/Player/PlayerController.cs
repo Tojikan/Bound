@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using BoundEngine;
 
+//Class that receives player inputs and sets the various control schemes. Movement is not handled here
+//Uses an Enum to select different control schemes. There are four Delegate/Events in response to various touch inputs. Different methods are subscribed based on control scheme
 public class PlayerController : TouchInput
 {
     public static bool movementEnabled;                                    //bool to check if we're supposed to move and not, such as during pauses and level starts/ends
@@ -21,7 +23,7 @@ public class PlayerController : TouchInput
         Tap
     }
 
-    public static ControlOptions controlOptions = ControlOptions.Tap;          //Selects which control option we are using
+    public static ControlOptions controlOptions = ControlOptions.Tap;               //Selects which control option we are using. Default is Tap
     private ControlOptions OldControlOptions;                                       //Placeholder to see if we changed control schemes
     private ControlOptions SetControlOptions                                        //Property Get;Set to set our oldcontroloptions but also calls the function that actually changes our controls
     {
@@ -66,8 +68,9 @@ public class PlayerController : TouchInput
     {
 
         base.Update();
-#if UNITY_EDITOR    
-        //Bit of code to let us do mouseclick for testing purposes in the editor so we don't have to keep hooking up a phone. 
+
+        //Mouse input for Editor testing and Windows/OSX builds
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX  
         if (movementEnabled)
         {
             if (Input.GetMouseButtonDown(1))
@@ -116,6 +119,7 @@ public class PlayerController : TouchInput
         }
     }
 
+    //If touch stays anywhere on the screen
     protected override void OnTouchStayed()
     {
         if (movementEnabled)

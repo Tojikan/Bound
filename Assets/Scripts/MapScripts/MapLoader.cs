@@ -1,4 +1,5 @@
 ﻿using BoundMaps;
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace BoundEngine
     //Class to load our map from a file
     public class MapLoader : MonoBehaviour
     {
-        //main method to load a map from a given file. Takes in the path to the file, reads and deserializes it, and returns a MapFile. 
+        //main method to load a map from a given file. Takes in the path to the file, reads and deserializes it, and returns a MapFile. Path should include the file name
         public MapFile LoadMap(string FileToLoad)
         {
             //Checks to see if we have a file to load
@@ -35,12 +36,21 @@ namespace BoundEngine
                 //Deserialize the mapfile string into a mapfile class
                 map = JsonUtility.FromJson<MapFile>(loadMap);
             }
-            catch
+            catch (Exception e)
             {
+                Debug.LogError(e);
                 Debug.Log("Invalid map");
                 return null;
             }
             return map;        
+        }
+
+        //Returns a meta from a path. Make sure path includes the file name
+        public MapMetaObject LoadMeta(string path)
+        {
+            string metaString = ReadString(path);
+            MapMetaObject newMeta = JsonUtility.FromJson<MapMetaObject>(metaString);
+            return newMeta;
         }
 
         //Checks the file extension to make sure we're loading a map file

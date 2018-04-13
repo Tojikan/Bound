@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BoundMaps {
+//Map Meta information
+namespace BoundMaps
+{
 
 	[Serializable]
-	public class MapMetaObject {
+	public class MapMetaObject
+    {
 
 		public string name;
 		public string fileLocation;
@@ -14,7 +17,8 @@ namespace BoundMaps {
         public string imagePath;
 
 		// Use this for initialization
-		public MapMetaObject (string name, string fileLocation, string description, string imagePath ) {
+		public MapMetaObject (string name, string fileLocation, string description, string imagePath )
+        {
 			this.name = name;
 			this.fileLocation = fileLocation;
             this.description = description;

@@ -17,7 +17,8 @@ namespace BoundEngine
         public static bool start;                                               //Static bool to determine if we are at the start of a level or end
         private Animator animator;                                              //Reference to animator component
         private bool reachedEnd;                                                //Checks if you reached end of map
-
+        private Outline outline;                                                //Get component reference to outline
+        private Shadow shadow;                                                  //Get component reference to shadow
 
         // Use this for initialization
         void Awake()
@@ -27,9 +28,18 @@ namespace BoundEngine
                 instance = this;
             else if (instance != this)
                 Destroy(gameObject);
-            //Get animator comopnent
+            //Get components
             animator = GetComponent<Animator>();
+            outline = screenText.gameObject.GetComponent<Outline>();
             reachedEnd = false;
+        }
+
+        private void Start()
+        {
+            //set default text color and volume levels
+            outline.effectColor = new Color(63f / 255f, 166f / 255f, 208f / 255f, 255f);
+            startSound.volume = 1;
+            endSound.volume = 1;
         }
 
         //Level start transition when a new level begins
@@ -39,7 +49,7 @@ namespace BoundEngine
             string text = "Level" + '$' + level;
             text = text.Replace('$', '\n');
             screenText.text = text;
-            //Trigger animation
+            //EventTrigger animation
             animator.SetTrigger("LevelTransition");
         }
 
@@ -111,26 +121,37 @@ namespace BoundEngine
         {
             string text = "Map    Complete!";
             screenText.text = text;
+            outline.effectColor = Color.green;
             reachedEnd = true;
             animator.SetTrigger("LevelTransition");
+        }
+
+
+        public void GameOver()
+        {
+            string text = "Game     Over";
+            screenText.text = text;
+            outline.effectColor = Color.red;
+            reachedEnd = true;
+            animator.SetTrigger("GameOver");
         }
 
         //Calls back to GameManager to exit
         private void ExitBackToMenu()
         {
-            GameManager.GameManagerInstance.ExitBackToMenu();
+            GameManager.instance.ExitBackToMenu();
         }
 
         //Calls back to GameManager to start the current level
         public void StartPlaying()
         {
-            GameManager.GameManagerInstance.StartLevel();
+            GameManager.instance.StartLevel();
         }
 
         //Calls back to GameManager to load the next level
         public void NextLevel()
         {
-            GameManager.GameManagerInstance.LoadNextLevel();
+            GameManager.instance.LoadNextLevel();
         }
 
         //Play the start sound for the animation at a random pitch. Called in an animation event

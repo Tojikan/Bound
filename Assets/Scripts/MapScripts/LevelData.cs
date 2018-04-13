@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//Public struct to hold tile information for each level
+//Struct that holds all tiles and map object data for each level. A mapfile contains a list of this
 namespace BoundMaps
 {
 
@@ -17,6 +17,9 @@ namespace BoundMaps
 
         //List of obstacles and their data
         public List<ObstacleData> obstacles = new List<ObstacleData>();
+
+        //List of EventTrigger Data
+        public List<EventTriggerData> objects = new List<EventTriggerData>();
 
         //Stores our start and end points. 
         public Vector2 startPoint;
@@ -32,6 +35,7 @@ namespace BoundMaps
         //level music
         public int music;
 
+        #region Constructors
         //Constructor
         public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs)
         {
@@ -40,9 +44,10 @@ namespace BoundMaps
             startPoint = start;
             endPoint = end;
             obstacles = bombs;
+            objects = null;
         }
 
-        //Constructor
+        //Constructor with audiplayer select
         public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song)
         {
             groundTiles = ground;
@@ -51,9 +56,10 @@ namespace BoundMaps
             endPoint = end;
             obstacles = bombs;
             music = song;
+            objects = null;
         }
 
-        //Constructor
+        //Constructor with start dial
         public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song, Dialogue startDial)
         {
             groundTiles = ground;
@@ -63,9 +69,10 @@ namespace BoundMaps
             obstacles = bombs;
             music = song;
             startDialogue = startDial;
+            objects = null;
         }
 
-        //Constructor
+        //Constructor with end dial
         public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song, Dialogue startDial, Dialogue endDial)
         {
             groundTiles = ground;
@@ -76,10 +83,11 @@ namespace BoundMaps
             music = song;
             startDialogue = startDial;
             endDialogue = endDial;
+            objects = null;
         }
 
 
-        //Constructor
+        //Constructor with map tile
         public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song, Dialogue startDial, Dialogue endDial, string title)
         {
             groundTiles = ground;
@@ -91,6 +99,23 @@ namespace BoundMaps
             startDialogue = startDial;
             endDialogue = endDial;
             levelName = title;
+            objects = null;
         }
+
+        //Constructor with map objects
+        public LevelData(int[] ground, int[] wall, Vector3 start, Vector3 end, List<ObstacleData> bombs, int song, Dialogue startDial, Dialogue endDial, string title, List<EventTriggerData> objects)
+        {
+            groundTiles = ground;
+            wallTiles = wall;
+            startPoint = start;
+            endPoint = end;
+            obstacles = bombs;
+            music = song;
+            startDialogue = startDial;
+            endDialogue = endDial;
+            levelName = title;
+            this.objects = objects;
+        }
+        #endregion
     }
 }
