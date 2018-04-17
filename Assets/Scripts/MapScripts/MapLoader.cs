@@ -39,6 +39,7 @@ namespace BoundEngine
             catch (Exception e)
             {
                 Debug.LogError(e);
+                DialogSystem.instance.SingleButtonMessage("Unable to read map file", "Okay");
                 Debug.Log("Invalid map");
                 return null;
             }
@@ -58,6 +59,7 @@ namespace BoundEngine
         {
             if(Path.GetExtension(file) != ".bound")
             {
+                DialogSystem.instance.SingleButtonMessage("Invalid map extension", "Okay");
                 Debug.Log("Invalid File Extension");
                 return false;
             }

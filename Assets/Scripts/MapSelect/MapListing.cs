@@ -10,7 +10,7 @@ namespace BoundMenus
     //Map listing information
     public class MapListing : MonoBehaviour
     {
-        private MapMetaObject mapMeta;                               //Meta information of the object
+        private MapMetaObject mapMeta;                              //Meta information of the object
         public Text listingText;                                    //Drag reference to the text component of the button
 
         //Loads the map meta in this listing on click
