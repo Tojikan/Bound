@@ -80,9 +80,8 @@ namespace BoundEngine
                 textSound.PlayOneShot(textSound.clip);
                 DisplayNextSentence();
             }
-#endif
         }
-
+#endif
         //Initiates a dialogue
         public void StartDialogue(Dialogue dialogue)
         {
