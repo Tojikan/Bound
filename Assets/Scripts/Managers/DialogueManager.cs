@@ -43,7 +43,21 @@ namespace BoundEngine
         protected override void Update()
         {
             base.Update();
-            //Mouse to load next sentence for testing purposes in the editor
+            //Mouse to load next sentence for testing purposes
+#if UNITY_STANDALONE
+            if (isTalking && PauseMenu.isPaused == false)
+            {
+                if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
+                {
+                    textSound.PlayOneShot(textSound.clip);
+                    DisplayNextSentence();
+                }
+            }
+#elif UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE)
+            /**if in editor, always accept right clicks in case you're compiling in mobile. 
+            That way won't trigger a double click if you happen to be tapping on surface 
+            as surface taps register as mousebutton 0**/
+
             if (isTalking && PauseMenu.isPaused == false)
             {
                 if (Input.GetMouseButtonDown(1))
@@ -52,12 +66,14 @@ namespace BoundEngine
                     DisplayNextSentence();
                 }
             }
+#endif
         }
 
-
+#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
         //Accept touch input to display next sentence
         protected override void OnTouchBeganAnywhere()
         {
+
             //On tap. If we're talking, play a sound and load the next sentence
             if (isTalking && PauseMenu.isPaused == false)
             {
@@ -65,7 +81,7 @@ namespace BoundEngine
                 DisplayNextSentence();
             }
         }
-
+#endif
         //Initiates a dialogue
         public void StartDialogue(Dialogue dialogue)
         {

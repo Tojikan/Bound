@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Name: CurrentMap
   m_EditorClassIdentifier: 
   meta:
-    name: Map A
-    fileLocation: ./Assets/Maps/Prototype6/Prototype6.bound
-    description: This is Map A. There are many other maps like this but this one is
-      mine
+    name: No Map Untitled
+    fileLocation: 
+    description: No Description
     imagePath: Preview1.png
+  mapData:
+    tileset: 
+    obstacleSet: 
+    eventTriggerSet: 
+    numberOfLevels: 0
+    doubleSpeed: 0
+    levels: []

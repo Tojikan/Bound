@@ -70,7 +70,17 @@ public class PlayerController : TouchInput
         base.Update();
 
         //Mouse input for Editor testing and Windows/OSX builds
-#if UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX  
+#if UNITY_STANDALONE
+        if (movementEnabled)
+        {
+            if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
+            {
+                Vector2 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                movePlayer.SetMovement(newPosition);
+            }
+        }
+#elif UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE)
+        //allow use of right click in editor mode if your build settings is with mobile platforms
         if (movementEnabled)
         {
             if (Input.GetMouseButtonDown(1))
@@ -79,6 +89,7 @@ public class PlayerController : TouchInput
                 movePlayer.SetMovement(newPosition);
             }
         }
+
 #endif
 
         //Checks to see if we have changed our controls since the last frame. If so, use the get;set to call the function to set controls

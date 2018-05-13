@@ -28,6 +28,7 @@ namespace BoundMenus
                 if (mapContainer.mapData == null)
                 {
                     Debug.Log("Error: MapData is null");
+                    DialogSystem.instance.SingleButtonMessage("Error: Map is invalid or corrupt", "Okay");
                     return;
                 }
                 StartGame();
@@ -36,6 +37,7 @@ namespace BoundMenus
             {
                 //TO DO: ERROR MESSAGE SYSTEM
                 Debug.LogException(e);
+                DialogSystem.instance.SingleButtonMessage("Unable to load map", "Okay");
                 Debug.Log("unable to load map " + mapContainer.meta.fileLocation);
             }
         }
@@ -43,6 +45,7 @@ namespace BoundMenus
         //Starts loading the main game scene
         private void StartGame()
         {
+            DialogSystem.instance.OpenLoadingDialog();
             StartCoroutine(LoadSceneAsync());
         }
 
